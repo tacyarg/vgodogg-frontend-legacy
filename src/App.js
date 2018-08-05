@@ -23,7 +23,7 @@ class App extends Component {
         allTime: {
           cases: {
             totalValue: 0,
-            opened:0
+            opened: 0
           }
         }
       },
@@ -45,8 +45,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header stats={this.state.stats}/>
-        <Feed recentOpenings={this.state.recentOpenings}/>
+        <Header stats={this.state.stats} />
+        <Feed recentOpenings={this.state.recentOpenings} />
         <div className='main'>
           some case
         </div>

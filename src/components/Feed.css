@@ -2,8 +2,6 @@
   width: 100%;
   white-space:nowrap;
   overflow: hidden;
-  /* overflow-x: scroll; */
-  /* border: solid black; */
 }
 
 .opening {
@@ -12,10 +10,10 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: inline-block;
-  width: 300px;
+  width: 295px;
   margin: 10px 5px 10px 5px;
   max-height: 200px;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.2);;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .opening .itemName {
