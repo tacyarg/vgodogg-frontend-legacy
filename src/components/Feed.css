@@ -1,0 +1,55 @@
+.wrapper {
+  width: 100%;
+  white-space:nowrap;
+  overflow: hidden;
+  /* overflow-x: scroll; */
+  /* border: solid black; */
+}
+
+.opening {
+  /* box-sizing: content-box; */
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: inline-block;
+  width: 300px;
+  margin: 10px 5px 10px 5px;
+  max-height: 200px;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.2);;
+}
+
+.opening .itemName {
+  padding: 10px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  /* position: static; */
+  width: 100%;
+}
+
+.opening .itemImage {
+  margin-top: -80px;
+}
+
+.opening img {
+  /* max-width: 95%; */
+  max-height: 95%;
+}
+
+.opening .footer {
+  width: 100%;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: -100px;
+  margin-bottom: 20px;
+}
+
+.opening .price {
+  /* color: greenyellow; */
+  float: left;
+}
+
+.opening .caseid {
+  /* color: orange; */
+  float: right;
+}
