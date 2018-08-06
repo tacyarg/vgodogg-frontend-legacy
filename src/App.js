@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import { fromCallback } from 'bluebird'
 import State from './libs/state'
-import openSocket from 'socket.io-client';
+import openSocket from 'socket.io-client'
 // import { debounce } from 'lodash'
 import axios from 'axios'
 
@@ -33,7 +33,10 @@ class App extends Component {
           messages: []
         }
       },
-      recentOpenings: []
+      recentOpenings: [],
+      user: {
+        username: 'tacyarg'
+      }
     }
 
     // listen for changes
@@ -57,12 +60,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header stats={this.state.stats} />
+        <Header stats={this.state.stats} user={this.state.user} />
         <Chat messages={this.state.chats['en'].messages} callAction={this.callAction}  />
         <Feed recentOpenings={this.state.recentOpenings} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

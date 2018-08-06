@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+// import { Link } from 'react-router-dom'
 import './Chat.css'
 
 class Chat extends Component {
   scrollToBottom = () => {
-    this.el.scrollIntoView({ behavior: "smooth" });
+    this.el.scrollIntoView({ behavior: "smooth" })
   }
   
   componentDidMount() {
-    this.scrollToBottom();
+    this.scrollToBottom()
   }
   
   componentDidUpdate() {
-    this.scrollToBottom();
+    this.scrollToBottom()
   }
 
   sendMessage(e) {
@@ -50,10 +50,8 @@ class Chat extends Component {
             ref={(node) => (this.input = node)}
           />
         </div>
-
-        
       </div>
-    );
+    )
   }
 }
 

@@ -11,11 +11,11 @@ import {
 } from "@blueprintjs/core"
 
 import UserMenu from "./UserMenu";
-const baseProps = { content: <UserMenu />, position: Position.BOTTOM_LEFT };
+const baseProps = { content: <UserMenu />, position: Position.BOTTOM_RIGHT };
 
 class Header extends Component {
   render() {
-    const { stats } = this.props
+    const { stats, user } = this.props
 
     return (
       <Navbar
@@ -37,16 +37,16 @@ class Header extends Component {
           <Navbar.Divider />
           <Button className="bp3-minimal" icon="notifications" text="" />
           <Popover {...baseProps} minimal={true}>
-            <Button  
-                className="bp3-minimal" 
-                icon="user" 
-                text="Tacyarg"
-                rightIcon="caret-down"
+            <Button
+              className="bp3-minimal" 
+              // icon="user" 
+              text={user.username}
+              rightIcon="caret-down"
             />
           </Popover>
         </Navbar.Group>
       </Navbar>
-    );
+    )
   }
 }
 

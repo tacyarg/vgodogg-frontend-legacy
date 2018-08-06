@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Menu } from "@blueprintjs/core";
+import React, { Component } from 'react'
+import { Menu } from '@blueprintjs/core'
 
 class UserMenu extends Component {
   render() {
@@ -12,9 +12,9 @@ class UserMenu extends Component {
         <Menu.Divider />
         <Menu.Item text="Logout" icon="log-out" />
       </Menu>
-    );
+    )
   }
 }
 
-export default UserMenu;
+export default UserMenu
 

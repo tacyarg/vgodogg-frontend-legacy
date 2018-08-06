@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+// import { Link } from 'react-router-dom'
 import './Feed.css'
 
 function getRarity(item) {
@@ -65,9 +65,9 @@ class Feed extends Component {
         })}
         <div className="overlay" />
       </div>
-    );
+    )
   }
 }
 
-export default Feed;
+export default Feed
 
