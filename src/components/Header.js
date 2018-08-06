@@ -5,8 +5,13 @@ import {
   Alignment,
   Button,
   Navbar,
-  Tag
+  Tag,
+  Popover,
+  Position
 } from "@blueprintjs/core"
+
+import UserMenu from "./UserMenu";
+const baseProps = { content: <UserMenu />, position: Position.BOTTOM_LEFT };
 
 class Header extends Component {
   render() {
@@ -30,9 +35,15 @@ class Header extends Component {
             <b>Opened:</b> {stats.allTime.cases.opened} | <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
           </Tag>
           <Navbar.Divider />
-          <Button className="bp3-minimal" icon="user"></Button>
-          <Button className="bp3-minimal" icon="notifications"></Button>
-          <Button className="bp3-minimal" icon="cog"></Button>
+          <Button className="bp3-minimal" icon="notifications" text="" />
+          <Popover {...baseProps} minimal={true}>
+            <Button  
+                className="bp3-minimal" 
+                icon="user" 
+                text="Tacyarg"
+                rightIcon="caret-down"
+            />
+          </Popover>
         </Navbar.Group>
       </Navbar>
     );

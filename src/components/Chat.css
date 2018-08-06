@@ -1,6 +1,6 @@
 .chat {
   /* border-left: 1px solid black; */
-  z-index: 100;
+  /* z-index: 100; */
   position: fixed;
   top: 51px;
   right: 0;
