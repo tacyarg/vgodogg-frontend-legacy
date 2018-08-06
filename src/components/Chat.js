@@ -27,9 +27,6 @@ class Chat extends Component {
     const { messages } = this.props
     return (
       <div className="chat">
-        {/* <div className="head">
-          <div className="title">Stats</div>
-        </div> */}
         <div className="chat-body">
           {messages.map((message, index) => {
             return (
