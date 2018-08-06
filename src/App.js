@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import { fromCallback } from 'bluebird'
 import State from './libs/state'
 import openSocket from 'socket.io-client';
 // import { debounce } from 'lodash'
 import axios from 'axios'
 
 import Header from './components/Header'
+import Chat from './components/Chat'
 import Feed from './components/Feed'
 
 const API_URL = 'https://api.vunbox.com'
@@ -27,6 +28,11 @@ class App extends Component {
           }
         }
       },
+      chats: {
+        'en': {
+          messages: []
+        }
+      },
       recentOpenings: []
     }
 
@@ -42,14 +48,18 @@ class App extends Component {
     })
   }
 
+  callAction(action, params, done) {
+    return fromCallback(function(done){
+      socket.emit('action', action, params, done)
+    }).catch(err => console.error(action, err.message))
+  }
+
   render() {
     return (
       <div className="App">
         <Header stats={this.state.stats} />
+        <Chat messages={this.state.chats['en'].messages} callAction={this.callAction}  />
         <Feed recentOpenings={this.state.recentOpenings} />
-        <div className='main'>
-          some case
-        </div>
       </div>
     );
   }

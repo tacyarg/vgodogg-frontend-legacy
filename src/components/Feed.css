@@ -1,53 +1,103 @@
-.wrapper {
-  width: 100%;
-  white-space:nowrap;
-  overflow: hidden;
+.feed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 300px;
+  height: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: nowrap;
+  /* box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2); */
 }
 
 .opening {
-  /* box-sizing: content-box; */
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  display: inline-block;
-  width: 295px;
-  margin: 10px 5px 10px 5px;
-  max-height: 200px;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.2);
-}
-
-.opening .itemName {
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  text-align: center;
+  width: 250px;
+  height: 180px;
+  border-radius: 5px;
+  margin-right: 10px;
   padding: 10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+}
+
+.item-name {
+  text-align: left;
   font-weight: bold;
-  text-overflow: ellipsis;
-  /* background-color: rgba(0, 0, 0, 0.8); */
-  /* position: static; */
-  width: 100%;
+  font-size: 0.9em;
 }
 
-.opening .itemImage {
-  margin-top: -80px;
+.item-catagory {
+  position: relative;
+  z-index: 100;
+  text-align: left;
+  font-weight: lighter;
+  font-size: 0.7em;
 }
 
-.opening img {
-  /* max-width: 95%; */
-  max-height: 95%;
-}
-
-.opening .footer {
-  width: 100%;
+.opening-id {
+  position: absolute;
   font-weight: bold;
-  padding: 10px;
-  margin-top: -100px;
-  margin-bottom: 20px;
+  font-size: 1.1em;
+  color: coral;
+  top: 10px;
+  right: 10px;
 }
 
-.opening .price {
-  /* color: greenyellow; */
-  float: left;
+.item-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 175px;
+  z-index: 0;
 }
 
-.opening .caseid {
-  /* color: orange; */
-  float: right;
+.item-price {
+  position: absolute;
+  bottom: 10px;
+  font-weight: bold;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.rarity {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+.overlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 1));
+  z-index: 1000;
+}
+
+/* animations */
+
+.list-enter-active, .list-leave-active {
+  transition: all 0.8s ease-in-out;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(-250px);
+}
+
+.list-move {
+  transition: transform 0.8s ease-in-out;
 }
