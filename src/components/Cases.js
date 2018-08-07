@@ -7,8 +7,8 @@ import { Card, Button, Elevation } from '@blueprintjs/core'
 
 class Cases extends Component {
 
-  SendKeyRequest() {
-
+  SendKeyRequest(caseid) {
+    console.log("Clicked Case:", caseid)
   }
 
   render() {
@@ -22,6 +22,7 @@ class Cases extends Component {
               className="case"
               interactive={true} 
               elevation={Elevation.TWO}
+              onClick={e => this.SendKeyRequest(box.id)}
             >
                 <div className="name">{box.name}</div>
                 <img className="case-image" src={box.image['300px']} alt={box.name} />
