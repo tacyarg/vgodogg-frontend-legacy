@@ -3,6 +3,9 @@ import { Menu } from '@blueprintjs/core'
 
 class UserMenu extends Component {
   render() {
+
+    const {auth} = this.props
+
     return (
       <Menu
         // large={true}
@@ -10,7 +13,7 @@ class UserMenu extends Component {
         <Menu.Item text="Profile" icon="person" />
         <Menu.Item text="Settings" icon="cog" />
         <Menu.Divider />
-        <Menu.Item text="Logout" icon="log-out" />
+        <Menu.Item text="Logout" icon="log-out" onClick={auth.logout} />
       </Menu>
     )
   }

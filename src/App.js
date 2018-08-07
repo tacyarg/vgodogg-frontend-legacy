@@ -3,6 +3,7 @@ import './App.css'
 import { fromCallback } from 'bluebird'
 import State from './libs/state'
 import openSocket from 'socket.io-client'
+import Auth from './libs/auth'
 // import { debounce } from 'lodash'
 import axios from 'axios'
 
@@ -14,7 +15,8 @@ import Cases from './components/Cases'
 const API_URL = 'https://api.vunbox.com'
 const SOCKET_URL = 'https://socket.vunbox.com'
 const serverState = State()
-const socket = openSocket(SOCKET_URL);
+const socket = openSocket(SOCKET_URL)
+const auth = Auth(socket)
 
 class App extends Component {
 
@@ -35,15 +37,24 @@ class App extends Component {
         }
       },
       recentOpenings: [],
-      user: {
-        username: 'tacyarg'
-      },
-      cases: []
+      user: null,
+      cases: [],
+      notifications: []
     }
 
     // listen for changes
     socket.on('diff', serverState.patch)
     serverState.on('change', obj => this.setState(obj))
+
+    auth.verifySteam()
+    .catch(err => {
+      // 
+    })
+    .then(auth.setToken)
+    .then(user => {
+      console.log(user)
+      this.setState({user})
+    })
   }
 
   componentDidMount() {
@@ -62,7 +73,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header stats={this.state.stats} user={this.state.user} />
+        <Header stats={this.state.stats} user={this.state.user} auth={auth} />
         <Chat messages={this.state.chats['en'].messages} callAction={this.callAction}  />
         <Feed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">

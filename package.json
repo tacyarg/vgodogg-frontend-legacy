@@ -6,6 +6,7 @@
     "@blueprintjs/core": "^3.2.0",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
+    "express": "^4.16.3",
     "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -14,7 +15,8 @@
     "statesync": "^0.2.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build && node express.js",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -18,6 +18,7 @@ class Cases extends Component {
         {cases.map(box => {
           return (
             <Card 
+              key={box.id}
               className="case"
               interactive={true} 
               elevation={Elevation.TWO}
