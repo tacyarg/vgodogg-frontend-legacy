@@ -7,6 +7,7 @@
   height: 200px;
   box-sizing: border-box;
   padding: 10px;
+  /* background-color: white; */
   /* background-color: rgba(240,240,240,1); */
   display: flex;
   flex-wrap: nowrap;

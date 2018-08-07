@@ -49,9 +49,7 @@ class App extends Component {
     serverState.on('change', obj => this.setState(obj))
 
     auth.verifySteam()
-    .catch(err => {
-      // 
-    })
+    .catch(err => { /* do nothing */ })
     .then(auth.setToken)
     .then(user => {
       console.log(user)

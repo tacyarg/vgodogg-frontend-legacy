@@ -16,4 +16,5 @@ body {
     rgba(152, 124, 255, 0.2)
   ),  */
   url('./paper_fibers.png');
+  overflow: hidden;
 }
