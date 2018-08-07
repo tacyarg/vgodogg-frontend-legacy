@@ -1,0 +1,20 @@
+.options {
+  /* background-color: rebeccapurple; */
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* LATER ON HOVER SHOW ITEMS SCROLLING BY CONTAINED IN THE CASE */
+.options:hover {
+  /* opacity: 0.5; */
+  /* cursor: pointer; */
+}
+
+.key-input {
+  float: left;
+}
+
+/* .options img {
+  position: absolute;
+} */
