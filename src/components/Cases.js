@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import './Cases.css'
-import { Card, Button, Elevation } from '@blueprintjs/core'
+import { Card, Elevation } from '@blueprintjs/core'
 
 class Cases extends Component {
 
@@ -22,16 +22,9 @@ class Cases extends Component {
               elevation={Elevation.TWO}
               onClick={e => this.SendKeyRequest(box.id)}
             >
-                <div className="name">{box.name}</div>
-                <img className="case-image" src={box.image['300px']} alt={box.name} />
-                <div className="case-opened"><b>Total Opened:</b> 100,524,999</div>
-              {/* <Button 
-                className="button" 
-                text="Open Case" 
-                icon="box"
-                loading={false}
-                onClick={this.SendKeyRequest}
-              /> */}
+              <div className="name">{box.name}</div>
+              <img className="case-image" src={box.image['300px']} alt={box.name} />
+              <div className="case-opened"><b>Total Opened:</b> 100,524,999</div>
             </Card>
           )
         })}

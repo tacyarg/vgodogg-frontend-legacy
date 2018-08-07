@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import './Feed.css'
-import { Card, Button, Elevation } from '@blueprintjs/core'
+import { Card, Elevation } from '@blueprintjs/core'
 
 function getRarity(item) {
   return {
