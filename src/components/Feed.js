@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import './Feed.css'
+import { Card, Button, Elevation } from '@blueprintjs/core'
 
 function getRarity(item) {
   return {
@@ -49,18 +50,20 @@ class Feed extends Component {
         {recentOpenings.map(opening => {
           opening.item = processItem(opening.item)
           return (
-            <div 
-              className='opening' 
+            <Card 
               key={opening.id}
+              className="opening"
+              interactive={true} 
+              elevation={Elevation.ONE}
+              // onClick={e => this.SendKeyRequest(box.id)}
             >
-              {/* <div className="opening-id">#{opening.id}</div> */}
               <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
               <div className="item-name">{opening.item.name}</div>
               <div className="item-name">{opening.item.skin}</div>
               <div className="item-catagory">{opening.item.condition}</div>
               <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div>
               <div className="rarity"style={getRarity(opening.item)} />
-            </div>
+            </Card>
           )
         })}
         <div className="overlay" />
