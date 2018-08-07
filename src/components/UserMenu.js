@@ -10,8 +10,9 @@ class UserMenu extends Component {
       <Menu
         // large={true}
       >
-        <Menu.Item text="Profile" icon="person" />
+        <Menu.Item text="Profile" icon="user" />
         <Menu.Item text="Settings" icon="cog" />
+        <Menu.Item text="My Cases" icon="box" />
         <Menu.Divider />
         <Menu.Item text="Logout" icon="log-out" onClick={auth.logout} />
       </Menu>

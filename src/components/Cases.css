@@ -60,3 +60,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.case-opened {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  /* font-weight: bold; */
+}

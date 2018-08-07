@@ -56,7 +56,7 @@ class Header extends Component {
               (<Popover {...baseProps} minimal={true}>
                 <Button
                   className="bp3-minimal" 
-                  // icon="user" 
+                  icon="person" 
                   text={user.username}
                   rightIcon="caret-down"
                 />

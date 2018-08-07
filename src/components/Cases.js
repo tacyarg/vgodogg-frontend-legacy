@@ -25,13 +25,14 @@ class Cases extends Component {
             >
                 <div className="name">{box.name}</div>
                 <img className="case-image" src={box.image['300px']} alt={box.name} />
-              <Button 
+                <div className="case-opened"><b>Total Opened:</b> 100,524,999</div>
+              {/* <Button 
                 className="button" 
                 text="Open Case" 
                 icon="box"
                 loading={false}
                 onClick={this.SendKeyRequest}
-              />
+              /> */}
             </Card>
 
 
