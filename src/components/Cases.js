@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import './Cases.css'
 import { Card, Button, Elevation } from '@blueprintjs/core'
 
-// SendKeyRequest(crate.id, amount, expressUrl)
-
 class Cases extends Component {
 
   SendKeyRequest(caseid) {
@@ -35,15 +33,6 @@ class Cases extends Component {
                 onClick={this.SendKeyRequest}
               /> */}
             </Card>
-
-
-
-
-            // <div className="case" key={box.id}>
-            //   <div className="name">{box.name}</div>
-            //   <img className="case-image" src={box.image['300px']} alt={box.name} />
-            //   <Button className="button">Open Case</Button>
-            // </div>
           )
         })}
       </div>
