@@ -52,7 +52,7 @@
 }
 
 .item-image {
-  filter: drop-shadow(0 0 4px rgba(0,0,0,0.5)) saturate(123%);
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)) saturate(123%);
   position: absolute;
   top: 0;
   bottom: 0;
