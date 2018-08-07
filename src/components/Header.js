@@ -24,8 +24,17 @@ class Header extends Component {
         <Navbar.Group align={Alignment.LEFT}>
           <Navbar.Heading>VGO Cases</Navbar.Heading>
           <Navbar.Divider />
-          <Button className="bp3-minimal" icon="home" text="Home" />
-          <Button className="bp3-minimal" icon="box" text="Cases" />
+          <Button 
+            className="bp3-minimal" 
+            icon="home" 
+            text="Home" 
+          />
+          <Button 
+            className="bp3-minimal" 
+            icon="box" 
+            text="Cases" 
+            active={true}
+          />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Tag

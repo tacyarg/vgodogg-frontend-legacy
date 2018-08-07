@@ -3,3 +3,10 @@ body {
   /* width: 75%; */
   /* margin: 0 auto; */
 }
+
+.main-content {
+  z-index: -1001;
+  position: absolute;
+  width: calc(100% - 300px);
+  height: calc(100vh - 250px);
+}

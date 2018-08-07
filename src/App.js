@@ -9,6 +9,7 @@ import axios from 'axios'
 import Header from './components/Header'
 import Chat from './components/Chat'
 import Feed from './components/Feed'
+import Cases from './components/Cases'
 
 const API_URL = 'https://api.vunbox.com'
 const SOCKET_URL = 'https://socket.vunbox.com'
@@ -36,7 +37,8 @@ class App extends Component {
       recentOpenings: [],
       user: {
         username: 'tacyarg'
-      }
+      },
+      cases: []
     }
 
     // listen for changes
@@ -63,6 +65,9 @@ class App extends Component {
         <Header stats={this.state.stats} user={this.state.user} />
         <Chat messages={this.state.chats['en'].messages} callAction={this.callAction}  />
         <Feed recentOpenings={this.state.recentOpenings} />
+        <div className="main-content">
+          <Cases cases={this.state.cases} />
+        </div>
       </div>
     )
   }
