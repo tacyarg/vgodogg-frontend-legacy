@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import './OpenCase.css'
-import { Dialog, Classes, NumericInput, Tooltip, Button, Intent } from '@blueprintjs/core'
+import { Dialog, Classes, NumericInput, Button, Intent } from '@blueprintjs/core'
 
 class OpenCase extends Component {
   constructor(){
@@ -34,7 +33,7 @@ class OpenCase extends Component {
           </div>
         </div>
         <div className={Classes.DIALOG_FOOTER}>
-          <h5>Make your selection:</h5>
+          <h5>How many would you like to buy?</h5>
           <NumericInput
             className="key-input"
             leftIcon="key"

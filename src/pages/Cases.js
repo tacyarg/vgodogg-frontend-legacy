@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import './Cases.css'
 import { Card, Elevation } from '@blueprintjs/core'
-import OpenCase from './OpenCase'
+import OpenCase from '../components/OpenCase'
 
 class Cases extends Component {
   constructor() {
@@ -32,7 +31,7 @@ class Cases extends Component {
   }
 
   render() {
-    const { cases } = this.props
+    const { cases, stats } = this.props
     return (
       <div className="cases">
         <OpenCase 
@@ -53,7 +52,7 @@ class Cases extends Component {
               <div className='content'>
                 <div className="name">{box.name}</div>
                 <img className="case-image" src={box.image['300px']} alt={box.name} />
-                <div className="case-opened"><b>Total Opened:</b> 100,524,999</div>
+                <div className="case-opened"><b>Total Opened:</b> { stats.allTime.cases[box.id] ? stats.allTime.cases[box.id].opened : 0 }</div>
               </div>
             </Card>
           )

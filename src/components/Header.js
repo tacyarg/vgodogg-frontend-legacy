@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {
   Alignment,
   Button,
+  AnchorButton,
   Navbar,
   Tag,
   Popover,
@@ -16,7 +17,6 @@ class Header extends Component {
   render() {
     const { stats, user, auth } = this.props
     const baseProps = { content: <UserMenu auth={auth} />, position: Position.BOTTOM_RIGHT };
-
     return (
       <Navbar
       // fixedToTop="true"
@@ -24,16 +24,17 @@ class Header extends Component {
         <Navbar.Group align={Alignment.LEFT}>
           <Navbar.Heading>VGO Cases</Navbar.Heading>
           <Navbar.Divider />
-          <Button 
+          <AnchorButton 
+            href="/#/"
             className="bp3-minimal" 
             icon="home" 
             text="Home" 
           />
-          <Button 
+          <AnchorButton 
+            href="/#/cases"
             className="bp3-minimal" 
             icon="box" 
             text="Cases" 
-            active={true}
           />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>

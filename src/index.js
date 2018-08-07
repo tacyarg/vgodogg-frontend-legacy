@@ -3,6 +3,57 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { HashRouter as Router } from "react-router-dom";
+import axios from 'axios'
+import Promise from 'bluebird'
+import State from './libs/state'
+import openSocket from 'socket.io-client'
+import Auth from './libs/auth'
+import AppToaster from './components/AppToaster'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const API_URL = 'https://api.vunbox.com'
+const SOCKET_URL = 'https://socket.vunbox.com'
+const serverState = State()
+const socket = openSocket(SOCKET_URL)
+const auth = Auth(socket)
+
+function getServerState () {
+  return axios.get(`${API_URL}/getServerState`).then(resp => {
+    serverState.set(null, resp.data)
+
+    // listen for changes
+    socket.on('diff', serverState.patch)
+
+    return serverState
+  })
+}
+
+function getUserAuth () {
+  return auth.verifySteam()
+    .catch(err => { /* do nothing */ })
+    .then(auth.setToken)
+}
+
+function callAction(action, params, done) {
+  return Promise.fromCallback(function(done){
+    socket.emit('action', action, params, done)
+  }).catch(err => {
+    AppToaster.show({
+      intent: 'danger',
+      message: err.message
+    })
+  })
+}
+
+Promise.props({
+  auth: auth,
+  user: getUserAuth(),
+  serverState: getServerState(),
+  callAction: callAction
+}).then(props => {
+  ReactDOM.render(
+    <Router>
+      <App {...props} />
+    </Router>, document.getElementById('root'));
+  // registerServiceWorker();
+})
