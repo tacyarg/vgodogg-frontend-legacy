@@ -29,13 +29,14 @@ class Chat extends Component {
       <div className="chat">
         <div className="chat-body">
           {messages.map((message, index) => {
+            var htmlMessage = { __html: message.message }
             return (
               <div className="message" key={message.id}>
                 <div className="user">
                   <img className="avatar" src={message.user.avatarurl} alt={message.user.username} />
                   <div className="username">{message.user.username}</div>
                 </div>
-                <div className="message-message">{message.message}</div>
+                <div className="message-message" dangerouslySetInnerHTML={htmlMessage}></div>
               </div>
             )
           })}
