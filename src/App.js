@@ -11,12 +11,14 @@ import Header from './components/Header'
 import Chat from './components/Chat'
 import Feed from './components/Feed'
 import Cases from './components/Cases'
+import AppToaster from './components/AppToaster'
 
 const API_URL = 'https://api.vunbox.com'
 const SOCKET_URL = 'https://socket.vunbox.com'
 const serverState = State()
 const socket = openSocket(SOCKET_URL)
 const auth = Auth(socket)
+
 
 class App extends Component {
 
@@ -67,7 +69,12 @@ class App extends Component {
   callAction(action, params, done) {
     return fromCallback(function(done){
       socket.emit('action', action, params, done)
-    }).catch(err => console.error(action, err.message))
+    }).catch(err => {
+      AppToaster.show({
+        intent: 'danger',
+        message: err.message
+      })
+    })
   }
 
   render() {
