@@ -14,6 +14,26 @@ import {
 import UserMenu from "./UserMenu";
 
 class Header extends Component {
+  constructor() {
+    super()
+    this.state = {
+      keys: 0
+    }
+  }
+
+  componentDidMount() {
+    var keys = this.props.user ? this.props.user.keyCount : 0
+    this.setState({keys})
+
+    setInterval(this.updateKeyCount.bind(this), 5000)
+  }
+
+  updateKeyCount() {
+    return this.props.callAction('getMyKeyCount').then(keys => {
+      this.setState({keys})
+    })
+  }
+
   render() {
     const { stats, user, auth } = this.props
     const baseProps = { content: <UserMenu auth={auth} />, position: Position.BOTTOM_RIGHT };
@@ -45,7 +65,16 @@ class Header extends Component {
             <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
           </Tag>
           <Navbar.Divider />
-          <Button className="bp3-minimal" icon="notifications" text="" />
+          <Tag
+            minimal={true}
+            interactive={true}
+            large={true}
+            icon="key"
+            onClick={this.updateKeyCount.bind(this)}
+          >
+            { this.state.keys }
+          </Tag>
+          {/* <Button className="bp3-minimal" icon="notifications" text="" /> */}
           {
             (!user) ?
               (<Button

@@ -23,7 +23,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header stats={this.state.stats} user={user} auth={auth} />
+        <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
         <Chat messages={this.state.chats['en'].messages} callAction={callAction}  />
         <Feed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
