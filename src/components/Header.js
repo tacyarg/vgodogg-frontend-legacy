@@ -19,13 +19,13 @@ class Header extends Component {
     this.state = {
       keys: 0
     }
+
+    setInterval(this.updateKeyCount.bind(this), 5000)
   }
 
   componentDidMount() {
     var keys = this.props.user ? this.props.user.keyCount : 0
     this.setState({keys})
-
-    setInterval(this.updateKeyCount.bind(this), 5000)
   }
 
   updateKeyCount() {
