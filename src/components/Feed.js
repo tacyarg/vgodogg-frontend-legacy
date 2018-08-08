@@ -4,7 +4,7 @@ import { Card, Elevation } from '@blueprintjs/core'
 
 function getRarity(item) {
   return {
-    'border': `1px solid ${item.color}` 
+    'color': item.color
   }
 }
 
@@ -54,13 +54,11 @@ class Feed extends Component {
               className="opening"
               interactive={true} 
               elevation={Elevation.ONE}
-              style={getRarity(opening.item)}
-              // onClick={e => this.SendKeyRequest(box.id)}
             >
               <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
               <div className="item-name">{opening.item.name}</div>
               {/* <div className="item-name">{opening.item.skin}</div> */}
-              <div className="item-catagory">{opening.item.condition}</div>
+              <div className="item-catagory" style={getRarity(opening.item)}>{opening.item.condition}</div>
               <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div>
               {/* <div className="rarity"style={getRarity(opening.item)} /> */}
             </Card>
