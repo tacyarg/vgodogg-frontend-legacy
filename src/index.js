@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { HashRouter as Router } from "react-router-dom";
 import axios from 'axios'
@@ -10,6 +9,9 @@ import State from './libs/state'
 import openSocket from 'socket.io-client'
 import Auth from './libs/auth'
 import AppToaster from './components/AppToaster'
+
+import App from './App';
+import Loading from './pages/Loading'
 
 const API_URL = 'https://api.vunbox.com'
 const SOCKET_URL = 'https://socket.vunbox.com'
@@ -58,3 +60,6 @@ Promise.props({
     </Router>, document.getElementById('root'));
   // registerServiceWorker();
 })
+
+// render loading animation
+ReactDOM.render(<Loading/>, document.getElementById('root'));
