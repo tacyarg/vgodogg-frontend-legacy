@@ -32,6 +32,7 @@ function getUserAuth () {
   return auth.verifySteam()
     .catch(err => { /* do nothing */ })
     .then(auth.setToken)
+    .catch(err => { /* do nothing */ })
 }
 
 function callAction(action, params, done) {
