@@ -59,7 +59,7 @@ class Feed extends Component {
             >
               <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
               <div className="item-name">{opening.item.name}</div>
-              <div className="item-name">{opening.item.skin}</div>
+              {/* <div className="item-name">{opening.item.skin}</div> */}
               <div className="item-catagory">{opening.item.condition}</div>
               <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div>
               {/* <div className="rarity"style={getRarity(opening.item)} /> */}
