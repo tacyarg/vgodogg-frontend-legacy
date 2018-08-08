@@ -53,7 +53,7 @@ class Feed extends Component {
               key={opening.id}
               className="opening"
               interactive={true} 
-              elevation={Elevation.ONE}
+              elevation={Elevation.TWO}
             >
               <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
               <div className="item-name">{opening.item.name}</div>
