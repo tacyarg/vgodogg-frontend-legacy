@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import { HashRouter as Router } from "react-router-dom";
 import axios from 'axios'
 import Promise from 'bluebird'
@@ -37,7 +37,7 @@ function getUserAuth () {
     .catch(err => { /* do nothing */ })
 }
 
-function callAction(action, params, done) {
+function callAction(action, params) {
   return Promise.fromCallback(function(done){
     socket.emit('action', action, params, done)
   }).catch(err => {
@@ -52,7 +52,8 @@ Promise.props({
   auth: auth,
   user: getUserAuth(),
   serverState: getServerState(),
-  callAction: callAction
+  callAction: callAction,
+  AppToaster: AppToaster
 }).then(props => {
   ReactDOM.render(
     <Router>

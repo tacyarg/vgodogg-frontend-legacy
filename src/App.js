@@ -19,17 +19,17 @@ class App extends Component {
   }
 
   render() {
-    var {auth, user, callAction } = this.props
+    var {auth, user, callAction, AppToaster } = this.props
 
     return (
       <div className="App">
         <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
-        <Chat messages={this.state.chats['en'].messages} callAction={callAction}  />
+        <Chat messages={this.state.chats['en'].messages} callAction={callAction} />
         <Feed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
           <Route exact path="/" component={Home} />
           <Route path="/cases" render={props => {
-            return (<Cases {...props} cases={this.state.cases} stats={this.state.stats} />)
+            return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
           }} />
         </div>
       </div>

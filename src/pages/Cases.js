@@ -4,7 +4,7 @@ import { Card, Elevation } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCase'
 
 class Cases extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       isOpen: false,
@@ -26,19 +26,36 @@ class Cases extends Component {
     this.openDialog()
   }
 
-  sendKeyRequest() {
-
+  sendKeyRequest(caseid, amount) {
+    console.log(caseid, amount)
+    return this.props.callAction('createCaseOpenOffer', {
+      caseid, amount
+    }).then(offer => {
+      if(!offer) return
+      this.props.AppToaster.show({
+        action: {
+          href: offer.url,
+          target: "_blank",
+          text: <strong>View Offer</strong>,
+      },
+        intent: 'success',
+        message: `Successfully created offer!`
+      })
+      this.closeDialog() 
+    })
   }
 
   render() {
     const { cases, stats } = this.props
+    console.log(this.props)
     return (
       <div className="cases">
         <OpenCase 
           isOpen={this.state.isOpen} 
           handleClose={this.closeDialog.bind(this)}
           box={this.state.selectedBox}
-          buyCases={this.sendKeyRequest}
+          buyCases={this.sendKeyRequest.bind(this)}
+          // maxKeys={user.keyCount}
         />
         {cases.map(box => {
           return (

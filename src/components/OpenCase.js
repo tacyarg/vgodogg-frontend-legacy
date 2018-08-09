@@ -12,11 +12,13 @@ class OpenCase extends Component {
       enforceFocus: true,
       // isOpen: false,
       usePortal: true,
+
+      wantedCases: 1
     }
   }
 
   render() {
-    const { isOpen, handleClose, box, buyCases } = this.props
+    const { isOpen, handleClose, box, buyCases, maxKeys } = this.props
     return (
       <Dialog
         icon="box"
@@ -37,15 +39,18 @@ class OpenCase extends Component {
           <NumericInput
             className="key-input"
             leftIcon="key"
-            max="100"
+            max={maxKeys || 100}
             min="1"
-            value="1"
+            onValueChange={value => {
+              this.setState({wantedCases: value})
+            }}
+            value={this.state.wantedCases}
           />
           <div className={Classes.DIALOG_FOOTER_ACTIONS}>
             {/* <Button onClick={handleClose} intent={Intent.DANGER} text="Nevermind" /> */}
             <Button
               intent={Intent.SUCCESS}
-              onClick={buyCases}
+              onClick={e => buyCases(box.id, this.state.wantedCases)}
               text="Buy Case(s)"
             />
           </div>
