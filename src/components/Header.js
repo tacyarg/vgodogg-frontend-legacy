@@ -29,6 +29,7 @@ class Header extends Component {
   }
 
   updateKeyCount() {
+    if(!this.props.user) return
     return this.props.callAction('getMyKeyCount').then(keys => {
       this.setState({keys})
     })
