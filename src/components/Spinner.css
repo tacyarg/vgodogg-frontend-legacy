@@ -33,16 +33,3 @@
   /* outline: 5px solid white; */
   background-color: green;
 }
-
-.spinner-line {
-  background-color: #0d87f7;
-  border-radius: 2px; 
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 4px;
-  height: 100px;
-
-  z-index: 9999;
-}
