@@ -1406,7 +1406,7 @@ class Spinner extends Component {
 
 
     this.setState({
-      // winnerElevation: Elevation.ONE,
+      winnerElevation: null,
       spinnerTransition: '',
       spinnerTransform: `translateX(-180px) translateZ(0px)`
     })
@@ -1428,10 +1428,9 @@ class Spinner extends Component {
       })
     }, 500)
 
-    // trigger effects when animation completes.
-    // setTimeout(() => {
-    //   this.setState({winnerElevation: Elevation.FOUR})
-    // }, 13 * 1000)
+    setTimeout(() => {
+      this.setState({winnerElevation: Elevation.FOUR})
+    }, 12.5 * 1000)
   }
 
   render() {
@@ -1452,7 +1451,7 @@ class Spinner extends Component {
                     key={uuid() || item.id}
                     className="spinner-item"
                     // interactive={true}
-                    // elevation={!item.selected ? Elevation.ONE : this.state.winnerElevation}
+                    elevation={item.selected ? this.state.winnerElevation : null}
                   >
                     <div className="item-name">{item.name}</div>
                     <div className="item-catagory" style={getRarity(item)}>{item.condition}</div>
