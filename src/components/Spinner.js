@@ -1345,7 +1345,7 @@ class Spinner extends Component {
   }
 
   componentDidMount() {
-    // setTimeout(this.spin.bind(this), 1000)
+    setTimeout(this.spin.bind(this), 1000)
   }
 
   generateSpinnerContent(caseItems, times) {
@@ -1388,7 +1388,6 @@ class Spinner extends Component {
     var { items } = this.props
     return (
       <div className="spinner">
-        <div className="spinner-line" />
         <div className="spinner-content" style={{
           transition: this.state.spinnerTransition,
           transform: this.state.spinnerTransform
