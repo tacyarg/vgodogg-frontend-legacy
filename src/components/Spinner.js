@@ -5445,7 +5445,7 @@ class Spinner extends Component {
     })
 
     items = items.map(processItem)
-    var content = this.generateSpinnerContent(items, 5)
+    var content = this.generateSpinnerContent(items, 2)
     const winner = clone(sample(items))
     winner.selected = true;
     content.splice(winningItemIndex, 1, winner)
