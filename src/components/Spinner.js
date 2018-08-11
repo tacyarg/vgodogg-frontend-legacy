@@ -1400,15 +1400,18 @@ class Spinner extends Component {
   }
 
   spin() {
-    this.setState({
-      spinnerTransition: '',
-      spinnerTransform: `translateX(0px) translateZ(0px)`
-    })
-
     var itemWidth = 220
     var winningItemIndex = random(150, 200);
     var offset = random(0, -60) + itemWidth * 2.5
-    console.log('spinner offset', offset)
+
+
+    this.setState({
+      // winnerElevation: Elevation.ONE,
+      spinnerTransition: '',
+      spinnerTransform: `translateX(-180px) translateZ(0px)`
+    })
+
+    
 
     items = items.map(processItem)
     var content = this.generateSpinnerContent(items, 5)
@@ -1426,39 +1429,43 @@ class Spinner extends Component {
     }, 500)
 
     // trigger effects when animation completes.
-    setTimeout(() => {
-      this.setState({winnerElevation: Elevation.FOUR})
-    }, 13 * 1000)
+    // setTimeout(() => {
+    //   this.setState({winnerElevation: Elevation.FOUR})
+    // }, 13 * 1000)
   }
 
   render() {
     var { items } = this.props
     return (
       <div className="spinner">
-        <div className="spinner-content" style={{
-          transition: this.state.spinnerTransition,
-          transform: this.state.spinnerTransform
-        }}>
-          {
-            this.state.spinnerContent.map(item => {
-              return (
-                <Card 
-                  key={uuid() || item.id}
-                  className="spinner-item"
-                  interactive={true}
-                  elevation={!item.selected ? Elevation.ONE : this.state.winnerElevation}
-                >
-                  <div className="item-name">{item.name}</div>
-                  <div className="item-catagory" style={getRarity(item)}>{item.condition}</div>
-                  <img src={item.image['600px']} alt={item.name} />
-                  {/* <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div> */}
-                  {/* <div className="rarity"style={getRarity(opening.item)} /> */}
-                </Card>
-              )
-            })
-          }
+        <div className="inner">
+        <div className="overlay-left"></div>
+        <div className="overlay-right"></div>
+          <div className="spinner-content" style={{
+            transition: this.state.spinnerTransition,
+            transform: this.state.spinnerTransform
+          }}>
+            {
+              this.state.spinnerContent.map(item => {
+                return (
+                  <Card 
+                    key={uuid() || item.id}
+                    className="spinner-item"
+                    // interactive={true}
+                    // elevation={!item.selected ? Elevation.ONE : this.state.winnerElevation}
+                  >
+                    <div className="item-name">{item.name}</div>
+                    <div className="item-catagory" style={getRarity(item)}>{item.condition}</div>
+                    <img src={item.image['600px']} alt={item.name} />
+                    {/* <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div> */}
+                    {/* <div className="rarity"style={getRarity(opening.item)} /> */}
+                  </Card>
+                )
+              })
+            }
+          </div>
         </div>
-        <Button onClick={this.spin.bind(this)} text="spin"/>
+        <Button className="spinner-btn" onClick={this.spin.bind(this)} text="spin"/>
       </div>
     )
   }
