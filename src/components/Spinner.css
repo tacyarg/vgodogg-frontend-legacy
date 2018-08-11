@@ -24,6 +24,7 @@
 }
 
 .spinner-item {
+  position: relative;
   /* transition: all 1s ease; */
   /* background-color: white; */
   height: 175px;
@@ -32,9 +33,16 @@
 }
 
 .spinner-item img {
-  height: 100%;
-  width: 100%;
-  /* filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%); */
+  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%);
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 185px;
+  z-index: 0;
+  /* transform: rotate(20deg) */
 }
 
 .selected {
