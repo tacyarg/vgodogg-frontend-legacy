@@ -1,0 +1,48 @@
+.spinner {
+  margin: 0 auto;
+  width:800px;
+  height:400px;
+  /* background-color: aquamarine; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spinner-content {
+  width:400000px;
+  /* right: 0; */
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: red;
+}
+
+.spinner-item {
+  /* background-color: white; */
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.spinner-item img {
+  height: 100%;
+  width: 100%;
+}
+
+.selected {
+  /* outline: 5px solid white; */
+  background-color: green;
+}
+
+.spinner-line {
+  background-color: #0d87f7;
+  border-radius: 2px; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 4px;
+  height: 100px;
+
+  z-index: 9999;
+}
