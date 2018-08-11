@@ -5420,7 +5420,9 @@ class Spinner extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.spin.bind(this), 1000)
+    setTimeout(() => {
+      this.spin.bind(this)(6, true)
+    }, 1000)
   }
 
   generateSpinnerContent(caseItems, times) {
@@ -5433,7 +5435,9 @@ class Spinner extends Component {
     return shuffle(spinnerArray)
   }
 
-  spin() {
+  spin(speed, filterCovert) {
+    filterCovert = filterCovert || false
+    speed = speed || 12
     var itemWidth = 220
     var winningItemIndex = random(150, 200);
     var offset = random(0, -120) + itemWidth * 2.5
@@ -5444,8 +5448,11 @@ class Spinner extends Component {
       spinnerTransform: `translateX(-180px) translateZ(0px)`
     })
 
-    items = items.map(processItem)
-    var content = this.generateSpinnerContent(items, 2)
+    var spinnerItems = items.map(processItem)
+    spinnerItems = spinnerItems.filter(item => {
+      return item.category.indexOf('Knife') === -1
+    })
+    var content = this.generateSpinnerContent(spinnerItems, 3)
     const winner = clone(sample(items))
     winner.selected = true;
     content.splice(winningItemIndex, 1, winner)
@@ -5454,14 +5461,14 @@ class Spinner extends Component {
 
     setTimeout(() => {
       this.setState({
-        spinnerTransition: 'all 12s ease',
+        spinnerTransition: `all ${speed}s ease`,
         spinnerTransform: `translateX(${winningItemIndex * -itemWidth + offset}px) translateZ(0px)`
       })
     }, 500)
 
     setTimeout(() => {
       this.setState({winnerElevation: Elevation.FOUR})
-    }, 12.5 * 1000)
+    }, (speed + .5) * 1000)
   }
 
   render() {
@@ -5496,7 +5503,12 @@ class Spinner extends Component {
             }
           </div>
         </div>
-        <Button intent={Intent.DANGER}className="spinner-btn" onClick={this.spin.bind(this)} text="spin"/>
+        <Button 
+          intent={Intent.DANGER}className="spinner-btn" 
+          onClick={e => {
+            this.spin.bind(this)(6, true)
+          }} 
+          text="spin"/>
       </div>
     )
   }
