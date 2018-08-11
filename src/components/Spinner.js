@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './Spinner.css'
 import {random, shuffle, concat, sample, clone} from 'lodash'
-import { Button } from '@blueprintjs/core'
+import { Button, Card, Elevation } from '@blueprintjs/core'
+import uuid from 'uuid/v4'
 
-const items = [
+var items = [
   {
     "name": "AK-47 | Overdrive (Factory New)",
     "category": "Covert Rifle",
@@ -1332,6 +1333,45 @@ const items = [
     }
 ]
 
+function getRarity(item) {
+  return {
+    'color': item.color
+  }
+}
+
+function processItem(item) {
+  if (item.skin) return item;
+  var data = {
+    category: item.category,
+    color: item.color,
+    id: item.id,
+    image: item.image,
+    paint_index: item.paint_index,
+    rarity: item.rarity,
+    suggested_price: item.suggested_price,
+    suggested_price_floor: item.suggested_price_floor,
+    type: item.type
+  }
+  var name = item.name
+  var regex = /(★ )?(StatTrak™ )?(.+) \| (.+) \((.+)\)/.exec(name)
+
+  // seperate weapons from misc
+  if (regex) regex[0] = name.replace(/\((.+)\)/.exec(name)[0], '').replace('StatTrak™ ', '')
+  else regex = [name]
+
+  // get item name
+  if ((/\((.+)\)/.exec(regex[0])) !== null) data.name = regex[0].replace(/\((.+)\)/.exec(regex[0])[0], '')
+  else data.name = regex[0]
+
+  if (regex[4]) data.skin = regex[4]
+
+  data.gun = data.name.substring(0, data.name.lastIndexOf(' |'));
+
+  data.condition = regex[5]
+
+  return data
+}
+
 class Spinner extends Component {
   constructor(props) {
     super()
@@ -1340,7 +1380,8 @@ class Spinner extends Component {
       items: [],
       spinnerTransition: '',
       spinnerTransform: '',
-      spinnerContent: []
+      spinnerContent: [],
+      winnerElevation: Elevation.ONE
     }
   }
 
@@ -1364,12 +1405,13 @@ class Spinner extends Component {
       spinnerTransform: `translateX(0px) translateZ(0px)`
     })
 
-    var itemWidth = 120
+    var itemWidth = 220
     var winningItemIndex = random(150, 200);
-    var offset = random(0, -60) + itemWidth * 3
+    var offset = random(0, -60) + itemWidth * 2.5
     console.log('spinner offset', offset)
 
-    var content = this.generateSpinnerContent(items, 10)
+    items = items.map(processItem)
+    var content = this.generateSpinnerContent(items, 5)
     const winner = clone(sample(items))
     winner.selected = true;
     content.splice(winningItemIndex, 1, winner)
@@ -1382,6 +1424,11 @@ class Spinner extends Component {
         spinnerTransform: `translateX(${winningItemIndex * -itemWidth + offset}px) translateZ(0px)`
       })
     }, 500)
+
+    // trigger effects when animation completes.
+    setTimeout(() => {
+      this.setState({winnerElevation: Elevation.FOUR})
+    }, 13 * 1000)
   }
 
   render() {
@@ -1395,13 +1442,18 @@ class Spinner extends Component {
           {
             this.state.spinnerContent.map(item => {
               return (
-                item.selected ? 
-                <div className="spinner-item selected">            
-                  <img src={item.image['600px']} />
-                </div> : 
-                <div className="spinner-item">            
-                  <img src={item.image['600px']} />
-                </div>
+                <Card 
+                  key={uuid() || item.id}
+                  className="spinner-item"
+                  interactive={true}
+                  elevation={!item.selected ? Elevation.ONE : this.state.winnerElevation}
+                >
+                  <div className="item-name">{item.name}</div>
+                  <div className="item-catagory" style={getRarity(item)}>{item.condition}</div>
+                  <img src={item.image['600px']} alt={item.name} />
+                  {/* <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div> */}
+                  {/* <div className="rarity"style={getRarity(opening.item)} /> */}
+                </Card>
               )
             })
           }

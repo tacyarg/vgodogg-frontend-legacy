@@ -1,6 +1,6 @@
 .spinner {
   margin: 0 auto;
-  width:800px;
+  width:1200px;
   height:400px;
   /* background-color: aquamarine; */
   overflow: hidden;
@@ -14,22 +14,38 @@
   /* right: 0; */
   display: flex;
   flex-wrap: nowrap;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .spinner-item {
+  /* transition: all 1s ease; */
   /* background-color: white; */
-  height: 100px;
-  width: 100px;
+  height: 175px;
+  width: 200px;
   margin: 10px;
 }
 
 .spinner-item img {
   height: 100%;
   width: 100%;
+  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%);
 }
 
 .selected {
   /* outline: 5px solid white; */
   background-color: green;
+}
+
+.item-name {
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.item-catagory {
+  position: relative;
+  z-index: 100;
+  text-align: left;
+  font-weight: lighter;
+  font-size: 0.7em;
 }
