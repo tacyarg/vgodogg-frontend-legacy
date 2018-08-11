@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Spinner.css'
 import {random, shuffle, concat, sample, clone} from 'lodash'
-import { Button, Card, Elevation } from '@blueprintjs/core'
+import { Button, Card, Elevation, Intent } from '@blueprintjs/core'
 import uuid from 'uuid/v4'
 
 var items = [
@@ -1402,16 +1402,13 @@ class Spinner extends Component {
   spin() {
     var itemWidth = 220
     var winningItemIndex = random(150, 200);
-    var offset = random(0, -60) + itemWidth * 2.5
-
+    var offset = random(0, -120) + itemWidth * 2.5
 
     this.setState({
       winnerElevation: null,
       spinnerTransition: '',
       spinnerTransform: `translateX(-180px) translateZ(0px)`
     })
-
-    
 
     items = items.map(processItem)
     var content = this.generateSpinnerContent(items, 5)
@@ -1438,6 +1435,7 @@ class Spinner extends Component {
     return (
       <div className="spinner">
         <div className="inner">
+        <div className="tick"></div>
         <div className="overlay-left"></div>
         <div className="overlay-right"></div>
           <div className="spinner-content" style={{
@@ -1464,7 +1462,7 @@ class Spinner extends Component {
             }
           </div>
         </div>
-        <Button className="spinner-btn" onClick={this.spin.bind(this)} text="spin"/>
+        <Button intent={Intent.DANGER}className="spinner-btn" onClick={this.spin.bind(this)} text="spin"/>
       </div>
     )
   }
