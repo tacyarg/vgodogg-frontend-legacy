@@ -12,9 +12,16 @@
   /* box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2); */
 }
 
+.chat-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
 .chat-body {
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 80px);
   overflow-y: scroll;
 }
 

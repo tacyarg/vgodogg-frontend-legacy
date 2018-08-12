@@ -57,14 +57,14 @@ class Header extends Component {
             icon="box" 
             text="Cases" 
           />
+          <AnchorButton 
+            href="/#/toplist"
+            className="bp3-minimal" 
+            icon="chart" 
+            text="Toplist" 
+          />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
-          <Tag
-            minimal={true}
-            large={true}
-          >
-            <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
-          </Tag>
           <Navbar.Divider />
           <Tag
             minimal={true}

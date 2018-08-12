@@ -10,6 +10,7 @@ import Feed from './components/Feed'
 // PAGES
 import Cases from './pages/Cases'
 import Home from './pages/Home'
+import Toplist from './pages/Toplist'
 
 class App extends Component {
   constructor(props){
@@ -24,13 +25,18 @@ class App extends Component {
     return (
       <div className="App">
         <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
-        <Chat messages={this.state.chats['en'].messages} callAction={callAction} />
+        <Chat messages={this.state.chats['en'].messages} callAction={callAction} stats={this.state.stats} />
         <Feed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={props => {
+            return (<Home {...props} callAction={callAction} stats={this.state.stats}/>)
+          }}/>
           <Route path="/cases" render={props => {
             return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
-          }} />
+          }}/>
+          <Route path="/toplist" render={props => {
+            return (<Toplist {...props} callAction={callAction} stats={this.state.stats} />)
+          }}/>
         </div>
       </div>
     )

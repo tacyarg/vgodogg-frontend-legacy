@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './Chat.css'
 
+import {
+  Tag,
+} from "@blueprintjs/core"
+
 class Chat extends Component {
   scrollToBottom = () => {
     this.el.scrollIntoView({ behavior: "smooth" })
@@ -23,9 +27,17 @@ class Chat extends Component {
   }
 
   render() {
-    const { messages } = this.props
+    const { messages, stats } = this.props
     return (
       <div className="chat">
+        <div className="chat-header">
+          <Tag
+            minimal={true}
+            large={true}
+          >
+            <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
+          </Tag>
+        </div>
         <div className="chat-body">
           {messages.map((message, index) => {
             var htmlMessage = { __html: message.message }

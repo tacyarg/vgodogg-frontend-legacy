@@ -5440,7 +5440,9 @@ class Spinner extends Component {
     speed = speed || 12
     var itemWidth = 220
     var winningItemIndex = random(150, 200);
-    var offset = random(0, -120) + itemWidth * 2.5
+    var offset = random(-80, 80) + itemWidth * 2
+
+    console.log('offset', offset)
 
     this.setState({
       winnerElevation: null,
