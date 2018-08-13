@@ -1,7 +1,6 @@
 .Spinner-wrapper {
   position: relative;
   height: 100%;
-
   max-width:1140px;
   margin: 0 auto;
 }
@@ -71,9 +70,11 @@
 }
 
 .Spinner-itemsWon {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .Spinner-itemsWon-Title {

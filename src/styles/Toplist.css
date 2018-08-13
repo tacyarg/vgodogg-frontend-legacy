@@ -1,6 +1,6 @@
 .Toplist-wrapper {
-  overflow-x: hidden;
-  overflow-y: scroll;  
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll;   */
   height: calc(100vh - 250px);
 }
 
