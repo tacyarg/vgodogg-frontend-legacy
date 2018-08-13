@@ -1,17 +1,14 @@
 .Spinner-wrapper {
   position: relative;
-  /* width: 100%; */
   height: 100%;
 
-  width:1140px;
+  max-width:1140px;
   margin: 0 auto;
 }
 
 .Spinner-bounding {
-  /* background-color: palegreen; */
   height:300px;
   margin: 0 auto;
-
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -25,9 +22,6 @@
   position: relative;
   height: 184px;
   margin-top: 20px;
-
-  /* outline: 1px solid rgba(0,0,0, 0.1); */
-  /* box-shadow: inset 0 0 10px #000; */
 }
 
 .Spinner-content {
@@ -78,18 +72,15 @@
 
 .Spinner-itemsWon {
   padding: 20px;
-  /* background-color: aqua; */
   display: flex;
   flex-wrap: wrap;
 }
 
 .Spinner-itemsWon-Title {
-  /* background-color: purple; */
   font-size: 1.5em;
   font-weight: bold;
   height: 24px;
   width: 100%;
-  /* text-align: center; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
 }

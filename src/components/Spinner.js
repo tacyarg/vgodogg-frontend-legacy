@@ -123,26 +123,28 @@ class Spinner extends Component {
             text="spin"
           />
         </div>
-        <ReactCSSTransitionGroup
-          className="Spinner-itemsWon"
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          <span className="Spinner-itemsWon-Title">
-            Items Unboxed: $<CountUp decimals={2} end={this.state.totalWon} />
-          </span>
-          {
-            this.state.itemsWon.map(item => {
-              return (
-                <ItemCard 
-                  key={item.id}
-                  {...item}
-                />
-              )
-            })
-          }
-        </ReactCSSTransitionGroup>
+        <div>
+          <ReactCSSTransitionGroup
+            className="Spinner-itemsWon"
+            transitionName="example"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+          >
+            <span className="Spinner-itemsWon-Title">
+              Items Unboxed: <CountUp prefix="$" separator="," decimals={2} end={this.state.totalWon} />
+            </span>
+            {
+              this.state.itemsWon.map(item => {
+                return (
+                  <ItemCard 
+                    key={item.id}
+                    {...item}
+                  />
+                )
+              })
+            }
+          </ReactCSSTransitionGroup>
+        </div>
 
       </div>
     )
