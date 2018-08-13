@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../styles/Cases.css'
-import { Card, Elevation, Tab, Tabs } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCase'
 import CaseCard from '../components/CaseCard'
 

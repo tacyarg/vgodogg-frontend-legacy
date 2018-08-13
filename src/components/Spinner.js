@@ -16,7 +16,8 @@ class Spinner extends Component {
       spinnerTransition: '',
       spinnerTransform: '',
       spinnerContent: [],
-      winnerElevation: Elevation.ONE
+      winnerElevation: Elevation.ONE,
+      spinning: false
     }
   }
 
@@ -63,15 +64,19 @@ class Spinner extends Component {
 
     this.setState({spinnerContent: content})
 
-    setTimeout(() => {
+    setImmediate(() => {
       this.setState({
+        spinning: true,
         spinnerTransition: `all ${speed}s ease`,
         spinnerTransform: `translateX(${winningItemIndex * -itemWidth + offset}px) translateZ(0px)`
       })
-    }, 500)
+    })
 
     setTimeout(() => {
-      this.setState({winnerElevation: Elevation.FOUR})
+      this.setState({
+        spinning: false,
+        winnerElevation: Elevation.FOUR
+      })
     }, (speed + .5) * 1000)
   }
 
@@ -114,7 +119,9 @@ class Spinner extends Component {
           </div>
         </div>
         <Button 
-          intent={Intent.DANGER}className="spinner-btn" 
+          loading={this.state.spinning}
+          intent={Intent.SUCCESS}
+          className="spinner-btn" 
           onClick={e => {
             this.spin.bind(this)(6, true)
           }} 

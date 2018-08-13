@@ -17,10 +17,11 @@ class Header extends Component {
   constructor() {
     super()
     this.state = {
-      keys: 0
+      keys: 0,
+      loadingKeys: false
     }
 
-    setInterval(this.updateKeyCount.bind(this), 5000)
+    setInterval(this.updateKeyCount.bind(this), 10000)
   }
 
   componentDidMount() {
@@ -30,8 +31,14 @@ class Header extends Component {
 
   updateKeyCount() {
     if(!this.props.user) return
+    this.setState({
+      loadingKeys: true
+    })
     return this.props.callAction('getMyKeyCount').then(keys => {
-      this.setState({keys})
+      this.setState({
+        keys,
+        loadingKeys: false
+      })
     })
   }
 
@@ -66,15 +73,21 @@ class Header extends Component {
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Navbar.Divider />
-          <Tag
+          {/* <Tag
             minimal={true}
             interactive={true}
             large={true}
             icon="key"
             onClick={this.updateKeyCount.bind(this)}
-          >
-            { this.state.keys }
-          </Tag>
+            text={ this.state.keys }
+          /> */}
+          <Button
+            minimal={true}
+            icon="key"
+            onClick={this.updateKeyCount.bind(this)}
+            text={ this.state.keys }
+            loading={this.state.loadingKeys}
+          />
           {/* <Button className="bp3-minimal" icon="notifications" text="" /> */}
           {
             (!user) ?

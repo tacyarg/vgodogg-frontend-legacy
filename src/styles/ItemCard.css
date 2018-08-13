@@ -6,19 +6,19 @@
 .ItemCard-item {
   position: relative;
   min-height: 175px;
-  min-width: 210px;
+  width: 210px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 .ItemCard-top {
-  /* background-color: red;
-  width: 100%;
-  height: 40px;
-  z-index: 999; */
+
 }
 
 .ItemCard-itemName {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: left;
   font-weight: bold;
   font-size: 0.9em;
@@ -27,7 +27,7 @@
 .ItemCard-itemCondition {
   text-align: left;
   font-weight: lighter;
-  font-size: 0.7em;
+  font-size: 0.75em;
 }
 
 .ItemCard-itemPrice {

@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import './Loading.css'
+import '../styles/Loading.css'
+
+import { Spinner } from '@blueprintjs/core'
+
 
 class Loading extends Component {
   render() {
     return (
-      <div className="main">
-        <div className="loader">
-        </div>
+      <div className="Loading-main">
+        <Spinner 
+          className="Loading-loader"
+        />
+
+        {/* <div className="loader">
+        </div> */}
       </div>
     )
   }
