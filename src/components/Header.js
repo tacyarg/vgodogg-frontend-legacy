@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
+import '../styles/Header.css'
 
 import {
   Alignment,
@@ -50,7 +51,10 @@ class Header extends Component {
       // fixedToTop="true"
       >
         <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading>VGO Cases</Navbar.Heading>
+          <Navbar.Heading className="Header-logo">
+            <b> VGO Cases </b>
+            {/* <img src="https://i.imgur.com/csrxCfC.png" /> */}
+          </Navbar.Heading>
           <Navbar.Divider />
           <AnchorButton 
             href="/#/"
