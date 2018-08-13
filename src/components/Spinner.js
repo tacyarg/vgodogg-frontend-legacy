@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
+
 import './Spinner.css'
 import {random, shuffle, concat, sample, clone} from 'lodash'
 import { Button, Card, Elevation, Intent } from '@blueprintjs/core'
@@ -17,7 +20,8 @@ class Spinner extends Component {
       spinnerTransform: '',
       spinnerContent: [],
       winnerElevation: Elevation.ONE,
-      spinning: false
+      spinning: false,
+      itemsWon: []
     }
   }
 
@@ -73,6 +77,7 @@ class Spinner extends Component {
     })
 
     setTimeout(() => {
+      this.state.itemsWon.unshift(winner)
       this.setState({
         spinning: false,
         winnerElevation: Elevation.FOUR
@@ -83,49 +88,59 @@ class Spinner extends Component {
   render() {
     var { items } = this.props
     return (
-      <div className="spinner">
-        <div className="inner">
-        <div className="tick"></div>
-        <div className="overlay-left"></div>
-        <div className="overlay-right"></div>
-          <div className="spinner-content" style={{
-            transition: this.state.spinnerTransition,
-            transform: this.state.spinnerTransform
-          }}>
+      <div className="Spinner-wrapper">
+        <div className="Spinner-bounding">
+          <div className="Spinner-inner">
+            <div className="Spinner-tick"></div>
+            <div className="Spinner-overlay-left"></div>
+            <div className="Spinner-overlay-right"></div>
+            <div className="Spinner-content" style={{
+              transition: this.state.spinnerTransition,
+              transform: this.state.spinnerTransform
+            }}>
+              {
+                this.state.spinnerContent.map(item => {
+                  return (
+                    <ItemCard 
+                      elevation={item.selected ? this.state.winnerElevation : null}
+                      {...item}
+                    />
+                  )
+                })
+              }
+            </div>
+          </div>
+          <Button 
+            loading={this.state.spinning}
+            intent={Intent.SUCCESS}
+            className="Spinner-btn" 
+            onClick={e => {
+              this.spin.bind(this)(6, true)
+            }} 
+            text="spin"
+          />
+        </div>
+        <ReactCSSTransitionGroup
+          className="Spinner-itemsWon"
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          <span className="Spinner-itemsWon-Title">Items Unboxed</span>
+
             {
-              this.state.spinnerContent.map(item => {
+              this.state.itemsWon.map(item => {
                 return (
                   <ItemCard 
-                    elevation={item.selected ? this.state.winnerElevation : null}
+                    key={item.id}
                     {...item}
                   />
                 )
-                // return (
-                //   <Card 
-                //     key={uuid() || item.id}
-                //     className="spinner-item"
-                //     // interactive={true}
-                //     elevation={item.selected ? this.state.winnerElevation : null}
-                //   >
-                //     <div className="item-name">{item.name}</div>
-                //     <div className="item-catagory" style={getRarity(item)}>{item.condition}</div>
-                //     <img src={item.image['600px']} alt={item.name} />
-                //     {/* <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div> */}
-                //     {/* <div className="rarity"style={getRarity(opening.item)} /> */}
-                //   </Card>
-                // )
               })
             }
-          </div>
-        </div>
-        <Button 
-          loading={this.state.spinning}
-          intent={Intent.SUCCESS}
-          className="spinner-btn" 
-          onClick={e => {
-            this.spin.bind(this)(6, true)
-          }} 
-          text="spin"/>
+
+        </ReactCSSTransitionGroup>
+
       </div>
     )
   }

@@ -1,14 +1,16 @@
 .ItemCard-wrapper {
   display: flex;
   flex-wrap: nowrap;
+  margin: 5px;
+
 }
 
 .ItemCard-item {
   position: relative;
   min-height: 175px;
   width: 210px;
-  margin-left: 5px;
-  margin-right: 5px;
+  /* margin-left: 5px;
+  margin-right: 5px; */
 }
 
 .ItemCard-top {
@@ -50,3 +52,4 @@
   height: 185px;
   z-index: 0;
 }
+

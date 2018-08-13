@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Chat.css'
+import '../styles/Chat.css'
 
 import {
   Tag,
@@ -29,8 +29,8 @@ class Chat extends Component {
   render() {
     const { messages, stats } = this.props
     return (
-      <div className="chat">
-        <div className="chat-header">
+      <div className="Chat-wrapper">
+        <div className="Chat-header">
           <Tag
             minimal={true}
             large={true}
@@ -38,24 +38,25 @@ class Chat extends Component {
             <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
           </Tag>
         </div>
-        <div className="chat-body">
+        <div className="Chat-body">
           {messages.map((message, index) => {
             var htmlMessage = { __html: message.message }
             return (
-              <div className="message" key={message.id}>
-                <div className="user">
-                  <img className="avatar" src={message.user.avatarurl} alt={message.user.username} />
-                  <div className="username">{message.user.username}</div>
+              <div className="Chat-message" key={message.id}>
+                <div className="Chat-user">
+                  <img className="Chat-avatar" src={message.user.avatarurl} alt={message.user.username} />
+                  <div className="Chat-username">{message.user.username}</div>
                 </div>
-                <div className="message-message" dangerouslySetInnerHTML={htmlMessage}></div>
+                <div className="Chat-message-message" dangerouslySetInnerHTML={htmlMessage}></div>
               </div>
             )
           })}
           {/* fake div to allow scroll to bottom... */}
           <div ref={el => { this.el = el; }} />
         </div>
-        <div className="chat-input">
+        <div className="Chat-input-wrapper">
           <input 
+            className="Chat-input"
             type="text" 
             placeholder="Say something..." 
             onKeyUp={this.sendMessage.bind(this)}
