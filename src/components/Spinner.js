@@ -3,7 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import CountUp from 'react-countup';
 
-import './Spinner.css'
+import '../styles/Spinner.css'
 import {random, shuffle, concat, sample, clone} from 'lodash'
 import { Button, Card, Elevation, Intent } from '@blueprintjs/core'
 import uuid from 'uuid/v4'
