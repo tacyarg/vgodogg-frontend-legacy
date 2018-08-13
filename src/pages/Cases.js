@@ -48,7 +48,7 @@ class Cases extends Component {
   render() {
     const { cases, stats } = this.props
     return (
-      <div className="cases">
+      <div className="Cases-wrapper">
         <OpenCase 
           isOpen={this.state.isOpen} 
           handleClose={this.closeDialog.bind(this)}
