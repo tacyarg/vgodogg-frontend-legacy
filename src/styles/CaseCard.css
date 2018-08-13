@@ -1,0 +1,43 @@
+.CaseCard-wrapper {
+
+}
+
+.CaseCard-card {
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px;
+  min-width: 250px;
+  height: 300px;
+}
+
+.CaseCard-content {
+
+}
+
+.CaseCard-title {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.CaseCard-image {
+  position:absolute;
+  top: -20px;
+  bottom:0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 80%;
+  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%);
+}
+
+.CaseCard-opened {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}

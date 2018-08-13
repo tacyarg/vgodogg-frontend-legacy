@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import './Cases.css'
-import { Card, Elevation } from '@blueprintjs/core'
+import '../styles/Cases.css'
+import { Card, Elevation, Tab, Tabs } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCase'
+import CaseCard from '../components/CaseCard'
 
 class Cases extends Component {
   constructor(props) {
@@ -47,7 +48,6 @@ class Cases extends Component {
 
   render() {
     const { cases, stats } = this.props
-    console.log(this.props)
     return (
       <div className="cases">
         <OpenCase 
@@ -58,20 +58,13 @@ class Cases extends Component {
           // maxKeys={user.keyCount}
         />
         {cases.map(box => {
+          var boxStats = stats.allTime.cases[box.id]
+          box.openCount = boxStats ? boxStats.opened : 0
           return (
-            <Card 
-              key={box.id}
-              className="case"
-              interactive={true} 
-              elevation={Elevation.TWO}
+            <CaseCard
               onClick={e => this.triggerModal(box)}
-            >
-              <div className='content'>
-                <div className="name">{box.name}</div>
-                <img className="case-image" src={box.image['300px']} alt={box.name} />
-                <div className="case-opened"><b>Total Opened:</b> { stats.allTime.cases[box.id] ? stats.allTime.cases[box.id].opened : 0 }</div>
-              </div>
-            </Card>
+              box={box}
+            />
           )
         })}
       </div>

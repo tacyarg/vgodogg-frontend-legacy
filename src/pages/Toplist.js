@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Toplist.css'
+import '../styles/Toplist.css'
 import { HTMLTable } from '@blueprintjs/core'
 
 
@@ -10,11 +10,13 @@ class Toplist extends Component {
     var topCasesToday = stats.daily.top.cases
 
     return (
-      <div className="wrapper">
-          <div className="table-wrapper">
+      <div className="Toplist-wrapper">
+        <div className="Toplist-content">
+
+          <div className="Toplist-table-wrapper">
             <h1> Overall Top Openings </h1>
             <HTMLTable
-              className='table-body'
+              className='Toplist-table-body'
               bordered={true}
               striped={true}
               // small={true}
@@ -46,10 +48,10 @@ class Toplist extends Component {
             </HTMLTable>
           </div>
 
-          <div className="table-wrapper">
+          <div className="Toplist-table-wrapper">
             <h1> Todays Top Openings </h1>
             <HTMLTable
-              className='table-body'
+              className='Toplist-table-body'
               bordered={true}
               striped={true}
               // small={true}
@@ -80,6 +82,8 @@ class Toplist extends Component {
               </tbody>
             </HTMLTable>
           </div>
+
+        </div>
       </div>
     )
   }

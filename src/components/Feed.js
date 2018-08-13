@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Feed.css'
 import { Card, Elevation } from '@blueprintjs/core'
+import ItemCard from '../components/ItemCard'
 
 function getRarity(item) {
   return {
@@ -47,21 +48,25 @@ class Feed extends Component {
     return (
       <div className='feed'>
         {recentOpenings.map(opening => {
-          opening.item = processItem(opening.item)
+          var item = processItem(opening.item)
           return (
-            <Card 
-              key={opening.id}
-              className="opening"
-              interactive={true} 
-              elevation={Elevation.TWO}
-            >
-              <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
-              <div className="item-name">{opening.item.name}</div>
-              {/* <div className="item-name">{opening.item.skin}</div> */}
-              <div className="item-catagory" style={getRarity(opening.item)}>{opening.item.condition}</div>
-              <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div>
-              {/* <div className="rarity"style={getRarity(opening.item)} /> */}
-            </Card>
+            <ItemCard 
+              elevation={item.selected ? this.state.winnerElevation : null}
+              {...item}
+            />    
+            // <Card 
+            //   key={opening.id}
+            //   className="opening"
+            //   interactive={true} 
+            //   elevation={Elevation.TWO}
+            // >
+            //   <img className="item-image" src={opening.item.image['600px']} alt={opening.item.name} />
+            //   <div className="item-name">{opening.item.name}</div>
+            //   {/* <div className="item-name">{opening.item.skin}</div> */}
+            //   <div className="item-catagory" style={getRarity(opening.item)}>{opening.item.condition}</div>
+            //   <div className="item-price">${(opening.item.suggested_price/100).toFixed(2)}</div>
+            //   {/* <div className="rarity"style={getRarity(opening.item)} /> */}
+            // </Card>
           )
         })}
         <div className="overlay" />
