@@ -70,13 +70,13 @@ class Spinner extends Component {
 
     this.setState({spinnerContent: content})
 
-    setImmediate(() => {
+    setTimeout(() => {
       this.setState({
         spinning: true,
         spinnerTransition: `all ${speed}s ease`,
         spinnerTransform: `translateX(${winningItemIndex * -itemWidth + offset}px) translateZ(0px)`
       })
-    })
+    }, 500)
 
     setTimeout(() => {
       this.state.itemsWon.unshift(winner)
