@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 import Header from './components/Header'
 import Chat from './components/Chat'
-import Feed from './components/Feed'
+import OpeningFeed from './components/OpeningFeed'
 
 // PAGES
 import Cases from './pages/Cases'
@@ -26,7 +26,7 @@ class App extends Component {
       <div className="App">
         <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
         <Chat messages={this.state.chats['en'].messages} callAction={callAction} stats={this.state.stats} />
-        <Feed recentOpenings={this.state.recentOpenings} />
+        <OpeningFeed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
           <Route exact path="/" render={props => {
             return (<Home {...props} callAction={callAction} stats={this.state.stats}/>)

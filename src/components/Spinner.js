@@ -5,39 +5,7 @@ import { Button, Card, Elevation, Intent } from '@blueprintjs/core'
 import uuid from 'uuid/v4'
 import items from '../libs/caseItems'
 import ItemCard from '../components/ItemCard'
-
-function processItem(item) {
-  if (item.skin) return item;
-  var data = {
-    category: item.category,
-    color: item.color,
-    id: item.id,
-    image: item.image,
-    paint_index: item.paint_index,
-    rarity: item.rarity,
-    suggested_price: item.suggested_price,
-    suggested_price_floor: item.suggested_price_floor,
-    type: item.type
-  }
-  var name = item.name
-  var regex = /(★ )?(StatTrak™ )?(.+) \| (.+) \((.+)\)/.exec(name)
-
-  // seperate weapons from misc
-  if (regex) regex[0] = name.replace(/\((.+)\)/.exec(name)[0], '').replace('StatTrak™ ', '')
-  else regex = [name]
-
-  // get item name
-  if ((/\((.+)\)/.exec(regex[0])) !== null) data.name = regex[0].replace(/\((.+)\)/.exec(regex[0])[0], '')
-  else data.name = regex[0]
-
-  if (regex[4]) data.skin = regex[4]
-
-  data.gun = data.name.substring(0, data.name.lastIndexOf(' |'));
-
-  data.condition = regex[5]
-
-  return data
-}
+import utils from '../libs/utils'
 
 class Spinner extends Component {
   constructor(props) {
@@ -83,13 +51,13 @@ class Spinner extends Component {
       spinnerTransform: `translateX(-180px) translateZ(0px)`
     })
 
-    var spinnerItems = items.map(processItem)
+    var spinnerItems = items.map(utils.processItem)
     spinnerItems = spinnerItems.filter(item => {
       return item.category.indexOf('Knife') === -1
     })
     var content = this.generateSpinnerContent(spinnerItems, 3)
     var winner = clone(sample(items))
-    winner = processItem(winner)
+    winner = utils.processItem(winner)
     winner.selected = true;
     content.splice(winningItemIndex, 1, winner)
 

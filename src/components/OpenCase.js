@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './OpenCase.css'
+import '../styles/OpenCase.css'
 import { Dialog, Classes, NumericInput, Button, Intent } from '@blueprintjs/core'
 
 class OpenCase extends Component {
@@ -10,9 +10,7 @@ class OpenCase extends Component {
       canEscapeKeyClose: true,
       canOutsideClickClose: true,
       enforceFocus: true,
-      // isOpen: false,
       usePortal: true,
-
       wantedCases: 1
     }
   }
@@ -28,16 +26,17 @@ class OpenCase extends Component {
         {...this.state}
       >
         <div className={Classes.DIALOG_BODY}>
-          {/* <CaseCard box={box} /> */}
-          <div className="options">
+          <div className="OpenCase-content">
             <img src={box.image ? box.image['300px'] : null} alt={box.name} />
-            
           </div>
         </div>
+
         <div className={Classes.DIALOG_FOOTER}>
-          <h5>How many would you like to buy?</h5>
+          
+          <h5>How many cases would you like to buy?</h5>
+
           <NumericInput
-            className="key-input"
+            className="OpenCase-key-input"
             leftIcon="key"
             max={maxKeys || 100}
             min="1"
@@ -46,14 +45,15 @@ class OpenCase extends Component {
             }}
             value={this.state.wantedCases}
           />
+
           <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-            {/* <Button onClick={handleClose} intent={Intent.DANGER} text="Nevermind" /> */}
             <Button
               intent={Intent.SUCCESS}
               onClick={e => buyCases(box.id, this.state.wantedCases)}
-              text="Buy Case(s)"
+              text={this.state.wantedCases > 1 ? 'Buy Cases' : 'Buy Case'}
             />
           </div>
+
         </div>
       </Dialog>
     )
