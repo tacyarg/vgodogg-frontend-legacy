@@ -51,67 +51,69 @@ class CaseOverview extends Component {
     return (
       <div className="CaseOverview-wrapper">
         <div className="CaseOverview-header">
-          <img 
-            className="CaseOverview-caseImage" 
-            src={box.image['300px']} 
-            alt={box.name} 
-          />
-          <div className="CaseOverview-details">
-            <span className="CaseOverview-details-caseName">{box.name}</span>
-            <span className="CaseOverview-details-caseValue">
-              <b>Times Opened:</b> <CountUp end={stats.opened || 0} />
-            </span>
-            <span className="CaseOverview-details-caseValue">
-              <b>Total Won:</b> <CountUp
-                prefix="$" 
-                separator="," 
-                decimals={2} 
-                end={stats.totalValue} 
-              />
-            </span>
-            <span className="CaseOverview-details-caseValue">
-              <b>Average ROI:</b> <CountUp
-                prefix="$" 
-                separator="," 
-                decimals={2} 
-                end={stats.totalValue / stats.opened} 
-              />
-            </span>
-            <span className="CaseOverview-details-caseValue">
-              <b>Best Item:</b> {box.bestItem.name} - <CountUp 
-                prefix="$" 
-                separator="," 
-                decimals={2} 
-                end={box.bestItem.suggested_price/100} 
-              />
-            </span>
-            <span className="CaseOverview-details-caseValue">
-              <b>Worst Item:</b> {box.worstItem.name} - <CountUp 
-                prefix="$" 
-                separator="," 
-                decimals={2} 
-                end={box.worstItem.suggested_price/100} 
-              />
-            </span>
+          <div className="CaseOverview-header-content">
+            <img 
+              className="CaseOverview-caseImage" 
+              src={box.image['300px']} 
+              alt={box.name} 
+            />
+            <div className="CaseOverview-details">
+              <span className="CaseOverview-details-caseName">{box.name}</span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Times Opened:</b> <CountUp end={stats.opened || 0} />
+              </span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Total Won:</b> <CountUp
+                  prefix="$" 
+                  separator="," 
+                  decimals={2} 
+                  end={stats.totalValue} 
+                />
+              </span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Average ROI:</b> <CountUp
+                  prefix="$" 
+                  separator="," 
+                  decimals={2} 
+                  end={stats.totalValue / stats.opened} 
+                />
+              </span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Best Item:</b> {box.bestItem.name} - <CountUp 
+                  prefix="$" 
+                  separator="," 
+                  decimals={2} 
+                  end={box.bestItem.suggested_price/100} 
+                />
+              </span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Worst Item:</b> {box.worstItem.name} - <CountUp 
+                  prefix="$" 
+                  separator="," 
+                  decimals={2} 
+                  end={box.worstItem.suggested_price/100} 
+                />
+              </span>
+            </div>
           </div>
           <div className="CaseOverview-buy">
-            <OpenCase 
-              isOpen={this.state.isOpen} 
-              handleClose={this.closeDialog.bind(this)}
-              box={box}
-              buyCases={this.sendKeyRequest.bind(this)}
-            />
-            <Button 
-              className="CaseOverview-buyButton"
-              large={true}
-              intent={Intent.SUCCESS}
-              text="PURCHASE CASE"
-              icon="cart"
-              onClick={e => {
-                this.openDialog()
-              }}
-            />
-          </div>
+              <OpenCase 
+                isOpen={this.state.isOpen} 
+                handleClose={this.closeDialog.bind(this)}
+                box={box}
+                buyCases={this.sendKeyRequest.bind(this)}
+              />
+              <Button 
+                className="CaseOverview-buyButton"
+                large={true}
+                intent={Intent.SUCCESS}
+                text="PURCHASE CASE"
+                icon="cart"
+                onClick={e => {
+                  this.openDialog()
+                }}
+              />
+            </div>
         </div>
         <div className="CaseOverview-body">
           <div className="CaseOverview-body-title">

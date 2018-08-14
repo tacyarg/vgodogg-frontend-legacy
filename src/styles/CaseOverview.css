@@ -4,15 +4,17 @@
 
 .CaseOverview-header {
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 0px;
-  padding-left: 20px;
-  /* background-color: #00ffff; */
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: left;
-  /* border-bottom: 1px solid rgba(0,0,0,0.2) */
+}
+
+.CaseOverview-header-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .CaseOverview-caseImage {
@@ -40,7 +42,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* text-align: center; */
 }
 
 .CaseOverview-details-caseName {
@@ -54,20 +55,18 @@
 }
 
 .CaseOverview-buy {
-  widows: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
 }
 
 .CaseOverview-buyButton {
-
+  padding: 20px;
 }
 
 .CaseOverview-body {
   width: 100%;
-  /* background-color: blueviolet; */
 }
 
 .CaseOverview-body-title {
@@ -76,8 +75,6 @@
   font-weight: bold;
   height: 24px;
   width: 100%;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
-  /* margin-bottom: 10px; */
 }
 
 .CaseOverview-body-caseItems {
