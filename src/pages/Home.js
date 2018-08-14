@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-// import Spinner from '../components/Spinner'
-import CaseOverview from '../components/CaseOverview'
+import Spinner from '../components/Spinner'
 
 class Home extends Component {
   render() {
@@ -9,8 +8,7 @@ class Home extends Component {
     var stats = this.props.stats.allTime.cases[box.id]
     return (
       <div className="home">
-        {/* <Spinner /> */}
-          <CaseOverview box={box} stats={stats}/>
+        <Spinner />
       </div>
     )
   }

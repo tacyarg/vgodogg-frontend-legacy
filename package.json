@@ -8,6 +8,7 @@
     "bluebird": "^3.5.1",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
+    "query-string": "^6.1.0",
     "react": "^16.4.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-countup": "^4.0.0-alpha.6",

@@ -9,6 +9,8 @@ import OpeningFeed from './components/OpeningFeed'
 
 // PAGES
 import Cases from './pages/Cases'
+import CaseOverview from './pages/CaseOverview'
+
 import Home from './pages/Home'
 import Toplist from './pages/Toplist'
 
@@ -33,6 +35,9 @@ class App extends Component {
           }}/>
           <Route path="/cases" render={props => {
             return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+          }}/>
+          <Route path="/caseOverview" render={props => {
+            return (<CaseOverview {...props} boxes={this.state.cases} stats={this.state.stats}/>)
           }}/>
           <Route path="/toplist" render={props => {
             return (<Toplist {...props} callAction={callAction} stats={this.state.stats} />)
