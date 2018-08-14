@@ -29,7 +29,7 @@ class Spinner extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.spin.bind(this)(6, true)
+      this.spin.bind(this)()
     }, 1000)
   }
 
@@ -45,7 +45,7 @@ class Spinner extends Component {
 
   spin(speed, filterCovert) {
     filterCovert = filterCovert || false
-    speed = speed || 6
+    speed = speed || 4
     var itemWidth = 220
     var winningItemIndex = random(150, 200);
     var offset = random(-50, 50) + itemWidth * 2
@@ -118,7 +118,7 @@ class Spinner extends Component {
             intent={Intent.SUCCESS}
             className="Spinner-btn" 
             onClick={e => {
-              this.spin.bind(this)(6, true)
+              this.spin.bind(this)()
             }} 
             text="spin"
           />

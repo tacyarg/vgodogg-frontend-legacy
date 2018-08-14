@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 
-import Spinner from '../components/Spinner'
-import ItemCard from '../components/ItemCard'
-import items from '../libs/caseItems'
+// import Spinner from '../components/Spinner'
+import CaseOverview from '../components/CaseOverview'
 
 class Home extends Component {
   render() {
+    var box = this.props.cases[3]
+    var stats = this.props.stats.allTime.cases[box.id]
     return (
       <div className="home">
-        <Spinner />
-        {/* <ItemCard {...items[0]}/> */}
+        {/* <Spinner /> */}
+          <CaseOverview box={box} stats={stats}/>
       </div>
     )
   }

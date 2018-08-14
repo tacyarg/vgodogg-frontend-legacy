@@ -29,7 +29,7 @@ class App extends Component {
         <OpeningFeed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
           <Route exact path="/" render={props => {
-            return (<Home {...props} callAction={callAction} stats={this.state.stats}/>)
+            return (<Home {...props} callAction={callAction} stats={this.state.stats} cases={this.state.cases}/>)
           }}/>
           <Route path="/cases" render={props => {
             return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)

@@ -1,0 +1,120 @@
+.CaseOverview-wrapper {
+
+}
+
+.CaseOverview-header {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 0px;
+  padding-left: 20px;
+  /* background-color: #00ffff; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  /* border-bottom: 1px solid rgba(0,0,0,0.2) */
+}
+
+.CaseOverview-caseImage {
+  padding-right: 20px;
+  width: 320px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
+		transform: translatey(0px);
+	}
+	50% {
+    filter: drop-shadow(0 40px 20px rgba(0,0,0,0.5)) saturate(123%);
+		transform: translatey(-20px);
+	}
+	100% {
+    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
+		transform: translatey(0px);
+	}
+}
+
+.CaseOverview-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.CaseOverview-details-caseName {
+  font-weight: bold;
+  font-size: 2.5em;
+  /* border-bottom: 1px solid rgba(0,0,0,0.2) */
+}
+
+.CaseOverview-details-caseValue {
+  padding-top: 2.5px;
+}
+
+.CaseOverview-buy {
+  widows: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.CaseOverview-buyButton {
+
+}
+
+.CaseOverview-body {
+  width: 100%;
+  /* background-color: blueviolet; */
+}
+
+.CaseOverview-body-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 24px;
+  width: 100%;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
+  /* margin-bottom: 10px; */
+}
+
+.CaseOverview-body-caseItems {
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ANIMATIONS */
+
+.example-enter {
+  opacity: 0.5;
+  animation: push 0.2s linear 1;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity .2s ease-in;
+}
+
+.example-leave {
+  /* opacity: 1; */
+}
+
+.example-leave.example-leave-active {
+  /* opacity: 0.01; */
+  /* transition: opacity .5s ease-out; */
+}
+
+@keyframes pulse{
+  25%  {transform: scale(0.9);}
+  75%  {transform: scale(1.1);}
+}
+@keyframes push{
+  50%  {transform: scale(0.8);}
+}
+@keyframes pop{
+  50%  {transform: scale(1.2);}
+}
