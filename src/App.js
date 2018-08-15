@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header'
 import Chat from './components/Chat'
@@ -30,18 +29,18 @@ class App extends Component {
         <Chat messages={this.state.chats['en'].messages} callAction={callAction} stats={this.state.stats} />
         <OpeningFeed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
-          <Route exact path="/" render={props => {
-            return (<Home {...props} callAction={callAction} stats={this.state.stats} cases={this.state.cases}/>)
-          }}/>
-          <Route path="/cases" render={props => {
-            return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
-          }}/>
-          <Route path="/caseOverview" render={props => {
-            return (<CaseOverview {...props} boxes={this.state.cases} stats={this.state.stats}/>)
-          }}/>
-          <Route path="/toplist" render={props => {
-            return (<Toplist {...props} callAction={callAction} stats={this.state.stats} />)
-          }}/>
+            <Route exact path="/" render={props => {
+              return (<Home {...props} callAction={callAction} stats={this.state.stats} cases={this.state.cases}/>)
+            }}/>
+            <Route path="/cases" render={props => {
+              return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+            }}/>
+            <Route path="/overview" render={props => {
+              return (<CaseOverview {...props} AppToaster={AppToaster} callAction={callAction} boxes={this.state.cases} stats={this.state.stats}/>)
+            }}/>
+            <Route path="/toplist" render={props => {
+              return (<Toplist {...props} callAction={callAction} stats={this.state.stats} />)
+            }}/>
         </div>
       </div>
     )
