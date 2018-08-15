@@ -1,8 +1,8 @@
 .Header-logo {
   position: relative;
-  /* width: 90px; */
-  /* top: -24px; */
-  /* left: -10px; */
+  width: 90px;
+  top: -24px;
+  left: -10px;
 }
 
 .Header-logo img {

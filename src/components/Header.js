@@ -52,8 +52,8 @@ class Header extends Component {
       >
         <Navbar.Group align={Alignment.LEFT}>
           <Navbar.Heading className="Header-logo">
-            <b> VGO Cases </b>
-            {/* <img src="https://i.imgur.com/csrxCfC.png" /> */}
+            {/* <b> VGO Cases </b> */}
+            <img src="https://i.imgur.com/csrxCfC.png" />
           </Navbar.Heading>
           <Navbar.Divider />
           {/* <AnchorButton 
