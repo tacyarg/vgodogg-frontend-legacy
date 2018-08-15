@@ -16,7 +16,7 @@ class Spinner extends Component {
     super()
 
     this.state = {
-      items: props.cases[props.match.params.boxid].items,
+      items: props.cases[--props.match.params.boxid].items,
       pendingBoxes: [],
       speed: 4,
       itemWidth: 220,
