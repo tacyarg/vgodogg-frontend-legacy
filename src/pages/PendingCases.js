@@ -23,7 +23,7 @@ class PendingCases extends Component {
 
       offerCases = map(offerCases, (cases, key) => {
         var firstCase = cases[0]
-        var box = clone(this.props.cases[firstCase.case_id])
+        var box = clone(this.props.cases[--firstCase.case_id])
         box.offerid = key
         box.name = `Order #${key}`
         box.cases = cases
