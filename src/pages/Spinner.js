@@ -112,12 +112,13 @@ class Spinner extends Component {
     setTimeout(() => {
       this.state.itemsWon.unshift(winner)
       this.state.totalWon += winner.suggested_price / 100
-      this.setState({
-        spinning: false,
-        winnerElevation: Elevation.FOUR
-      })
+      this.setState({ winnerElevation: Elevation.FOUR })
       this.setCaseOpened.bind(this)()
-      this.setup.bind(this)()
+
+      setTimeout(() => {
+        this.setState({ spinning: false })
+        this.setup.bind(this)()
+      }, 1000)
     }, (speed + .5) * 1000)
   }
 
