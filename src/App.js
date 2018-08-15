@@ -35,7 +35,7 @@ class App extends Component {
             <Route path="/cases" render={props => {
               return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
             }}/>
-            <Route path="/overview" render={props => {
+            <Route path="/overview/:boxid" render={props => {
               return (<CaseOverview {...props} AppToaster={AppToaster} callAction={callAction} boxes={this.state.cases} stats={this.state.stats}/>)
             }}/>
             <Route path="/toplist" render={props => {

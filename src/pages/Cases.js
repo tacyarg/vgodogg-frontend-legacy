@@ -13,7 +13,7 @@ class Cases extends Component {
           return (
             <CaseCard
               onClick={e => {
-                this.props.history.push(`/overview?boxid=${box.id}`)
+                this.props.history.push(`/overview/${box.id}`)
               }}
               box={box}
             />

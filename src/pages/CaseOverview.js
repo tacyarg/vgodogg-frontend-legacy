@@ -7,15 +7,15 @@ import { sortBy, sumBy } from 'lodash'
 import CountUp from 'react-countup';
 import { Button, Intent } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCase'
-import queryString from 'query-string'
 import {LazyLoadComponent, LazyLoadImage} from 'react-lazy-load-image-component'
 
 class CaseOverview extends Component {
   constructor(props) {
     super()
 
-    const values = queryString.parse(props.location.search)
-    var box = props.boxes[parseInt(--values.boxid)]
+    console.log(props)
+
+    var box = props.boxes[parseInt(--props.match.params.boxid)]
     console.log(box)
     box.items = sortBy(box.items, 'suggested_price').reverse()
     var stats = props.stats.allTime.cases[box.id]
