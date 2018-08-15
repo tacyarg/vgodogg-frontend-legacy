@@ -63,7 +63,6 @@ class Spinner extends Component {
     return shuffle(spinnerArray)
   }
 
-
   setup() {
     var {winningItemIndex, itemWidth, pendingBoxes } = this.state
 
@@ -117,9 +116,8 @@ class Spinner extends Component {
         spinning: false,
         winnerElevation: Elevation.FOUR
       })
-
-      this.setup.bind(this)()
       this.setCaseOpened.bind(this)()
+      this.setup.bind(this)()
     }, (speed + .5) * 1000)
   }
 
