@@ -10,6 +10,9 @@ import OpeningFeed from './components/OpeningFeed'
 import Cases from './pages/Cases'
 import CaseOverview from './pages/CaseOverview'
 
+import PendingCases from './pages/PendingCases'
+import Spinner from './pages/Spinner'
+
 import Home from './pages/Home'
 import Toplist from './pages/Toplist'
 
@@ -32,12 +35,21 @@ class App extends Component {
             <Route exact path="/" render={props => {
               return (<Home {...props} callAction={callAction} stats={this.state.stats} cases={this.state.cases}/>)
             }}/>
+
             <Route path="/cases" render={props => {
-              return (<Cases {...props} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+              return (<Cases {...props} user={user} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
             }}/>
             <Route path="/overview/:boxid" render={props => {
               return (<CaseOverview {...props} AppToaster={AppToaster} callAction={callAction} boxes={this.state.cases} stats={this.state.stats}/>)
             }}/>
+
+            <Route path="/pending" render={props => {
+              return (<PendingCases {...props} user={user} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+            }}/>
+            <Route path="/opening/:boxid/:offerid" render={props => {
+              return (<Spinner {...props} user={user} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+            }}/>
+            
             <Route path="/toplist" render={props => {
               return (<Toplist {...props} callAction={callAction} stats={this.state.stats} />)
             }}/>

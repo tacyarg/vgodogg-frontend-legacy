@@ -16,7 +16,14 @@ class Spinner extends Component {
     super()
 
     this.state = {
-      items: [],
+      items: props.cases[props.match.params.boxid].items,
+      pendingBoxes: [],
+      speed: 4,
+      itemWidth: 220,
+      winningItemIndex: 100,
+      offset: 0,
+      disabled: false,
+
       spinnerTransition: '',
       spinnerTransform: '',
       spinnerContent: [],
@@ -28,12 +35,25 @@ class Spinner extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.spin.bind(this)()
-    }, 1000)
+    this.props.callAction('getOfferCases',{
+      offerid: this.props.match.params.offerid
+    }).then(pendingBoxes => {
+      pendingBoxes = pendingBoxes.filter(box => !box.done)
+      if(pendingBoxes.length === 0) {
+        this.props.history.push(`/pending`)
+      }
+      this.setState({pendingBoxes})
+      this.setup.bind(this)()
+    })
   }
 
-  generateSpinnerContent(caseItems, times) {
+  setCaseOpened() {
+    this.props.callAction('openMyCase', {
+      caseid: this.state.currentCase.id
+    })
+  }
+
+  shuffleSpinnerItems(caseItems, times) {
     times = times || 1
     var limit = caseItems.length * times;
     var spinnerArray = [];
@@ -43,32 +63,44 @@ class Spinner extends Component {
     return shuffle(spinnerArray)
   }
 
-  spin(speed, filterCovert) {
-    filterCovert = filterCovert || false
-    speed = speed || 4
-    var itemWidth = 220
-    var winningItemIndex = random(150, 200);
-    var offset = random(-50, 50) + itemWidth * 2
 
-    console.log('offset', offset)
+  setup() {
+    var {winningItemIndex, itemWidth, pendingBoxes } = this.state
 
-    this.setState({
-      winnerElevation: null,
-      spinnerTransition: '',
-      spinnerTransform: `translateX(-180px) translateZ(0px)`
-    })
-
-    var spinnerItems = items.map(utils.processItem)
-    spinnerItems = spinnerItems.filter(item => {
+    var spinnerContent = this.state.items.map(utils.processItem)
+    spinnerContent = spinnerContent.filter(item => {
       return item.category.indexOf('Knife') === -1
     })
-    var content = this.generateSpinnerContent(spinnerItems, 3)
-    var winner = clone(sample(items))
-    winner = utils.processItem(winner)
-    winner.selected = true;
-    content.splice(winningItemIndex, 1, winner)
+    spinnerContent = this.shuffleSpinnerItems(spinnerContent, 3)
 
-    this.setState({spinnerContent: content})
+    var currentCase = pendingBoxes.pop()
+    var offset = random(-50, 50) + itemWidth * 2
+
+    if(!currentCase) {
+      this.setState({
+        disabled: true
+      })
+      return
+    }
+
+    var winner = utils.processItem(currentCase.item)
+    winner.selected = true;
+    spinnerContent.splice(winningItemIndex, 1, winner)
+
+    this.setState({
+      spinnerContent,
+      currentCase,
+      offset,
+      winner,
+      winnerElevation: null,
+      spinnerTransition: '',
+      spinnerTransform: `translateX(-180px) translateZ(0px)`,
+    })
+  }
+
+  spin() {
+    var { winner, winningItemIndex, speed, itemWidth, offset } = this.state
+    if(!winner) return
 
     setTimeout(() => {
       this.setState({
@@ -85,6 +117,9 @@ class Spinner extends Component {
         spinning: false,
         winnerElevation: Elevation.FOUR
       })
+
+      this.setup.bind(this)()
+      this.setCaseOpened.bind(this)()
     }, (speed + .5) * 1000)
   }
 
@@ -116,6 +151,7 @@ class Spinner extends Component {
           <Button 
             loading={this.state.spinning}
             intent={Intent.SUCCESS}
+            disabled={this.state.disabled}
             className="Spinner-btn" 
             onClick={e => {
               this.spin.bind(this)()

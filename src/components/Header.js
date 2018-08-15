@@ -22,7 +22,7 @@ class Header extends Component {
       loadingKeys: false
     }
 
-    setInterval(this.updateKeyCount.bind(this), 10000)
+    // setInterval(this.updateKeyCount.bind(this), 10000)
   }
 
   componentDidMount() {
@@ -56,17 +56,23 @@ class Header extends Component {
             {/* <img src="https://i.imgur.com/csrxCfC.png" /> */}
           </Navbar.Heading>
           <Navbar.Divider />
-          <AnchorButton 
+          {/* <AnchorButton 
             href="/#/"
             className="bp3-minimal" 
             icon="home" 
             text="Home" 
-          />
+          /> */}
           <AnchorButton 
             href="/#/cases"
             className="bp3-minimal" 
             icon="box" 
             text="Cases" 
+          />
+          <AnchorButton 
+            href="/#/pending"
+            className="bp3-minimal" 
+            icon="box" 
+            text="Pending" 
           />
           <AnchorButton 
             href="/#/toplist"

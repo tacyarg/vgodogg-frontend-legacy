@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../styles/OpenCase.css'
 import { Dialog, Classes, NumericInput, Button, Intent } from '@blueprintjs/core'
 
-class OpenCase extends Component {
+class OpenCaseModal extends Component {
   constructor(){
     super()
     this.state = {
@@ -60,5 +60,5 @@ class OpenCase extends Component {
   }
 }
 
-export default OpenCase
+export default OpenCaseModal
 

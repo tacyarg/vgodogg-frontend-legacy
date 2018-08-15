@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
-import Spinner from '../components/Spinner'
-
 class Home extends Component {
   render() {
     return (
       <div className="home">
-        <Spinner />
+        {this.props.history.push(`/cases`)}
       </div>
     )
   }

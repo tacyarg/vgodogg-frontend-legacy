@@ -6,8 +6,8 @@ import utils from '../libs/utils'
 import { sortBy, sumBy } from 'lodash'
 import CountUp from 'react-countup';
 import { Button, Intent } from '@blueprintjs/core'
-import OpenCase from '../components/OpenCase'
-import {LazyLoadComponent, LazyLoadImage} from 'react-lazy-load-image-component'
+import OpenCase from '../components/OpenCaseModal'
+import {LazyLoadComponent, LazyLoadImage, trackWindowScroll} from 'react-lazy-load-image-component'
 
 class CaseOverview extends Component {
   constructor(props) {
