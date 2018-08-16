@@ -18,7 +18,7 @@ class CaseCard extends Component {
             <div className="CaseCard-title">{box.name}</div>
             <img className="CaseCard-image" src={box.image['300px']} alt={box.name} />
             <div className="CaseCard-opened">
-              <b>Pending Openings:</b> { box.cases.filter(box => !box.done).length }
+              <b>Remaining Items:</b> { box.cases.filter(box => !box.done).length }
             </div>
           </div>
         </Card>
