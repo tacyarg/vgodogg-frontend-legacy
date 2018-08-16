@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 
 import '../styles/Spinner.css'
 import {random, shuffle, concat, sample, clone} from 'lodash'
-import { Button, Card, Elevation, Intent } from '@blueprintjs/core'
+import { Checkbox, Button, Card, Elevation, Intent } from '@blueprintjs/core'
 import uuid from 'uuid/v4'
 import items from '../libs/caseItems'
 import ItemCard from '../components/ItemCard'
@@ -27,6 +27,7 @@ class Spinner extends Component {
       offset: 0,
       disabled: false,
       totalBoxes: 0,
+      autoSpin: false,
 
       spinnerTransition: '',
       spinnerTransform: '',
@@ -135,8 +136,13 @@ class Spinner extends Component {
       this.setCaseOpened.bind(this)()
 
       setTimeout(() => {
-        this.setState({ spinning: false })
         this.setup.bind(this)()
+
+        if(this.state.autoSpin) {
+          this.spin.bind(this)()
+        } else {
+          this.setState({ spinning: false })
+        }
       }, 1000)
     }, (speed + .5) * 1000)
   }
@@ -179,6 +185,10 @@ class Spinner extends Component {
             }} 
             text="spin"
           />
+          <Checkbox checked={this.state.autoSpin} label="Auto Spin" onChange={e => {
+            this.state.autoSpin ? this.setState({autoSpin: false}) : this.setState({autoSpin: true})
+          }} />
+
         </div>
         <div>
           <ReactCSSTransitionGroup
