@@ -46,9 +46,9 @@ class Spinner extends Component {
       })
 
       var pendingBoxes = boxes.filter(box => !box.done)
-      if(pendingBoxes.length === 0) {
-        this.props.history.push(`/pending`)
-      }
+      // if(pendingBoxes.length === 0) {
+      //   this.props.history.push(`/pending`)
+      // }
       this.setState({itemsWon, pendingBoxes, totalBoxes: boxes.length})
       this.setup.bind(this)()
     })
@@ -75,7 +75,7 @@ class Spinner extends Component {
 
     var spinnerContent = this.state.items.map(utils.processItem)
     spinnerContent = spinnerContent.filter(item => {
-      return item.category.indexOf('Knife') === -1
+      return (item.suggested_price/100) < 1000 && item.category.indexOf('Knife') === -1
     })
     spinnerContent = this.shuffleSpinnerItems(spinnerContent, 3)
 
@@ -86,12 +86,11 @@ class Spinner extends Component {
       this.setState({
         disabled: true
       })
-      return
+    } else {
+      var winner = utils.processItem(currentCase.item)
+      winner.selected = true;
+      spinnerContent.splice(winningItemIndex, 1, winner)
     }
-
-    var winner = utils.processItem(currentCase.item)
-    winner.selected = true;
-    spinnerContent.splice(winningItemIndex, 1, winner)
 
     this.setState({
       spinnerContent,
