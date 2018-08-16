@@ -108,10 +108,12 @@ class Spinner extends Component {
     if(currentCase && this.props.user) {
       if(currentCase.userid === this.props.user.id) return
       this.setState({
+        spinning: false,
         disabled: true
       })
     } else {
       this.setState({
+        spinning: false,
         disabled: true
       })
     }
