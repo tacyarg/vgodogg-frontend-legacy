@@ -18,7 +18,8 @@ function CardBackground(user) {
     minHeight: '175px',
     width: '210px',
     position: 'absolute',
-    background: `url('${user.avatarurl}')`
+    background: `url('${user.avatarurl}')`,
+    border: '1px solid black'
   }
 }
 

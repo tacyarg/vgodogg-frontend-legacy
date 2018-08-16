@@ -47,3 +47,36 @@
 .list-move {
   transition: transform 0.8s ease-in-out;
 }
+
+
+/* ANIMATIONS */
+
+.example-enter {
+  opacity: 0.5;
+  animation: push 0.2s linear 1;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity .2s ease-in;
+}
+
+.example-leave {
+  /* opacity: 1; */
+}
+
+.example-leave.example-leave-active {
+  /* opacity: 0.01; */
+  /* transition: opacity .5s ease-out; */
+}
+
+@keyframes pulse{
+  25%  {transform: scale(0.9);}
+  75%  {transform: scale(1.1);}
+}
+@keyframes push{
+  50%  {transform: scale(0.8);}
+}
+@keyframes pop{
+  50%  {transform: scale(1.2);}
+}
