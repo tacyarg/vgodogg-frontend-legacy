@@ -46,10 +46,11 @@ class CaseOverview extends Component {
           href: offer.url,
           target: "_blank",
           text: <strong>View Offer</strong>,
-      },
+        },
         intent: 'success',
         message: `Successfully created offer!`
       })
+      this.props.history.push(`/pending`)
       this.closeDialog() 
     })
   }
@@ -113,7 +114,7 @@ class CaseOverview extends Component {
               <Button 
                 className="CaseOverview-buyButton"
                 large={true}
-                intent={Intent.SUCCESS}
+                intent={Intent.PRIMARY}
                 text="PURCHASE CASE"
                 icon="cart"
                 onClick={e => {

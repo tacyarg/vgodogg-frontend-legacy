@@ -8,8 +8,6 @@ function getRarity(item) {
   }
 }
 
-// https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e0/e0de1ad6f49a0b45c066a1e7ba38b3412ab002de_full.jpg
-
 function CardBackground(user) {
   return {
     borderRadius: '50%',

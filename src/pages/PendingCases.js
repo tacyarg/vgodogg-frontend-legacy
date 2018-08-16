@@ -3,6 +3,7 @@ import '../styles/Cases.css'
 import CaseCardUser from '../components/CaseCardUser'
 
 import {groupBy, map, clone} from 'lodash'
+import { Spinner } from '@blueprintjs/core'
 
 class PendingCases extends Component {
 
@@ -12,9 +13,15 @@ class PendingCases extends Component {
     this.state = {
       offerCases: []
     }
+
+    setInterval(this.getPendingCases.bind(this), 10000)
   }
 
   componentDidMount() {
+    this.getPendingCases.bind(this)()
+  }
+
+  getPendingCases() {
     if(!this.props.user) return
     this.props.callAction('getMyPendingCases').then(boxes => {
 
@@ -50,7 +57,12 @@ class PendingCases extends Component {
                 box={box}
               />
             )
-          }) : <h1>You have no pending case openings!</h1>
+          }) : <div>
+            <h1>You have no pending case openings!</h1>
+            <Spinner 
+              className="Cases-loading"
+            />
+          </div>
         }
       </div>
     )

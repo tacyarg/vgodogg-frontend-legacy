@@ -22,7 +22,7 @@ class Header extends Component {
       loadingKeys: false
     }
 
-    // setInterval(this.updateKeyCount.bind(this), 10000)
+    setInterval(this.updateKeyCount.bind(this), 10000)
   }
 
   componentDidMount() {

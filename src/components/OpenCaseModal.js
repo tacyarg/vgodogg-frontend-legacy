@@ -40,6 +40,7 @@ class OpenCaseModal extends Component {
             leftIcon="key"
             max={maxKeys || 100}
             min="1"
+            large={true}
             onValueChange={value => {
               this.setState({wantedCases: value})
             }}
@@ -48,9 +49,10 @@ class OpenCaseModal extends Component {
 
           <div className={Classes.DIALOG_FOOTER_ACTIONS}>
             <Button
-              intent={Intent.SUCCESS}
+              intent={Intent.PRIMARY}
+              large={true}
               onClick={e => buyCases(box.id, this.state.wantedCases)}
-              text={this.state.wantedCases > 1 ? 'Buy Cases' : 'Buy Case'}
+              text={this.state.wantedCases > 1 ? <b>BUY CASES</b> : <b>BUY CASE</b>}
             />
           </div>
 
