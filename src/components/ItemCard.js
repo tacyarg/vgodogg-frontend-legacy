@@ -8,9 +8,26 @@ function getRarity(item) {
   }
 }
 
+// https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e0/e0de1ad6f49a0b45c066a1e7ba38b3412ab002de_full.jpg
+
+function CardBackground(user) {
+  return {
+    borderRadius: '50%',
+    transform: 'rotate(-40deg)',
+    right: '-70px',
+    bottom: '-60px',
+    opacity: '0.25',
+    minHeight: '175px',
+    width: '210px',
+    position: 'absolute',
+    background: `url('${user.avatarurl}')`
+  }
+}
+
 class ItemCard extends Component {
   render() {
-    var {name, color, condition, image, suggested_price} = this.props
+    var {name, color, condition, image, suggested_price, user} = this.props
+    console.log(user)
     return (
       <div className="ItemCard-wrapper">
         <Card 
@@ -19,6 +36,7 @@ class ItemCard extends Component {
           className="ItemCard-item" 
           {...this.props}
         >
+          {user ? <div className="ItemCard-bg" style={CardBackground(user)}/> : null}
           <div className="ItemCard-top">
             <div className="ItemCard-itemName">{name}</div>
             <div className="ItemCard-itemCondition" style={{color}}>{condition}</div>

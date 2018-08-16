@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../styles/Chat.css'
+import CountUp from 'react-countup';
 
 import {
   Tag,
@@ -27,7 +28,7 @@ class Chat extends Component {
   }
 
   render() {
-    const { messages, stats } = this.props
+    const { messages, stats, user } = this.props
     return (
       <div className="Chat-wrapper">
         <div className="Chat-header">
@@ -35,7 +36,7 @@ class Chat extends Component {
             minimal={true}
             large={true}
           >
-            <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> ${stats.allTime.cases.totalValue.toFixed(2)}
+            <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> <CountUp prefix="$" separator="," decimals={2} end={stats.allTime.cases.totalValue} />
           </Tag>
         </div>
         <div className="Chat-body">
@@ -56,6 +57,7 @@ class Chat extends Component {
         </div>
         <div className="Chat-input-wrapper">
           <input 
+            disabled={!user}
             className="Chat-input"
             type="text" 
             placeholder="Say something..." 

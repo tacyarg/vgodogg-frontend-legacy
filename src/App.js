@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
-        <Chat messages={this.state.chats['en'].messages} callAction={callAction} stats={this.state.stats} />
+        <Chat messages={this.state.chats['en'].messages} user={user} callAction={callAction} stats={this.state.stats} />
         <OpeningFeed recentOpenings={this.state.recentOpenings} />
         <div className="main-content">
             <Route exact path="/" render={props => {

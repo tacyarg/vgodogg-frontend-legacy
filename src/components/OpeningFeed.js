@@ -10,11 +10,12 @@ class OpeningFeed extends Component {
     return (
       <div className='OpeningFeed-wrapper'>
         {recentOpenings.map(opening => {
+          console.log(opening)
           var item = utils.processItem(opening.item)
           return (
             <ItemCard 
               elevation={item.selected ? this.state.winnerElevation : null}
-              {...item}
+              {...item} user={opening.user}
             />
           )
         })}

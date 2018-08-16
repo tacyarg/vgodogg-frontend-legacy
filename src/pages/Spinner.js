@@ -15,9 +15,11 @@ class Spinner extends Component {
   constructor(props) {
     super()
 
+    var boxid = --props.match.params.boxid
+
     this.state = {
-      box: props.cases[--props.match.params.boxid],
-      items: props.cases[--props.match.params.boxid].items,
+      box: props.cases[boxid],
+      items: props.cases[boxid].items,
       pendingBoxes: [],
       speed: 4,
       itemWidth: 220,
@@ -101,6 +103,17 @@ class Spinner extends Component {
       spinnerTransition: '',
       spinnerTransform: `translateX(-180px) translateZ(0px)`,
     })
+
+    if(currentCase && this.props.user) {
+      if(currentCase.userid === this.props.user.id) return
+      this.setState({
+        disabled: true
+      })
+    } else {
+      this.setState({
+        disabled: true
+      })
+    }
   }
 
   spin() {
