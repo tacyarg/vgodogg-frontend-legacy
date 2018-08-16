@@ -16,6 +16,7 @@ class Spinner extends Component {
     super()
 
     this.state = {
+      box: props.cases[--props.match.params.boxid],
       items: props.cases[--props.match.params.boxid].items,
       pendingBoxes: [],
       speed: 4,
@@ -23,6 +24,7 @@ class Spinner extends Component {
       winningItemIndex: 100,
       offset: 0,
       disabled: false,
+      totalBoxes: 0,
 
       spinnerTransition: '',
       spinnerTransform: '',
@@ -37,12 +39,17 @@ class Spinner extends Component {
   componentDidMount() {
     this.props.callAction('getOfferCases',{
       offerid: this.props.match.params.offerid
-    }).then(pendingBoxes => {
-      pendingBoxes = pendingBoxes.filter(box => !box.done)
+    }).then(boxes => {
+
+      var itemsWon = boxes.filter(box => box.done).map(box => {
+        return utils.processItem(box.item)
+      })
+
+      var pendingBoxes = boxes.filter(box => !box.done)
       if(pendingBoxes.length === 0) {
         this.props.history.push(`/pending`)
       }
-      this.setState({pendingBoxes})
+      this.setState({itemsWon, pendingBoxes, totalBoxes: boxes.length})
       this.setup.bind(this)()
     })
   }
@@ -126,6 +133,9 @@ class Spinner extends Component {
     var { items } = this.props
     return (
       <div className="Spinner-wrapper">
+        <div className="Spinner-title">
+          <h1>{this.state.box.name}</h1>
+        </div>
         <div className="Spinner-bounding">
           <div className="Spinner-inner">
             <div className="Spinner-tick"></div>
@@ -166,7 +176,7 @@ class Spinner extends Component {
             transitionLeaveTimeout={300}
           >
             <span className="Spinner-itemsWon-Title">
-              Items Unboxed: <CountUp prefix="$" separator="," decimals={2} end={this.state.totalWon} />
+              {this.state.itemsWon.length} / {this.state.totalBoxes} Items Unboxed: <CountUp prefix="$" separator="," decimals={2} end={this.state.totalWon} />
             </span>
             {
               this.state.itemsWon.map(item => {

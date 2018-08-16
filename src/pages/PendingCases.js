@@ -50,7 +50,7 @@ class PendingCases extends Component {
                 box={box}
               />
             )
-          }) : 'no cases pending'
+          }) : <h1>no pending case openings</h1>
         }
       </div>
     )

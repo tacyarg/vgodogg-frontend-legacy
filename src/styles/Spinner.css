@@ -6,6 +6,7 @@
 }
 
 .Spinner-bounding {
+  /* background-color: aqua; */
   height:300px;
   margin: 0 auto;
   overflow: hidden;
