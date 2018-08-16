@@ -78,7 +78,9 @@ class Spinner extends Component {
 
     var spinnerContent = this.state.items.map(utils.processItem)
     spinnerContent = spinnerContent.filter(item => {
-      return (item.suggested_price/100) < 1000 && item.category.indexOf('Knife') === -1
+      return item.category.indexOf('Covert') === -1 && 
+              item.category.indexOf('Knife') === -1 &&
+              item.category.indexOf('Legendary') === -1
     })
     spinnerContent = this.shuffleSpinnerItems(spinnerContent, 3)
 
