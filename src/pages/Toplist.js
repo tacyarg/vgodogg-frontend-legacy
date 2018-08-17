@@ -26,8 +26,8 @@ class Toplist extends Component {
                 <tr>
                   {/* <th>Position</th> */}
                   <th>Time</th>
-                  <th>Offer ID</th>
-                  <th>Item Name</th>
+                  <th>User</th>
+                  <th>Item</th>
                   <th>Value</th>
                 </tr>
               </thead>
@@ -36,14 +36,14 @@ class Toplist extends Component {
                 transitionName="example"
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}
-              >
+              >        
                 {
                   topCasesAllTime.map((row, index) => {
                     return (
                       <tr>
                         {/* <td>{++index}</td> */}
                         <td>{moment(row.created).fromNow()}</td>
-                        <td>{row.case_site_trade_offer_id}</td>
+                        <td>{row.user.username}</td>
                         <td>{row.item.name}</td>
                         <td>${(row.item.suggested_price/100).toFixed(2)}</td>
                       </tr>
@@ -66,8 +66,8 @@ class Toplist extends Component {
                 <tr>
                   {/* <th>Position</th> */}
                   <th>Time</th>
-                  <th>Offer ID</th>
-                  <th>Item Name</th>
+                  <th>User</th>
+                  <th>Item</th>
                   <th>Value</th>
                 </tr>
               </thead>
@@ -83,7 +83,7 @@ class Toplist extends Component {
                       <tr>
                         {/* <td>{++index}</td> */}
                         <td>{moment(row.created).fromNow()}</td>
-                        <td>{row.case_site_trade_offer_id}</td>
+                        <td>{row.user.username}</td>
                         <td>{row.item.name}</td>
                         <td>${(row.item.suggested_price/100).toFixed(2)}</td>
                       </tr>
