@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import '../styles/Toplist.css'
 import { HTMLTable } from '@blueprintjs/core'
-
+import moment from 'moment'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Toplist extends Component {
   render() {
@@ -23,20 +24,25 @@ class Toplist extends Component {
             >
               <thead>
                 <tr>
-                  <th>Position</th>
-                  {/* <th>Case ID</th> */}
+                  {/* <th>Position</th> */}
+                  <th>Time</th>
                   <th>Offer ID</th>
                   <th>Item Name</th>
                   <th>Value</th>
                 </tr>
               </thead>
-              <tbody>
+              <ReactCSSTransitionGroup
+                component="tbody"
+                transitionName="example"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+              >
                 {
                   topCasesAllTime.map((row, index) => {
                     return (
                       <tr>
-                        <td>{++index}</td>
-                        {/* <td>{row.case_id}</td> */}
+                        {/* <td>{++index}</td> */}
+                        <td>{moment(row.created).fromNow()}</td>
                         <td>{row.case_site_trade_offer_id}</td>
                         <td>{row.item.name}</td>
                         <td>${(row.item.suggested_price/100).toFixed(2)}</td>
@@ -44,7 +50,7 @@ class Toplist extends Component {
                     )
                   })
                 }
-              </tbody>
+              </ReactCSSTransitionGroup>
             </HTMLTable>
           </div>
 
@@ -58,20 +64,25 @@ class Toplist extends Component {
             >
               <thead>
                 <tr>
-                  <th>Position</th>
-                  {/* <th>Case ID</th> */}
+                  {/* <th>Position</th> */}
+                  <th>Time</th>
                   <th>Offer ID</th>
                   <th>Item Name</th>
                   <th>Value</th>
                 </tr>
               </thead>
-              <tbody>
+              <ReactCSSTransitionGroup
+                component="tbody"
+                transitionName="example"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+              >        
                 {
                   topCasesToday.map((row, index) => {
                     return (
                       <tr>
-                        <td>{++index}</td>
-                        {/* <td>{row.case_id}</td> */}
+                        {/* <td>{++index}</td> */}
+                        <td>{moment(row.created).fromNow()}</td>
                         <td>{row.case_site_trade_offer_id}</td>
                         <td>{row.item.name}</td>
                         <td>${(row.item.suggested_price/100).toFixed(2)}</td>
@@ -79,7 +90,7 @@ class Toplist extends Component {
                     )
                   })
                 }
-              </tbody>
+              </ReactCSSTransitionGroup>
             </HTMLTable>
           </div>
 

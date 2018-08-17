@@ -11,7 +11,7 @@ function getRarity(item) {
 function CardBackground(user) {
   return {
     borderRadius: '50%',
-    transform: 'rotate(-40deg)',
+    transform: 'rotate(-30deg)',
     right: '-70px',
     bottom: '-60px',
     opacity: '0.25',
@@ -19,7 +19,8 @@ function CardBackground(user) {
     width: '210px',
     position: 'absolute',
     background: `url('${user.avatarurl}')`,
-    border: '1px solid black'
+    border: '1px solid black',
+    // boxShadow: 'inset 0px 0px 10px rgba(0,0,0,1)'
   }
 }
 

@@ -23,21 +23,6 @@
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-	0% {
-    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(0px);
-	}
-	50% {
-    filter: drop-shadow(0 40px 20px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(-20px);
-	}
-	100% {
-    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(0px);
-	}
-}
-
 .CaseOverview-details {
   display: flex;
   flex-direction: column;
@@ -83,36 +68,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-/* ANIMATIONS */
-
-.example-enter {
-  opacity: 0.5;
-  animation: push 0.2s linear 1;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity .2s ease-in;
-}
-
-.example-leave {
-  /* opacity: 1; */
-}
-
-.example-leave.example-leave-active {
-  /* opacity: 0.01; */
-  /* transition: opacity .5s ease-out; */
-}
-
-@keyframes pulse{
-  25%  {transform: scale(0.9);}
-  75%  {transform: scale(1.1);}
-}
-@keyframes push{
-  50%  {transform: scale(0.8);}
-}
-@keyframes pop{
-  50%  {transform: scale(1.2);}
 }
