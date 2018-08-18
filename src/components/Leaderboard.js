@@ -35,7 +35,7 @@ class Leaderboard extends Component {
                 return (
                   <tr>
                     {/* <td>{++index}</td> */}
-                    <td>{moment(row.created).fromNow()}</td>
+                    <td>{moment(row.created).calendar()}</td>
                     <td>{row.user.username}</td>
                     <td>{row.item.name}</td>
                     <td>${(row.item.suggested_price/100).toFixed(2)}</td>

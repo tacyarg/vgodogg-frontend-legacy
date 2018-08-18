@@ -9,9 +9,9 @@ class Toplist extends Component {
       <div className="Toplist-wrapper">
         <div className="Toplist-content">
           <Leaderboard stats={stats.allTime} />
+          <Leaderboard stats={stats.monthly} />
           <Leaderboard stats={stats.weekly} />
           <Leaderboard stats={stats.daily} />
-          <Leaderboard stats={stats.hourly} />
         </div>
       </div>
     )

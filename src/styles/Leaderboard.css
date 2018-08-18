@@ -1,6 +1,6 @@
 .Leaderboard-table-wrapper {
   height: 100%;
-  margin: 60px;
+  margin: 40px;
   /* display: flex;
   flex-wrap: nowrap;
   justify-content: center; */
@@ -15,5 +15,5 @@
 }
 
 .Leaderboard-table-body td {
-  /* white-space: nowrap; */
+  white-space: nowrap;
 }
