@@ -48,7 +48,8 @@ class CaseOverview extends Component {
           text: <strong>View Offer</strong>,
         },
         intent: 'success',
-        message: `Successfully created offer!`
+        message: `Successfully created offer!`,
+        timeout: 30*1000
       })
       this.props.history.push(`/pending`)
       this.closeDialog() 
