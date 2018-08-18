@@ -9,15 +9,3 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
-.Toplist-table-wrapper {
-  height: 100%;
-  margin: 10px
-}
-
-.Toplist-table-body {
-  border-radius: 5px;
-  height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: white;
-}

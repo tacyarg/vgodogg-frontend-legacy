@@ -36,7 +36,9 @@ class Chat extends Component {
             minimal={true}
             large={true}
           >
-            <b>Opened:</b> {stats.allTime.cases.opened} <b>Total Value:</b> <CountUp prefix="$" separator="," decimals={2} end={stats.allTime.cases.totalValue} />
+            <b>Opened:</b> {stats.allTime.cases.opened} 
+            <br></br>
+            <b>Total Value:</b> <CountUp prefix="$" separator="," decimals={2} end={stats.allTime.cases.totalValue} />
           </Tag>
         </div>
         <div className="Chat-body">
