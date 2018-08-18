@@ -10,6 +10,10 @@ class Leaderboard extends Component {
     return (
       <div className="Leaderboard-table-wrapper">
         <h1> {stats.name.toUpperCase()} Top Openings </h1>
+        {stats.name === "allTime" ? 
+          <h4>∞ to ∞</h4> :
+          <h4>{moment(stats.start).calendar() +' to '+ moment(stats.end).calendar()}</h4>
+        }
         <HTMLTable
           className='Leaderboard-table-body'
           bordered={true}
