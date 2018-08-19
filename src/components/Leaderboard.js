@@ -33,7 +33,7 @@ class Leaderboard extends Component {
             {
               topCases.map((row, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     {/* <td>{++index}</td> */}
                     <td>{moment(row.created).calendar()}</td>
                     <td>{row.user.username}</td>
