@@ -12,11 +12,7 @@ import {LazyLoadComponent, LazyLoadImage, trackWindowScroll} from 'react-lazy-lo
 class CaseOverview extends Component {
   constructor(props) {
     super()
-
-    console.log(props)
-
     var box = props.boxes[parseInt(--props.match.params.boxid)]
-    console.log(box)
     box.items = sortBy(box.items, 'suggested_price').reverse()
     var stats = props.stats.allTime.cases[box.id]
     this.state = {
@@ -36,7 +32,6 @@ class CaseOverview extends Component {
   }
 
   sendKeyRequest(caseid, amount) {
-    console.log(caseid, amount)
     return this.props.callAction('createCaseOpenOffer', {
       caseid, amount
     }).then(offer => {

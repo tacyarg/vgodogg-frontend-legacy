@@ -16,7 +16,6 @@ class OpeningFeed extends Component {
         transitionLeaveTimeout={300}
       >
         {recentOpenings.map(opening => {
-          console.log(opening)
           var item = utils.processItem(opening.item)
           return (
             <ItemCard 

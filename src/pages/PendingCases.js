@@ -26,7 +26,6 @@ class PendingCases extends Component {
     this.props.callAction('getMyPendingCases').then(boxes => {
 
       var offerCases = groupBy(boxes, 'case_site_trade_offer_id')
-      console.log(offerCases)
 
       offerCases = map(offerCases, (cases, key) => {
         var firstCase = cases[0]

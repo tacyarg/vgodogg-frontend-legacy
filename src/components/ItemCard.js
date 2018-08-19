@@ -27,7 +27,6 @@ function CardBackground(user) {
 class ItemCard extends Component {
   render() {
     var {name, color, condition, image, suggested_price, user} = this.props
-    console.log(user)
     return (
       <div className="ItemCard-wrapper">
         <Card 
