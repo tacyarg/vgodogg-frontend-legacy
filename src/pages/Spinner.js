@@ -53,11 +53,11 @@ class Spinner extends Component {
     this.props.callAction('getOfferCases',{
       offerid: this.props.match.params.offerid
     }).then(boxes => {
+      boxes = sortBy(boxes, ['item', 'id']).reverse()
 
       var itemsWon = boxes.filter(box => box.done).map(box => {
         return utils.processItem(box.item)
       })
-      itemsWon = this.sortItems(itemsWon, this.state.sortFilter)
 
       var pendingBoxes = boxes.filter(box => !box.done)
       // if(pendingBoxes.length === 0) {
@@ -197,11 +197,10 @@ class Spinner extends Component {
               transform: this.state.spinnerTransform
             }}>
               {
-                this.state.spinnerContent.map(item => {
+                this.state.spinnerContent.map((item, index) => {
                   return (
-                    <LazyLoadComponent key={item.key}>
+                    <LazyLoadComponent key={item.id + index}>
                       <ItemCard 
-                        // key={item.key}
                         elevation={item.selected ? this.state.winnerElevation : null}
                         {...item}
                       />
