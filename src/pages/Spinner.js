@@ -4,12 +4,21 @@ import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import CountUp from 'react-countup';
 
 import '../styles/Spinner.css'
-import {random, shuffle, concat, sample, clone} from 'lodash'
-import { Checkbox, Button, Card, Elevation, Intent } from '@blueprintjs/core'
+import {random, shuffle, concat, sortBy, clone} from 'lodash'
+import { Checkbox, Button, HTMLSelect, Elevation, Intent, ControlGroup } from '@blueprintjs/core'
 import uuid from 'uuid/v4'
 import items from '../libs/caseItems'
 import ItemCard from '../components/ItemCard'
 import utils from '../libs/utils'
+import {LazyLoadComponent, LazyLoadImage, trackWindowScroll} from 'react-lazy-load-image-component'
+
+
+const FILTER_OPTIONS = [
+  "Unboxed: last",
+  "Unboxed: first",
+  "Price: ascending", 
+  "Price: descending"
+]
 
 class Spinner extends Component {
   constructor(props) {
@@ -28,6 +37,7 @@ class Spinner extends Component {
       disabled: false,
       totalBoxes: 0,
       autoSpin: false,
+      sortFilter: "Unboxed: last",
 
       spinnerTransition: '',
       spinnerTransform: '',
@@ -47,6 +57,7 @@ class Spinner extends Component {
       var itemsWon = boxes.filter(box => box.done).map(box => {
         return utils.processItem(box.item)
       })
+      itemsWon = this.sortItems(itemsWon, this.state.sortFilter)
 
       var pendingBoxes = boxes.filter(box => !box.done)
       // if(pendingBoxes.length === 0) {
@@ -82,7 +93,7 @@ class Spinner extends Component {
               item.category.indexOf('Knife') === -1 &&
               item.category.indexOf('Legendary') === -1
     })
-    spinnerContent = this.shuffleSpinnerItems(spinnerContent, 3)
+    spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2)
 
     var currentCase = pendingBoxes.pop()
     var offset = random(-50, 50) + itemWidth * 2
@@ -135,6 +146,9 @@ class Spinner extends Component {
 
     setTimeout(() => {
       this.state.itemsWon.unshift(winner)
+      // var wonSorted = this.sortItems(this.state.itemsWon, this.state.sortFilter)
+      // this.setState({itemsWon: wonSorted})
+
       this.state.totalWon += winner.suggested_price / 100
       this.setState({ winnerElevation: Elevation.FOUR })
       this.setCaseOpened.bind(this)()
@@ -149,6 +163,21 @@ class Spinner extends Component {
         }
       }, 1000)
     }, (speed + .5) * 1000)
+  }
+
+  sortItems(items, filter) {
+    switch(filter) {
+      case "Unboxed: first":
+        return sortBy(items, 'id')
+      case "Unboxed: last":
+        return sortBy(items, 'id').reverse()
+      case "Price: ascending":
+        return sortBy(items, 'suggested_price')
+      case "Price: descending":
+        return sortBy(items, 'suggested_price').reverse()
+      default:
+        return items
+    }
   }
 
   render() {
@@ -170,10 +199,13 @@ class Spinner extends Component {
               {
                 this.state.spinnerContent.map(item => {
                   return (
-                    <ItemCard 
-                      elevation={item.selected ? this.state.winnerElevation : null}
-                      {...item}
-                    />
+                    <LazyLoadComponent key={item.key}>
+                      <ItemCard 
+                        // key={item.key}
+                        elevation={item.selected ? this.state.winnerElevation : null}
+                        {...item}
+                      />
+                    </LazyLoadComponent>
                   )
                 })
               }
@@ -189,21 +221,45 @@ class Spinner extends Component {
             }} 
             text="spin"
           />
-          <Checkbox checked={this.state.autoSpin} label="Auto Spin" onChange={e => {
-            this.state.autoSpin ? this.setState({autoSpin: false}) : this.setState({autoSpin: true})
-          }} />
-
+          
         </div>
-        <div>
+        <div className="Spinner-itemsWon-content">
+          <span className="Spinner-itemsWon-Title">
+            <div className="Spinner-itemsWon-Title-left">
+              {this.state.itemsWon.length} / {this.state.totalBoxes} Items Unboxed: <CountUp prefix="$" separator="," decimals={2} end={this.state.totalWon} />
+            </div>
+            <ControlGroup
+              className="Spinner-itemsWon-Title-right"
+            >
+              <Checkbox 
+                className="Spinner-autospin"
+                checked={this.state.autoSpin} 
+                label="Auto Spin" 
+                onChange={e => {
+                  this.state.autoSpin ? this.setState({autoSpin: false}) : this.setState({autoSpin: true})
+                }} 
+              />
+              <HTMLSelect 
+                minimal={true}
+                options={FILTER_OPTIONS}
+                onChange={event => {
+                  var items = this.sortItems(this.state.itemsWon, event.currentTarget.value)
+                  this.setState({
+                    itemsWon: items,
+                    sortFilter: event.currentTarget.value
+                  })
+                }}
+                value={this.state.sortFilter}
+              />
+            </ControlGroup>
+
+          </span>
           <ReactCSSTransitionGroup
             className="Spinner-itemsWon"
             transitionName="example"
             transitionEnterTimeout={500}
             transitionLeaveTimeout={300}
           >
-            <span className="Spinner-itemsWon-Title">
-              {this.state.itemsWon.length} / {this.state.totalBoxes} Items Unboxed: <CountUp prefix="$" separator="," decimals={2} end={this.state.totalWon} />
-            </span>
             {
               this.state.itemsWon.map(item => {
                 return (

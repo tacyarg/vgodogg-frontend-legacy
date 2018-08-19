@@ -138,7 +138,9 @@ class CaseOverview extends Component {
               this.state.box.items.map(item => {
                 item = utils.processItem(item)
                 return (
-                  <LazyLoadComponent key={item.id}>
+                  <LazyLoadComponent 
+                    key={item.id}
+                  >
                     <ItemCard 
                       // key={item.id}
                       {...item}

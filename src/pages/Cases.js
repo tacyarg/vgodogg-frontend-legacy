@@ -12,6 +12,7 @@ class Cases extends Component {
           box.openCount = boxStats ? boxStats.opened : 0
           return (
             <CaseCard
+              key={box.id}
               onClick={e => {
                 this.props.history.push(`/overview/${box.id}`)
               }}

@@ -5,6 +5,8 @@ import CaseCardUser from '../components/CaseCardUser'
 import {groupBy, map, clone} from 'lodash'
 import { Spinner } from '@blueprintjs/core'
 
+var intervalLoop = null
+
 class PendingCases extends Component {
 
   constructor(props) {
@@ -14,11 +16,16 @@ class PendingCases extends Component {
       offerCases: []
     }
 
-    setInterval(this.getPendingCases.bind(this), 10000)
+    intervalLoop = setInterval(this.getPendingCases.bind(this), 10000)
   }
 
   componentDidMount() {
     this.getPendingCases.bind(this)()
+  }
+
+  componentWillUnmount() {
+    // cancel set interval 
+    clearInterval(intervalLoop)
   }
 
   getPendingCases() {
