@@ -11,14 +11,27 @@
 
 .Chat-header {
   display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 1px 4px -2px black;
+}
+
+.Chat-header-stats {
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: left;
+}
+
+.Chat-header-social {
+
 }
 
 .Chat-body {
   width: 100%;
-  height: calc(100% - 84px);
+  height: calc(100% - 108px);
   overflow-y: scroll;
 }
 

@@ -199,12 +199,11 @@ class Spinner extends Component {
               {
                 this.state.spinnerContent.map((item, index) => {
                   return (
-                    <LazyLoadComponent key={item.id + index}>
-                      <ItemCard 
-                        elevation={item.selected ? this.state.winnerElevation : null}
-                        {...item}
-                      />
-                    </LazyLoadComponent>
+                    <ItemCard 
+                      key={item.id + index}
+                      elevation={item.selected ? this.state.winnerElevation : null}
+                      {...item}
+                    />
                   )
                 })
               }

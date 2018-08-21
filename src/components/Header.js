@@ -82,7 +82,7 @@ class Header extends Component {
           />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
-          <Navbar.Divider />
+          {/* <Navbar.Divider /> */}
           {/* <Tag
             minimal={true}
             interactive={true}

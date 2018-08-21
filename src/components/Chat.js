@@ -3,8 +3,12 @@ import '../styles/Chat.css'
 import CountUp from 'react-countup';
 
 import {
+  AnchorButton,
   Tag,
 } from "@blueprintjs/core"
+
+import { FaTwitter, FaDiscord } from 'react-icons/fa';
+
 
 class Chat extends Component {
   scrollToBottom = () => {
@@ -32,14 +36,24 @@ class Chat extends Component {
     return (
       <div className="Chat-wrapper">
         <div className="Chat-header">
-          <Tag
-            minimal={true}
-            large={true}
-          >
-            <b>Opened:</b> {stats.allTime.cases.opened} 
-            <br></br>
-            <b>Rewarded:</b> <CountUp prefix="$" separator="," decimals={2} end={stats.allTime.cases.totalValue} />
-          </Tag>
+          <div className="Chat-header-stats">
+            <span><b>Opened:</b> {stats.allTime.cases.opened} </span>
+            <span><b>Rewarded:</b> <CountUp prefix="$" separator="," decimals={2} end={stats.allTime.cases.totalValue} /></span>
+          </div>
+          <div className="Chat-header-social">
+            <AnchorButton 
+              minimal={true}
+              icon={<FaTwitter />}
+              target="_blank"
+              href="https://twitter.com/VgoDogg"
+            />
+            <AnchorButton 
+              minimal={true}
+              icon={<FaDiscord />}
+              target="_blank"
+              href="https://discord.gg/rhqgyxT"
+            />
+          </div>
         </div>
         <div className="Chat-body">
           {messages.map((message, index) => {
