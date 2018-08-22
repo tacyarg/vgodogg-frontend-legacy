@@ -5,13 +5,13 @@ import { AnchorButton, Intent } from '@blueprintjs/core'
 
 class Cases extends Component {
   render() {
-    const { cases, stats } = this.props
+    const { cases, stats, user } = this.props
     return (
       <div className="Cases-wrapper">
         <div className="Cases-header">
           <AnchorButton 
+            disabled={!user}
             href="/#/pending"
-            // icon="folder-open" 
             large={true}
             text="My Pending Cases" 
             intent={Intent.SUCCESS}
