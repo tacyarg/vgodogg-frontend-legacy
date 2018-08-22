@@ -93,8 +93,8 @@ class Spinner extends Component {
     spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2)
 
     var currentCase = pendingBoxes.pop()
-    // var offset = random(-50, 50) + itemWidth * 2
-    var offset = itemWidth * 1.5
+    var offset = random(-50, 50) + itemWidth * 1.4
+    // var offset = itemWidth * 1.4
 
     if(!currentCase) {
       this.setState({
