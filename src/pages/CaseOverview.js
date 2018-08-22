@@ -7,7 +7,7 @@ import { sortBy, sumBy } from 'lodash'
 import CountUp from 'react-countup';
 import { Button, Intent } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCaseModal'
-import {LazyLoadComponent, LazyLoadImage, trackWindowScroll} from 'react-lazy-load-image-component'
+
 
 class CaseOverview extends Component {
   constructor(props) {
@@ -128,28 +128,14 @@ class CaseOverview extends Component {
                 end={sumBy(this.state.box.items, 'suggested_price')/100} 
               />
           </div>
-          <ReactCSSTransitionGroup
-            className="CaseOverview-body-caseItems"
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}
-          >
+          <div className="CaseOverview-body-caseItems">
             {
               this.state.box.items.map(item => {
                 item = utils.processItem(item)
-                return (
-                  <LazyLoadComponent 
-                    key={item.id}
-                  >
-                    <ItemCard 
-                      // key={item.id}
-                      {...item}
-                    />
-                  </LazyLoadComponent>
-                )
+                return <ItemCard {...item} />
               })
             }
-          </ReactCSSTransitionGroup>
+          </div>          
         </div>
       </div>
     )

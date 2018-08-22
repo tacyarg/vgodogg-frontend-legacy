@@ -32,7 +32,7 @@
   right: 0;
   margin: auto;
   max-width: 80%;
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)) saturate(123%);
+  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%);
 }
 
 .CaseCard-opened {
