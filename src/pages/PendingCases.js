@@ -53,23 +53,25 @@ class PendingCases extends Component {
   render() {
     return (
       <div className="Cases-wrapper">
-        {
-          this.state.offerCases.length > 0 ? map(this.state.offerCases, box => {
-            return (
-              <CaseCardUser
-                onClick={e => {
-                  this.props.history.push(`/opening/${box.id}/${box.offerid}`)
-                }}
-                box={box}
+        <div className="Cases-body">
+          {
+            this.state.offerCases.length > 0 ? map(this.state.offerCases, box => {
+              return (
+                <CaseCardUser
+                  onClick={e => {
+                    this.props.history.push(`/opening/${box.id}/${box.offerid}`)
+                  }}
+                  box={box}
+                />
+              )
+            }) : <div>
+              <h1>You have no pending case openings!</h1>
+              <Spinner 
+                className="Cases-loading"
               />
-            )
-          }) : <div>
-            <h1>You have no pending case openings!</h1>
-            <Spinner 
-              className="Cases-loading"
-            />
-          </div>
-        }
+            </div>
+          }
+        </div>
       </div>
     )
   }
