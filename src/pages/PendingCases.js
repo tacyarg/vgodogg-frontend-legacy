@@ -2,10 +2,21 @@ import React, { Component } from 'react'
 import '../styles/Cases.css'
 import CaseCardUser from '../components/CaseCardUser'
 
-import {groupBy, map, clone} from 'lodash'
+import {groupBy, map, clone, keys} from 'lodash'
 import { Spinner } from '@blueprintjs/core'
 
 var intervalLoop = null
+
+const CaseList = ({cases, history}) => {
+  return map(cases, box => {
+    return (
+      <CaseCardUser
+        onClick={e => history.push(`/opening/${box.id}/${box.offerid}`)}
+        box={box}
+      />
+    )
+  })
+}
 
 class PendingCases extends Component {
 
@@ -13,6 +24,7 @@ class PendingCases extends Component {
     super()
 
     this.state = {
+      loading: true,
       offerCases: []
     }
 
@@ -30,6 +42,7 @@ class PendingCases extends Component {
 
   getPendingCases() {
     if(!this.props.user) return
+    this.setState({ loading: true })
     this.props.callAction('getMyPendingCases').then(boxes => {
 
       var offerCases = groupBy(boxes, 'case_site_trade_offer_id')
@@ -45,32 +58,25 @@ class PendingCases extends Component {
 
 
       this.setState({
+        loading: false,
         offerCases: offerCases
       })
     })
   }
 
   render() {
+    var {history} = this.props
     return (
       <div className="Cases-wrapper">
-        <div className="Cases-body">
+        <div className="Cases-header-loading">
           {
-            this.state.offerCases.length > 0 ? map(this.state.offerCases, box => {
-              return (
-                <CaseCardUser
-                  onClick={e => {
-                    this.props.history.push(`/opening/${box.id}/${box.offerid}`)
-                  }}
-                  box={box}
-                />
-              )
-            }) : <div>
-              <h1>You have no pending case openings!</h1>
-              <Spinner 
-                className="Cases-loading"
-              />
-            </div>
+            this.state.loading ? 
+              <Spinner className="Cases-loading" /> : 
+              <h1>You have {keys(this.state.offerCases).length} pending case openings!</h1>
           }
+        </div>
+        <div className="Cases-body">
+          <CaseList cases={this.state.offerCases} history={history} />
         </div>
       </div>
     )

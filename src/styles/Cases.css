@@ -8,6 +8,14 @@
   padding: 20px;
 }
 
+.Cases-header-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
 .Cases-body {
   display: flex;
   justify-content: center;

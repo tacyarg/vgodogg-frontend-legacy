@@ -3,9 +3,23 @@ import '../styles/Cases.css'
 import CaseCard from '../components/CaseCard'
 import { AnchorButton, Intent } from '@blueprintjs/core'
 
+const CaseList = ({cases, stats, history}) => {
+  return cases.map(box => {
+    var boxStats = stats.allTime.cases[box.id]
+    box.openCount = boxStats ? boxStats.opened : 0
+    return (
+      <CaseCard
+        key={box.id}
+        onClick={e => history.push(`/overview/${box.id}`)}
+        box={box}
+      />
+    )
+  })
+}
+
 class Cases extends Component {
   render() {
-    const { cases, stats, user } = this.props
+    const { cases, stats, user, history } = this.props
     return (
       <div className="Cases-wrapper">
         <div className="Cases-header">
@@ -19,19 +33,7 @@ class Cases extends Component {
           />
         </div>
         <div className="Cases-body">
-          {cases.map(box => {
-            var boxStats = stats.allTime.cases[box.id]
-            box.openCount = boxStats ? boxStats.opened : 0
-            return (
-              <CaseCard
-                key={box.id}
-                onClick={e => {
-                  this.props.history.push(`/overview/${box.id}`)
-                }}
-                box={box}
-              />
-            )
-          })}
+          <CaseList history={history} cases={cases} stats={stats} />
         </div>
       </div>
     )
