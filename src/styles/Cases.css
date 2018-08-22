@@ -1,9 +1,18 @@
 .Cases-wrapper {
   position: relative;
+}
+
+.Cases-header {
+  position: absolute;
+  right: 0;
+  padding: 20px;
+}
+
+.Cases-body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 20px;
+  padding-top: 60px;
 }
 
 .Cases-list {

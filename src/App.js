@@ -15,6 +15,8 @@ import PendingCases from './pages/PendingCases'
 import Spinner from './pages/Spinner'
 
 import Home from './pages/Home'
+import Inventory from './pages/Inventory'
+
 import Toplist from './pages/Toplist'
 
 class App extends Component {
@@ -49,6 +51,10 @@ class App extends Component {
             }}/>
             <Route path="/opening/:boxid/:offerid" render={props => {
               return (<Spinner {...props} user={user} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
+            }}/>
+
+            <Route path="/inventory" render={props => {
+              return (<Inventory {...props} user={user} AppToaster={AppToaster} callAction={callAction} cases={this.state.cases} stats={this.state.stats} />)
             }}/>
             
             <Route path="/toplist" render={props => {

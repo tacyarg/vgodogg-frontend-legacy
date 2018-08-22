@@ -69,10 +69,10 @@ class Header extends Component {
             text="Cases" 
           />
           <AnchorButton 
-            href="/#/pending"
+            href="/#/inventory"
             className="bp3-minimal" 
-            icon="box" 
-            text="Pending" 
+            icon="duplicate" 
+            text="Inventory" 
           />
           <AnchorButton 
             href="/#/toplist"

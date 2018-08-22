@@ -8,12 +8,26 @@ import { Spinner } from '@blueprintjs/core'
 import CountUp from 'react-countup';
 import {sumBy} from 'lodash'
 
+const HeaderContent = ({items}) => {
+  return (
+    items.length > 0 ? 
+    <h1>Current Inventory Value: <CountUp 
+      prefix="$" 
+      separator="," 
+      decimals={2} 
+      end={sumBy(items, 'suggested_price')/100} 
+    /></h1> :
+    <h1>You have no items!</h1>
+  )
+}
+
 class Inventory extends Component {
 
   constructor(props) {
     super()
 
     this.state = {
+      loading: true,
       items: []
     }
 
@@ -27,21 +41,19 @@ class Inventory extends Component {
   getMyInventory() {
     return this.props.callAction('getMyInventory', {
       appid: 1
-    }).then(response => this.setState({items: response.items}))
+    }).then(response => this.setState({
+      loading: false,
+      items: response.items
+    }))
   }
 
   render() {
     return (
       <div className="Inventory-wrapper">
         {
-          this.state.items.length > 0 ? 
-          <h1>Current Inventory Value: <CountUp 
-            prefix="$" 
-            separator="," 
-            decimals={2} 
-            end={sumBy(this.state.items, 'suggested_price')/100} 
-          /></h1> :
-          <h1>You have no items!</h1>
+          this.state.loading ? 
+            <Spinner className="Cases-loading"/> : 
+            <HeaderContent items={this.state.items} />
         }
         <div className="Inventory-items">
           {
