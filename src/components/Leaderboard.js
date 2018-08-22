@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../styles/Leaderboard.css'
 import { HTMLTable } from '@blueprintjs/core'
 import moment from 'moment'
+import CountUp from 'react-countup';
 
 class Leaderboard extends Component {
   render() {
@@ -9,11 +10,33 @@ class Leaderboard extends Component {
     var topCases = stats.top.cases
     return (
       <div className="Leaderboard-table-wrapper">
-        <h1> {stats.name.toUpperCase()} Top Openings </h1>
-        {stats.name === "allTime" ? 
-          <h4>∞ to ∞</h4> :
-          <h4>{moment(stats.start).calendar() +' to '+ moment(stats.end).calendar()}</h4>
-        }
+        <div className="Leaderboard-table-header">
+          
+          <div className="Leaderboard-table-header-left">
+            <h1> {stats.name.toUpperCase()} Top Openings </h1>
+            {
+              stats.name === "allTime" ? 
+              <h4>∞ to ∞</h4> :
+              <h4>{moment(stats.start).calendar() +' to '+ moment(stats.end).calendar()}</h4>
+            }
+          </div>
+          <div className="Leaderboard-table-header-right">
+            <h4>
+              Opened: <CountUp 
+                end={stats.cases.opened} 
+              />
+            </h4>
+            <h4>
+              Rewarded: <CountUp 
+                prefix="$" 
+                separator="," 
+                decimals={2} 
+                end={stats.cases.totalValue} 
+              />
+            </h4>
+          </div>
+        </div>
+
         <HTMLTable
           className='Leaderboard-table-body'
           bordered={true}

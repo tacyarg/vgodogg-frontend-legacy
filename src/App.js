@@ -28,11 +28,11 @@ class App extends Component {
     var {auth, user, callAction, AppToaster } = this.props
 
     return (
-      <div className="App">
+      <div className="App-wrapper">
         <Header stats={this.state.stats} user={user} auth={auth} callAction={callAction} />
         <Chat messages={this.state.chats['en'].messages} user={user} callAction={callAction} stats={this.state.stats} />
         <OpeningFeed recentOpenings={this.state.recentOpenings} />
-        <div className="main-content">
+        <div className="App-content">
             <Route exact path="/" render={props => {
               return (<Home {...props} callAction={callAction} stats={this.state.stats} cases={this.state.cases}/>)
             }}/>
