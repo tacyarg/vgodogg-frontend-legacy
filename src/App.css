@@ -19,7 +19,7 @@
   /* url('./what-the-hex.png'); */
   /* url('./paper_fibers.png'); */
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .fade-enter {
