@@ -7,7 +7,7 @@ import { sortBy, sumBy } from 'lodash'
 import CountUp from 'react-countup';
 import { Button, Intent } from '@blueprintjs/core'
 import OpenCase from '../components/OpenCaseModal'
-
+import LazyComponent from 'react-component-lazy'
 
 class CaseOverview extends Component {
   constructor(props) {
@@ -132,7 +132,12 @@ class CaseOverview extends Component {
             {
               this.state.box.items.map(item => {
                 item = utils.processItem(item)
-                return <ItemCard {...item} />
+                
+                return (
+                  <LazyComponent>
+                    <ItemCard {...item} />
+                  </LazyComponent>
+                )
               })
             }
           </div>          
