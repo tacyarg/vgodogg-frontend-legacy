@@ -31,7 +31,7 @@ class Spinner extends Component {
       items: props.cases[boxid].items,
       pendingBoxes: [],
       speed: 4,
-      itemWidth: 220,
+      itemWidth: 180,
       winningItemIndex: 100,
       offset: 0,
       disabled: false,
@@ -55,14 +55,11 @@ class Spinner extends Component {
     }).then(boxes => {
       boxes = sortBy(boxes, ['item', 'id']).reverse()
 
-      var itemsWon = boxes.filter(box => box.done).map(box => {
-        return utils.processItem(box.item)
-      })
+      var itemsWon = boxes.filter(box => box.done)
+        .map(box => utils.processItem(box.item))
 
       var pendingBoxes = boxes.filter(box => !box.done)
-      // if(pendingBoxes.length === 0) {
-      //   this.props.history.push(`/pending`)
-      // }
+
       this.setState({itemsWon, pendingBoxes, totalBoxes: boxes.length})
       this.setup.bind(this)()
     })
@@ -96,7 +93,8 @@ class Spinner extends Component {
     spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2)
 
     var currentCase = pendingBoxes.pop()
-    var offset = random(-50, 50) + itemWidth * 2
+    // var offset = random(-50, 50) + itemWidth * 2
+    var offset = itemWidth * 1.5
 
     if(!currentCase) {
       this.setState({
