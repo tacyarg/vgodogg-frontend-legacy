@@ -37,6 +37,8 @@ class Modal extends Component {
           onClick={this.toggleOverlay.bind(this)}
         />
         <Overlay
+          autoFocus={false}
+          hasBackdrop={false}
           isOpen={this.state.isOpen}
           onClose={this.toggleOverlay.bind(this)}
         >
