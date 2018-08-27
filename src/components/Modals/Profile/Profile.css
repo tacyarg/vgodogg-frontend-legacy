@@ -1,5 +1,6 @@
 .Profile-content {
-  width: 800px;
+  max-width: 800px;
+  min-width: 240px;
   padding: 10px;
 }
 
@@ -55,7 +56,7 @@
 }
 
 .Profile-content-body {
-  min-height: 300px;
+  min-height: 340px;
 }
 
 .Profile-content-body-navbar {
@@ -75,6 +76,8 @@
   flex-wrap: wrap;
   justify-content: center; */
 }
+
+/* STATS PANEL */
 
 .stats {
   margin-top: 24px !important;
@@ -98,4 +101,63 @@
 
 .stat-label {
   font-weight: 700 !important;
+}
+
+/* HISTORY PANEL */
+
+.history {
+  /* background-color: red; */
+}
+
+.history-entry {
+  margin: 10px;
+}
+
+.history-entry-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.history-entry-offerid {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.history-entry-time {
+  font-weight: bold;
+}
+
+.history-entry-body {
+
+}
+
+.history-entry-items-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* justify-content: center; */
+}
+
+.history-entry-item {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 5px;
+  width: 80px;
+  height: 80px;
+}
+
+.history-entry-item img {
+  height: 100%;
+  width: 100%;
+}
+
+.history-entry-items-value {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

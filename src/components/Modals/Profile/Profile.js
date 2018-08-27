@@ -3,7 +3,9 @@ import classNames from "classnames";
 
 import "./Profile.css";
 import { Tab, Tabs, Label } from "@blueprintjs/core";
+
 import Stats from "./Stats";
+import History from './History'
 
 const headerBackground = function(user) {
   return {
@@ -16,7 +18,7 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      navbarTab: "Stats",
+      navbarTab: "Offer History",
       user: {
         avatarurl:
           "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/57/573f45615e0fe0e8dcbcd835538fa404994f5529_full.jpg",
@@ -36,6 +38,7 @@ class Profile extends Component {
 
   render() {
     var { user, navbarTab } = this.state;
+    var { callAction } = this.props;
 
     return (
       <div className="Profile-content">
@@ -62,18 +65,12 @@ class Profile extends Component {
             animate={true}
             onChange={this.handleTabChange.bind(this)}
             selectedTabId={navbarTab}
+            renderActiveTabPanelOnly={true}
           >
-            <Tab id="Stats" title="Stats" />
-            <Tab id="History" title="History" />
+            <Tab id="Stats" title="Stats" panel={<Stats />} />
+            <Tab id="Offer History" title="Offer History" panel={<History callAction={callAction} />} />
             <Tab id="Settings" title="Settings" />
           </Tabs>
-
-          <div className="Profile-content-body-panel-wrapper">
-            <Stats
-              aria-hidden={navbarTab == "Stats" ? false : true}
-              content="Stats"
-            />
-          </div>
         </div>
       </div>
     );

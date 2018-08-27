@@ -4,11 +4,13 @@ import Modal from "../components/Modal/Modal";
 
 class Home extends Component {
   render() {
+    var { callAction } = this.props
+
     return (
       <div className="home">
-        {this.props.history.push(`/cases`)}
+        {/* {this.props.history.push(`/cases`)} */}
 
-        {/* <Modal /> */}
+        <Modal callAction={callAction} />
       </div>
     );
   }

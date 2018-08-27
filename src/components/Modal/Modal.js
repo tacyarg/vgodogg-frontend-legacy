@@ -27,7 +27,7 @@ class Modal extends Component {
       Classes.ELEVATION_4,
       "Modal-overlay"
     );
-    var { user } = this.props;
+    var { user, callAction } = this.props;
     return (
       <div className="Modal-wrapper">
         <Button
@@ -41,7 +41,7 @@ class Modal extends Component {
           onClose={this.toggleOverlay.bind(this)}
         >
           <div className={classes}>
-            <Profile user={user} />
+            <Profile user={user} callAction={callAction} />
           </div>
         </Overlay>
       </div>
