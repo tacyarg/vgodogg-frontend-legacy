@@ -5,7 +5,7 @@
 .Modal-overlay {
   /* width:600px; */
   position: fixed;
-  top: 40% !important;
+  top: 45% !important;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;

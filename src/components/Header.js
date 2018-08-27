@@ -16,13 +16,14 @@ import {
 } from "@blueprintjs/core";
 
 import UserMenu from "./UserMenu";
-
+import Modal from "../components/Modal/Modal";
 class Header extends Component {
   constructor() {
     super();
     this.state = {
       keys: 0,
-      loadingKeys: false
+      loadingKeys: false,
+      profileIsOpen: true
     };
 
     setInterval(this.updateKeyCount.bind(this), 10000);
@@ -46,16 +47,22 @@ class Header extends Component {
     });
   }
 
+  toggleProfileModal() {
+    return this.state.profileIsOpen ? this.setState({ profileIsOpen: false }) : this.setState({ profileIsOpen: true })
+  }
+
   render() {
-    const { stats, user, auth } = this.props;
+    const {keys, loadingKeys, profileIsOpen} = this.state
+    const { stats, user, auth, callAction } = this.props;
     const baseProps = {
-      content: <UserMenu auth={auth} />,
+      content: <UserMenu auth={auth} toggleProfileModal={this.toggleProfileModal.bind(this)}/>,
       position: Position.BOTTOM_RIGHT
     };
-    return (
+    return (      
       <Navbar
       // fixedToTop="true"
       >
+        <Modal callAction={callAction} isOpen={profileIsOpen} toggleOverlay={this.toggleProfileModal.bind(this)} user={user} />
         <Navbar.Group align={Alignment.LEFT}>
           <Navbar.Heading className="Header-logo">
             {/* <b> VGO Cases </b> */}
@@ -101,8 +108,8 @@ class Header extends Component {
             minimal={true}
             icon="key"
             onClick={this.updateKeyCount.bind(this)}
-            text={this.state.keys}
-            loading={this.state.loadingKeys}
+            text={keys}
+            loading={loadingKeys}
           />
           {/* <Button className="bp3-minimal" icon="notifications" text="" /> */}
           {!user ? (

@@ -19,8 +19,8 @@ class Profile extends Component {
 
     this.state = {
       showNavbar: props.showNavbar || true,
-      navbarTab: "History",
-      user: {
+      navbarTab: "Stats",
+      user: props.user || {
         avatarurl:
           "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/57/573f45615e0fe0e8dcbcd835538fa404994f5529_full.jpg",
         username: "Tacyarg | vgodogg.com",

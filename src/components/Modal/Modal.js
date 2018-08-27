@@ -5,12 +5,18 @@ import "./Modal.css";
 import { Classes, Button, Overlay } from "@blueprintjs/core";
 import Profile from "../Modals/Profile/Profile";
 
+const classes = classNames(
+  Classes.CARD,
+  Classes.ELEVATION_4,
+  "Modal-overlay"
+);
+
 class Modal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isOpen: true,
+      isOpen: false,
       modal: "Profile"
     };
   }
@@ -22,28 +28,23 @@ class Modal extends Component {
   }
 
   render() {
-    const classes = classNames(
-      Classes.CARD,
-      Classes.ELEVATION_4,
-      "Modal-overlay"
-    );
-    var { user, callAction } = this.props;
+    var { user, callAction, isOpen, toggleOverlay } = this.props;
     return (
       <div className="Modal-wrapper">
-        <Button
+        {/* <Button
           style={{ float: "right" }}
           large={true}
           text="Show overlay"
           onClick={this.toggleOverlay.bind(this)}
-        />
+        /> */}
         <Overlay
           autoFocus={false}
           hasBackdrop={false}
-          isOpen={this.state.isOpen}
-          onClose={this.toggleOverlay.bind(this)}
+          isOpen={isOpen || this.state.isOpen}
+          onClose={toggleOverlay || this.toggleOverlay.bind(this)}
         >
           <div className={classes}>
-            <Profile showNavbar={true} user={user} callAction={callAction} />
+            <Profile showNavbar={true} user={user} callAction={callAction}/>
           </div>
         </Overlay>
       </div>
