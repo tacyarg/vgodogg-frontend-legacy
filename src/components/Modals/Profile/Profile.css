@@ -1,6 +1,6 @@
 .Profile-content {
-  max-width: 800px;
-  min-width: 240px;
+  width: 800px;
+  min-width: 320px;
   padding: 10px;
 }
 
@@ -9,8 +9,7 @@
   width: 100%;
   min-height: 200px;
   background-color: aquamarine;
-  background: 
-    url("https://media.giphy.com/media/l2SpW7nWd4QuBE5LW/giphy.gif")
+  background: url("https://media.giphy.com/media/l2SpW7nWd4QuBE5LW/giphy.gif")
     center no-repeat;
   /* background: url("https://media.giphy.com/media/KVZWZQoS0yqfIiTAKq/giphy.gif") center no-repeat; */
   border-radius: 5px;
@@ -56,17 +55,22 @@
 }
 
 .Profile-content-body {
-  min-height: 340px;
+  /* min-height: 420px; */
 }
 
 .Profile-content-body-navbar {
-  margin: 10px;
+  /* margin: 10px; */
+}
+
+.Profile-content-body .bp3-tab-list {
+  padding: 5px;
+  /* border-bottom: 1px solid black; */
 }
 
 .Profile-content-body-panel-wrapper {
   border-radius: 5px;
   padding: 10px;
-  max-height: 300px;
+  max-height: 420px;
   overflow: hidden;
   overflow-y: auto;
 }
@@ -109,8 +113,15 @@
   /* background-color: red; */
 }
 
+.history-loading {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* margin: 0 auto; */
+}
+
 .history-entry {
-  margin: 10px;
+  margin: 5px;
 }
 
 .history-entry-header {
@@ -132,7 +143,6 @@
 }
 
 .history-entry-body {
-
 }
 
 .history-entry-items-container {
@@ -144,6 +154,7 @@
 }
 
 .history-entry-item {
+  cursor: pointer;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 5px;

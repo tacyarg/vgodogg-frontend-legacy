@@ -41,7 +41,7 @@ class Modal extends Component {
           onClose={this.toggleOverlay.bind(this)}
         >
           <div className={classes}>
-            <Profile user={user} callAction={callAction} />
+            <Profile showNavbar={true} user={user} callAction={callAction} />
           </div>
         </Overlay>
       </div>
