@@ -6,7 +6,7 @@
 }
 
 .OpenCase-content img {
-  filter: drop-shadow(0 40px 20px rgba(0,0,0,0.5)) saturate(123%);
+  filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%);
 }
 
 /* LATER ON HOVER SHOW ITEMS SCROLLING BY CONTAINED IN THE CASE */

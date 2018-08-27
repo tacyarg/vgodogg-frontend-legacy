@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
-import '../styles/Header.css'
+import "../styles/Header.css";
 
 import {
   Alignment,
@@ -9,43 +9,49 @@ import {
   Navbar,
   Tag,
   Popover,
-  Position
-} from "@blueprintjs/core"
+  Position,
+  Tabs,
+  Tab,
+  Icon
+} from "@blueprintjs/core";
 
 import UserMenu from "./UserMenu";
 
 class Header extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       keys: 0,
       loadingKeys: false
-    }
+    };
 
-    setInterval(this.updateKeyCount.bind(this), 10000)
+    setInterval(this.updateKeyCount.bind(this), 10000);
   }
 
   componentDidMount() {
-    var keys = this.props.user ? this.props.user.keyCount : 0
-    this.setState({keys})
+    var keys = this.props.user ? this.props.user.keyCount : 0;
+    this.setState({ keys });
   }
 
   updateKeyCount() {
-    if(!this.props.user) return
+    if (!this.props.user) return;
     this.setState({
       loadingKeys: true
-    })
-    return this.props.callAction('getMyKeyCount').then(keys => {
+    });
+    return this.props.callAction("getMyKeyCount").then(keys => {
       this.setState({
         keys,
         loadingKeys: false
-      })
-    })
+      });
+    });
   }
 
   render() {
-    const { stats, user, auth } = this.props
-    const baseProps = { content: <UserMenu auth={auth} />, position: Position.BOTTOM_RIGHT };
+    const { stats, user, auth } = this.props;
+    const baseProps = {
+      content: <UserMenu auth={auth} />,
+      position: Position.BOTTOM_RIGHT
+    };
     return (
       <Navbar
       // fixedToTop="true"
@@ -62,23 +68,23 @@ class Header extends Component {
             icon="home" 
             text="Home" 
           /> */}
-          <AnchorButton 
+          <AnchorButton
             href="/#/cases"
-            className="bp3-minimal" 
-            icon="box" 
-            text="Cases" 
+            className="bp3-minimal"
+            icon="box"
+            text="Cases"
           />
-          <AnchorButton 
+          <AnchorButton
             href="/#/inventory"
-            className="bp3-minimal" 
-            icon="duplicate" 
-            text="Inventory" 
+            className="bp3-minimal"
+            icon="duplicate"
+            text="Inventory"
           />
-          <AnchorButton 
+          <AnchorButton
             href="/#/toplist"
-            className="bp3-minimal" 
-            icon="chart" 
-            text="Toplist" 
+            className="bp3-minimal"
+            icon="chart"
+            text="Toplist"
           />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
@@ -95,30 +101,30 @@ class Header extends Component {
             minimal={true}
             icon="key"
             onClick={this.updateKeyCount.bind(this)}
-            text={ this.state.keys }
+            text={this.state.keys}
             loading={this.state.loadingKeys}
           />
           {/* <Button className="bp3-minimal" icon="notifications" text="" /> */}
-          {
-            (!user) ?
-              (<Button
-                // className="bp3-minimal" 
-                intent="success"
-                onClick={auth.login}
-                text="Login With Steam"
-              />) :
-              (<Popover {...baseProps} minimal={true}>
-                <Button
-                  className="bp3-minimal" 
-                  icon="person" 
-                  text={user.username}
-                  rightIcon="caret-down"
-                />
-              </Popover>)
-          }
+          {!user ? (
+            <Button
+              // className="bp3-minimal"
+              intent="success"
+              onClick={auth.login}
+              text="Login With Steam"
+            />
+          ) : (
+            <Popover {...baseProps} minimal={true}>
+              <Button
+                className="bp3-minimal"
+                icon="person"
+                text={user.username}
+                rightIcon="caret-down"
+              />
+            </Popover>
+          )}
         </Navbar.Group>
       </Navbar>
-    )
+    );
   }
 }
 

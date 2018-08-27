@@ -7,7 +7,7 @@
 
 .example-enter.example-enter-active {
   opacity: 1;
-  transition: opacity .2s ease-in;
+  transition: opacity 0.2s ease-in;
 }
 
 .example-leave {
@@ -19,28 +19,36 @@
   /* transition: opacity .5s ease-out; */
 }
 
-@keyframes pulse{
-  25%  {transform: scale(0.9);}
-  75%  {transform: scale(1.1);}
+@keyframes pulse {
+  25% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1.1);
+  }
 }
-@keyframes push{
-  50%  {transform: scale(0.8);}
+@keyframes push {
+  50% {
+    transform: scale(0.8);
+  }
 }
-@keyframes pop{
-  50%  {transform: scale(1.2);}
+@keyframes pop {
+  50% {
+    transform: scale(1.2);
+  }
 }
 
 @keyframes float {
-	0% {
-    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(0px);
-	}
-	50% {
-    filter: drop-shadow(0 40px 20px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(-20px);
-	}
-	100% {
-    filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5)) saturate(123%);
-		transform: translatey(0px);
-	}
+  0% {
+    filter: drop-shadow(0 20px 10px rgba(0, 0, 0, 0.5)) saturate(123%);
+    transform: translatey(0px);
+  }
+  50% {
+    filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%);
+    transform: translatey(-20px);
+  }
+  100% {
+    filter: drop-shadow(0 20px 10px rgba(0, 0, 0, 0.5)) saturate(123%);
+    transform: translatey(0px);
+  }
 }

@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import '../styles/Toplist.css'
-import Leaderboard from '../components/Leaderboard'
+import React, { Component } from "react";
+import "../styles/Toplist.css";
+import Leaderboard from "../components/Leaderboard";
 
 class Toplist extends Component {
   render() {
-    var {stats} = this.props
+    var { stats } = this.props;
     return (
       <div className="Toplist-wrapper">
         <div className="Toplist-content">
@@ -14,9 +14,8 @@ class Toplist extends Component {
           <Leaderboard stats={stats.daily} />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Toplist
-
+export default Toplist;

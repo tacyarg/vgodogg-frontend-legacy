@@ -1,55 +1,59 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 // import registerServiceWorker from './registerServiceWorker';
 import { HashRouter as Router } from "react-router-dom";
-import axios from 'axios'
-import Promise from 'bluebird'
-import State from './libs/state'
-import openSocket from 'socket.io-client'
-import Auth from './libs/auth'
-import AppToaster from './components/AppToaster'
+import axios from "axios";
+import Promise from "bluebird";
+import State from "./libs/state";
+import openSocket from "socket.io-client";
+import Auth from "./libs/auth";
+import AppToaster from "./components/AppToaster";
 
-import App from './App';
-import Loading from './pages/Loading'
-import {debounce} from 'lodash'
+import App from "./App";
+import Loading from "./pages/Loading";
+import { debounce } from "lodash";
 
-const API_URL = 'https://api.vunbox.com'
+const API_URL = "https://api.vunbox.com";
 // const API_URL = 'http://localhost:4567'
-const SOCKET_URL = 'https://socket.vunbox.com'
+const SOCKET_URL = "https://socket.vunbox.com";
 // const SOCKET_URL = 'http://localhost:4568'
-const serverState = State()
-const socket = openSocket(SOCKET_URL)
-const auth = Auth(socket)
+const serverState = State();
+const socket = openSocket(SOCKET_URL);
+const auth = Auth(socket);
 
-
-function getServerState () {
+function getServerState() {
   return axios.get(`${API_URL}/getServerState`).then(resp => {
-    serverState.set(null, resp.data)
+    serverState.set(null, resp.data);
 
     // listen for changes
-    socket.on('diff', serverState.patch)
+    socket.on("diff", serverState.patch);
 
-    return serverState
-  })
+    return serverState;
+  });
 }
 
-function getUserAuth () {
-  return auth.verifySteam()
-    .catch(err => { /* do nothing */ })
+function getUserAuth() {
+  return auth
+    .verifySteam()
+    .catch(err => {
+      /* do nothing */
+    })
     .then(auth.setToken)
-    .catch(err => { /* do nothing */ })
+    .catch(err => {
+      /* do nothing */
+    });
 }
 
 function callAction(action, params) {
-  return Promise.fromCallback(function(done){
-    socket.emit('action', action, params, done)
+  return Promise.fromCallback(function(done) {
+    socket.emit("action", action, params, done);
   }).catch(err => {
     AppToaster.show({
-      intent: 'danger',
+      intent: "danger",
       message: err.message
-    })
-  })
+    });
+  });
 }
 
 Promise.props({
@@ -62,9 +66,11 @@ Promise.props({
   ReactDOM.render(
     <Router>
       <App {...props} />
-    </Router>, document.getElementById('root'));
+    </Router>,
+    document.getElementById("root")
+  );
   // registerServiceWorker();
-})
+});
 
 // render loading animation
-ReactDOM.render(<Loading/>, document.getElementById('root'));
+ReactDOM.render(<Loading />, document.getElementById("root"));

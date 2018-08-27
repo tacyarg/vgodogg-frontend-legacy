@@ -1,13 +1,13 @@
 .Spinner-wrapper {
   position: relative;
   height: 100%;
-  max-width:1140px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
 .Spinner-bounding {
   /* background-color: aqua; */
-  height:300px;
+  height: 300px;
   margin: 0 auto;
   overflow: hidden;
   display: flex;
@@ -25,7 +25,7 @@
 }
 
 .Spinner-content {
-  width:400000px;
+  width: 400000px;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -36,7 +36,7 @@
   top: 0;
   bottom: 0;
   width: 5px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
   z-index: 1000;
 }
 
@@ -46,7 +46,7 @@
   top: 0;
   bottom: 0;
   width: 5px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.0));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
   z-index: 1000;
 }
 
@@ -59,7 +59,7 @@
 
 .Spinner-tick {
   background-color: red;
-  border-radius: 4px; 
+  border-radius: 4px;
   position: absolute;
   left: 0;
   right: 0;

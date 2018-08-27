@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
-import '../styles/OpenCase.css'
-import { Dialog, Classes, NumericInput, Button, Intent } from '@blueprintjs/core'
+import React, { Component } from "react";
+import "../styles/OpenCase.css";
+import {
+  Dialog,
+  Classes,
+  NumericInput,
+  Button,
+  Intent
+} from "@blueprintjs/core";
 
 class OpenCaseModal extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
       autoFocus: true,
       canEscapeKeyClose: true,
@@ -12,11 +18,11 @@ class OpenCaseModal extends Component {
       enforceFocus: true,
       usePortal: true,
       wantedCases: 1
-    }
+    };
   }
 
   render() {
-    const { isOpen, handleClose, box, buyCases, maxKeys } = this.props
+    const { isOpen, handleClose, box, buyCases, maxKeys } = this.props;
     return (
       <Dialog
         icon="box"
@@ -27,12 +33,11 @@ class OpenCaseModal extends Component {
       >
         <div className={Classes.DIALOG_BODY}>
           <div className="OpenCase-content">
-            <img src={box.image ? box.image['300px'] : null} alt={box.name} />
+            <img src={box.image ? box.image["300px"] : null} alt={box.name} />
           </div>
         </div>
 
         <div className={Classes.DIALOG_FOOTER}>
-          
           <h5>How many cases would you like to buy?</h5>
 
           <NumericInput
@@ -42,7 +47,7 @@ class OpenCaseModal extends Component {
             min="1"
             large={true}
             onValueChange={value => {
-              this.setState({wantedCases: value})
+              this.setState({ wantedCases: value });
             }}
             value={this.state.wantedCases}
           />
@@ -52,15 +57,15 @@ class OpenCaseModal extends Component {
               intent={Intent.PRIMARY}
               large={true}
               onClick={e => buyCases(box.id, this.state.wantedCases)}
-              text={this.state.wantedCases > 1 ? <b>BUY CASES</b> : <b>BUY CASE</b>}
+              text={
+                this.state.wantedCases > 1 ? <b>BUY CASES</b> : <b>BUY CASE</b>
+              }
             />
           </div>
-
         </div>
       </Dialog>
-    )
+    );
   }
 }
 
-export default OpenCaseModal
-
+export default OpenCaseModal;

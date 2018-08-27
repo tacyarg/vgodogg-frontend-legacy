@@ -8,5 +8,5 @@
 .Header-logo img {
   position: absolute;
   /* background: url('https://i.imgur.com/csrxCfC.png'); */
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2)) saturate(123%);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) saturate(123%);
 }

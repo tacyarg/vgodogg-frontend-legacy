@@ -16,7 +16,6 @@
 }
 
 .ItemCard-top {
-
 }
 
 .ItemCard-itemName {
@@ -45,7 +44,7 @@
 
 .ItemCard-itemImage {
   position: absolute;
-  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.5)) saturate(123%);
+  filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.5)) saturate(123%);
   /* filter: saturate(123%); */
   top: 15px;
   bottom: 0;
@@ -55,4 +54,3 @@
   height: 185px;
   z-index: 0;
 }
-
