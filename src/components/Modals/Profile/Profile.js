@@ -6,6 +6,7 @@ import { Tab, Tabs, Label } from "@blueprintjs/core";
 
 import Stats from "./Stats";
 import History from "./History";
+import Settings from "./Settings";
 
 const headerBackground = function(user) {
   return {
@@ -19,7 +20,7 @@ class Profile extends Component {
 
     this.state = {
       showNavbar: props.showNavbar || true,
-      navbarTab: "Stats",
+      navbarTab: props.navbarTab || "Settings",
       user: props.user || {
         avatarurl:
           "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/57/573f45615e0fe0e8dcbcd835538fa404994f5529_full.jpg",
@@ -75,7 +76,11 @@ class Profile extends Component {
                 title="History"
                 panel={<History callAction={callAction} />}
               />
-              <Tab id="Settings" title="Settings" />
+              <Tab
+                id="Settings"
+                title="Settings"
+                panel={<Settings callAction={callAction} user={user} />}
+              />
             </Tabs>
           ) : null}
         </div>

@@ -172,3 +172,27 @@
   bottom: 0;
   right: 0;
 }
+
+/* SETTINGS PANEL */
+
+.Settings {
+  width: 100%;
+  /* position: relative; */
+  /* margin-top: 24px !important; */
+  margin-bottom: 24px !important;
+  /*   display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+}
+
+.Settings-inputs {
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.Settings-savebtn {
+  float: right;
+  /* position: absolute;
+  bottom: 0;
+  right: 20px; */
+}
