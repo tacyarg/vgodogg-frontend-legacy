@@ -41,7 +41,7 @@ class Spinner extends Component {
       items: props.cases[boxid].items,
       pendingBoxes: [],
       speed: 4,
-      itemWidth: 180,
+      itemWidth: 200,
       winningItemIndex: 100,
       offset: 0,
       disabled: false,
@@ -108,8 +108,7 @@ class Spinner extends Component {
     spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2);
 
     var currentCase = pendingBoxes.pop();
-    var offset = random(-50, 50) + itemWidth * 1.4;
-    // var offset = itemWidth * 1.4
+    var offset = (-itemWidth * 2.7) + random(-50, 50)
 
     if (!currentCase) {
       this.setState({
@@ -153,8 +152,7 @@ class Spinner extends Component {
       this.setState({
         spinning: true,
         spinnerTransition: `all ${speed}s ease`,
-        spinnerTransform: `translateX(${winningItemIndex * -itemWidth +
-          offset}px) translateZ(0px)`
+        spinnerTransform: `translateX(${(winningItemIndex * -itemWidth) + offset}px) translateZ(0px)`
       });
     }, 500);
 

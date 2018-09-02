@@ -9,9 +9,7 @@
 .ItemCard-item {
   position: relative;
   height: 175px;
-  width: 210px;
-  /* margin-left: 5px;
-  margin-right: 5px; */
+  width: 200px;
   overflow: hidden;
 }
 

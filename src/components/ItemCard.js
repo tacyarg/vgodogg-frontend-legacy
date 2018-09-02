@@ -12,11 +12,11 @@ function CardBackground(user) {
   return {
     borderRadius: "50%",
     transform: "rotate(-30deg)",
-    right: "-70px",
-    bottom: "-60px",
+    right: "-80px",
+    bottom: "-80px",
     opacity: "0.25",
-    minHeight: "175px",
-    width: "210px",
+    minHeight: "200px",
+    width: "200px",
     position: "absolute",
     background: `url('${user.avatarurl}')`,
     border: "1px solid black"
