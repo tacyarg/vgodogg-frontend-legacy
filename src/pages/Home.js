@@ -7,9 +7,7 @@ class Home extends Component {
 
     return (
       <div className="home">
-        {/* {this.props.history.push(`/cases`)} */}
-
-        
+        {this.props.history.push(`/cases`)}
       </div>
     );
   }

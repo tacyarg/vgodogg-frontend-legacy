@@ -23,7 +23,7 @@ class Header extends Component {
     this.state = {
       keys: 0,
       loadingKeys: false,
-      profileIsOpen: true
+      profileIsOpen: false
     };
 
     setInterval(this.updateKeyCount.bind(this), 10000);
@@ -120,14 +120,20 @@ class Header extends Component {
               text="Login With Steam"
             />
           ) : (
-            <Popover {...baseProps} minimal={true}>
-              <Button
+            <Button
                 className="bp3-minimal"
                 icon="person"
                 text={user.username}
-                rightIcon="caret-down"
+                // rightIcon="caret-down"
               />
-            </Popover>
+            // <Popover {...baseProps} minimal={true}>
+            //   <Button
+            //     className="bp3-minimal"
+            //     icon="person"
+            //     text={user.username}
+            //     rightIcon="caret-down"
+            //   />
+            // </Popover>
           )}
         </Navbar.Group>
       </Navbar>

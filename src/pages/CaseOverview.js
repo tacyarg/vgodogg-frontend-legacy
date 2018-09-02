@@ -3,7 +3,7 @@ import "../styles/CaseOverview.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import ItemCard from "../components/ItemCard";
 import utils from "../libs/utils";
-import { sortBy, sumBy } from "lodash";
+import { sortBy, sumBy, map, maxBy } from "lodash";
 import CountUp from "react-countup";
 import { Button, Intent } from "@blueprintjs/core";
 import OpenCase from "../components/OpenCaseModal";
@@ -15,6 +15,7 @@ class CaseOverview extends Component {
     var box = props.boxes[parseInt(--props.match.params.boxid)];
     box.items = sortBy(box.items, "suggested_price").reverse();
     var stats = props.stats.allTime.cases[box.id];
+    stats.bestUnboxed = maxBy(stats.items.name, "totalValue");
     this.state = {
       isOpen: false,
       selectedBox: {},
@@ -68,11 +69,30 @@ class CaseOverview extends Component {
               <span className="CaseOverview-details-caseName">
                 {this.state.box.name}
               </span>
+
+              <span className="CaseOverview-details-caseValue">
+                <b>Best Possible Item:</b> {this.state.box.bestItem.name} -{" "}
+                <CountUp
+                  prefix="$"
+                  separator=","
+                  decimals={2}
+                  end={this.state.box.bestItem.suggested_price / 100}
+                />
+              </span>
+              <span className="CaseOverview-details-caseValue">
+                <b>Worst Possible Item:</b> {this.state.box.worstItem.name} -{" "}
+                <CountUp
+                  prefix="$"
+                  separator=","
+                  decimals={2}
+                  end={this.state.box.worstItem.suggested_price / 100}
+                />
+              </span>
               <span className="CaseOverview-details-caseValue">
                 <b>Times Opened:</b> <CountUp end={this.state.stats.opened} />
               </span>
               <span className="CaseOverview-details-caseValue">
-                <b>Total Won:</b>{" "}
+                <b>Total Rewarded:</b>{" "}
                 <CountUp
                   prefix="$"
                   separator=","
@@ -89,24 +109,40 @@ class CaseOverview extends Component {
                   end={this.state.stats.totalValue / this.state.stats.opened}
                 />
               </span>
-              <span className="CaseOverview-details-caseValue">
-                <b>Best Item:</b> {this.state.box.bestItem.name} -{" "}
-                <CountUp
-                  prefix="$"
-                  separator=","
-                  decimals={2}
-                  end={this.state.box.bestItem.suggested_price / 100}
-                />
-              </span>
-              <span className="CaseOverview-details-caseValue">
-                <b>Worst Item:</b> {this.state.box.worstItem.name} -{" "}
-                <CountUp
-                  prefix="$"
-                  separator=","
-                  decimals={2}
-                  end={this.state.box.worstItem.suggested_price / 100}
-                />
-              </span>
+
+              <div className="CaseOverview-details-itemstats">
+                <div className="CaseOverview-details-type">
+                  <h3>Odds of Item Type</h3>
+                  {map(this.state.stats.items.type, (stat, key) => {
+                    return (
+                      <div>
+                        <b> {key}: </b>
+                        <CountUp
+                          decimals={2}
+                          end={(stat.opened / this.state.stats.opened) * 100}
+                        />
+                        %
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="CaseOverview-details-rarity">
+                  <h3>Odds of Item Rarity</h3>
+                  {map(this.state.stats.items.rarity, (stat, key) => {
+                    return (
+                      <div>
+                        <b> {key}: </b>
+                        <CountUp
+                          decimals={2}
+                          end={(stat.opened / this.state.stats.opened) * 100}
+                        />
+                        %
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
           <div className="CaseOverview-buy">
@@ -120,7 +156,7 @@ class CaseOverview extends Component {
               className="CaseOverview-buyButton"
               large={true}
               intent={Intent.PRIMARY}
-              text="PURCHASE CASE"
+              text="PURCHASE THIS CASE"
               icon="cart"
               onClick={e => {
                 this.openDialog();

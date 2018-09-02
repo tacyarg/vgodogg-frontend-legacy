@@ -28,6 +28,11 @@
   justify-content: center;
 }
 
+.CaseOverview-details-itemstats {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .CaseOverview-details-caseName {
   font-weight: bold;
   font-size: 2.5em;
