@@ -12,12 +12,9 @@ import AppToaster from "./components/AppToaster";
 
 import App from "./App";
 import Loading from "./pages/Loading";
-import { debounce } from "lodash";
 
 const API_URL = "https://api.vunbox.com";
-// const API_URL = 'http://localhost:4567'
 const SOCKET_URL = "https://socket.vunbox.com";
-// const SOCKET_URL = 'http://localhost:4568'
 const serverState = State();
 const socket = openSocket(SOCKET_URL);
 const auth = Auth(socket);
@@ -46,7 +43,7 @@ function getUserAuth() {
 }
 
 function callAction(action, params) {
-  return Promise.fromCallback(function(done) {
+  return Promise.fromCallback(function (done) {
     socket.emit("action", action, params, done);
   }).catch(err => {
     AppToaster.show({
