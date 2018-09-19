@@ -29,6 +29,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "npm run build && node express.js",
     "dev": "react-scripts start",
