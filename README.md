@@ -2,6 +2,8 @@
 
 Case opening site built for unboxing VGO assets.
 
+![example-fe](https://i.imgur.com/8cEx7j4.png)
+
 ## Deployment
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
