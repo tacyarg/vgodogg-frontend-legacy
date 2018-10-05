@@ -10,8 +10,14 @@
   height: 300px;
 }
 
-.CaseCard-card:hover {
-  animation: float-card 2s ease-in-out infinite;
+.CaseCard-card:hover{
+  /* animation: float-zoom 1s ease-in-out infinite; */
+  transform: scale(1.05);
+
+}
+
+.CaseCard-card:hover img{
+  animation: float-card 1s ease-in-out infinite;
 }
 
 .CaseCard-content {
@@ -47,6 +53,13 @@
 @keyframes float-card {
   50% {
     /* filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%); */
-    transform: translatey(-5px);
+    transform: translatey(-8px);
+  }
+}
+
+@keyframes float-zoom {
+  50% {
+    /* filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%); */
+    transform: scale(1.05);
   }
 }
