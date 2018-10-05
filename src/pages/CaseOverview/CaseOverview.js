@@ -82,7 +82,7 @@ class CaseOverview extends Component {
                     large={true}
                     intent={Intent.SUCCESS}
                     text="PURCHASE THIS CASE"
-                    icon="cart"
+                    icon="bank-account"
                     onClick={e => {
                       this.openDialog();
                     }}
