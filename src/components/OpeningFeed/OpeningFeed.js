@@ -3,9 +3,6 @@ import "./OpeningFeed.css";
 import ItemCard from "../ItemCard/ItemCard";
 import utils from "../../libs/utils";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import {
-  LazyLoadComponent
-} from "react-lazy-load-image-component";
 
 class OpeningFeed extends Component {
   render() {
@@ -20,14 +17,12 @@ class OpeningFeed extends Component {
         {recentOpenings.map(opening => {
           var item = utils.processItem(opening.item);
           return (
-            <LazyLoadComponent key={opening.id}>
-              <ItemCard
-                // key={opening.id}
-                elevation={item.selected ? this.state.winnerElevation : null}
-                {...item}
-                user={opening.user}
-              />
-            </LazyLoadComponent>
+            <ItemCard
+              {...item}
+              key={opening.id}
+              elevation={item.selected ? this.state.winnerElevation : null}
+              user={opening.user}
+            />
           );
         })}
         {/* <div className="OpeningFeed-overlay-left" /> */}

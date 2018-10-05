@@ -7,6 +7,8 @@ import {
   AnchorButton,
   Navbar,
 } from "@blueprintjs/core";
+import Modal from "../Modal/Modal";
+
 
 class Header extends Component {
   constructor() {
@@ -14,7 +16,8 @@ class Header extends Component {
     this.state = {
       keys: 0,
       loadingKeys: false,
-      profileIsOpen: false
+      profileIsOpen: false,
+      modalContent: null
     };
 
     setInterval(this.updateKeyCount.bind(this), 10000);
@@ -38,62 +41,85 @@ class Header extends Component {
     });
   }
 
+  // MODAL FUNCTIONS
+
+  openModal = component => {
+    // if not component is provided, just toggle.
+    if (component) {
+      this.setState({
+        modalContent: component
+      });
+    }
+
+    this.modal.toggleOverlay();
+  };
+
+  openProfile = () => {
+    // this.openModal(Profile);
+  };
+
   render() {
-    const {keys, loadingKeys} = this.state
+    const { keys, loadingKeys } = this.state
     const { user, auth } = this.props;
-    return (      
-      <Navbar
-      // fixedToTop="true"
-      >
-        <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading className="Header-logo">
-            {/* <b> VGO Cases </b> */}
-            <img alt="VGODOGG LOGO" src="https://i.imgur.com/csrxCfC.png" />
-          </Navbar.Heading>
-          <Navbar.Divider />
-          <AnchorButton
-            href="/#/cases"
-            className="bp3-minimal"
-            icon="box"
-            text="Cases"
-          />
-          <AnchorButton
-            href="/#/inventory"
-            className="bp3-minimal"
-            icon="duplicate"
-            text="Inventory"
-          />
-          <AnchorButton
-            href="/#/toplist"
-            className="bp3-minimal"
-            icon="chart"
-            text="Toplist"
-          />
-        </Navbar.Group>
-        <Navbar.Group align={Alignment.RIGHT}>
-          <Button
-            minimal={true}
-            icon="key"
-            onClick={this.updateKeyCount.bind(this)}
-            text={keys}
-            loading={loadingKeys}
-          />
-          {!user ? (
-            <Button
-              // className="bp3-minimal"
-              intent="success"
-              onClick={auth.login}
-              text="Login With Steam"
+    return (
+      <div>
+        <Modal
+          onRef={ref => (this.modal = ref)}
+          // InnerComponent={modalContent}
+          onSubmit={this.openModal}
+        />
+        <Navbar>
+          <Navbar.Group align={Alignment.LEFT}>
+            <Navbar.Heading className="Header-logo">
+              {/* <b> VGO Cases </b> */}
+              <img alt="VGODOGG LOGO" src="https://i.imgur.com/csrxCfC.png" />
+            </Navbar.Heading>
+            <Navbar.Divider />
+            <AnchorButton
+              href="/#/cases"
+              className="bp3-minimal"
+              icon="box"
+              text="Cases"
             />
-          ) : (
+            <AnchorButton
+              href="/#/inventory"
+              className="bp3-minimal"
+              icon="duplicate"
+              text="Inventory"
+            />
+            <AnchorButton
+              href="/#/toplist"
+              className="bp3-minimal"
+              icon="chart"
+              text="Toplist"
+            />
+          </Navbar.Group>
+          <Navbar.Group align={Alignment.RIGHT}>
             <Button
-                className="bp3-minimal"
-                icon="person"
-                text={user.username}
+              minimal={true}
+              icon="key"
+              onClick={this.updateKeyCount.bind(this)}
+              text={keys}
+              loading={loadingKeys}
+            />
+            {!user ? (
+              <Button
+                // className="bp3-minimal"
+                intent="success"
+                onClick={auth.login}
+                text="Login With Steam"
               />
-          )}
-        </Navbar.Group>
-      </Navbar>
+            ) : (
+                <Button
+                  className="bp3-minimal"
+                  icon="person"
+                  text={user.username}
+                  onClick={this.openProfile}
+                />
+              )}
+          </Navbar.Group>
+        </Navbar>
+      </div>
     );
   }
 }
