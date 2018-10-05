@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../styles/Cases.css";
-import CaseCard from "../components/CaseCard";
+import "./Cases.css";
+import CaseCard from "../../components/CaseCard/CaseCard";
 import { AnchorButton, Intent } from "@blueprintjs/core";
 
 const CaseList = ({ cases, stats, history }) => {

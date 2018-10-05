@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../styles/Cases.css";
-import CaseCardUser from "../components/CaseCardUser";
+import "./Cases.css";
+import CaseCardUser from "../../components/CaseCard/UserCaseCard";
 
 import { groupBy, map, clone, keys } from "lodash";
 import { Spinner } from "@blueprintjs/core";

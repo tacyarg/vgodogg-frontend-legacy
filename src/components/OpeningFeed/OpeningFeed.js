@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "../styles/OpeningFeed.css";
-import ItemCard from "../components/ItemCard";
-import utils from "../libs/utils";
+import "./OpeningFeed.css";
+import ItemCard from "../ItemCard/ItemCard";
+import utils from "../../libs/utils";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import {
-  LazyLoadComponent,
-  LazyLoadImage,
-  trackWindowScroll
+  LazyLoadComponent
 } from "react-lazy-load-image-component";
 
 class OpeningFeed extends Component {

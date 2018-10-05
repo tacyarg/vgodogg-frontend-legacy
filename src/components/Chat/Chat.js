@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../styles/Chat.css";
+import "./Chat.css";
 import CountUp from "react-countup";
 
-import { AnchorButton, Tag } from "@blueprintjs/core";
+import { AnchorButton } from "@blueprintjs/core";
 
 import { FaTwitter, FaDiscord } from "react-icons/fa";
 

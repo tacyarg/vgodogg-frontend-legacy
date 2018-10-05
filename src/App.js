@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./styles/Animations.css";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
-import Header from "./components/Header";
-import Chat from "./components/Chat";
-import OpeningFeed from "./components/OpeningFeed";
+import Header from "./components/Header/Header";
+import Chat from "./components/Chat/Chat";
+import OpeningFeed from "./components/OpeningFeed/OpeningFeed";
 
 // PAGES
-import Cases from "./pages/Cases";
-import CaseOverview from "./pages/CaseOverview";
+import Cases from "./pages/Cases/Cases";
+import CaseOverview from "./pages/CaseOverview/CaseOverview";
 
-import PendingCases from "./pages/PendingCases";
-import Spinner from "./pages/Spinner";
+import PendingCases from "./pages/Cases/PendingCases";
+import Spinner from "./pages/SpinCase/SpinCase";
 
 import Home from "./pages/Home";
-import Inventory from "./pages/Inventory";
+import Inventory from "./pages/Inventory/Inventory";
 
-import Toplist from "./pages/Toplist";
+import Toplist from "./pages/Toplist/Toplist";
 
 class App extends Component {
   constructor(props) {

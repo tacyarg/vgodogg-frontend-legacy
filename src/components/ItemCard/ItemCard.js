@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Card, Elevation } from "@blueprintjs/core";
-import "../styles/ItemCard.css";
-
-function getRarity(item) {
-  return {
-    color: item.color
-  };
-}
+import "./ItemCard.css";
 
 function CardBackground(user) {
   return {

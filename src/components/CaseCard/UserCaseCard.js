@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/CaseCard.css";
+import "./CaseCard.css";
 import { Card, Elevation } from "@blueprintjs/core";
 
 class CaseCard extends Component {

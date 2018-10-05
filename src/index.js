@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-// import registerServiceWorker from './registerServiceWorker';
 import { HashRouter as Router } from "react-router-dom";
 import axios from "axios";
 import Promise from "bluebird";
@@ -66,7 +65,6 @@ Promise.props({
     </Router>,
     document.getElementById("root")
   );
-  // registerServiceWorker();
 });
 
 // render loading animation

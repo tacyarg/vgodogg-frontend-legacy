@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import "../styles/CaseOverview.css";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import ItemCard from "../components/ItemCard";
-import utils from "../libs/utils";
+import "./CaseOverview.css";
+import ItemCard from "../../components/ItemCard/ItemCard";
+import utils from "../../libs/utils";
 import { sortBy, sumBy, map, maxBy } from "lodash";
 import CountUp from "react-countup";
 import { Button, Intent } from "@blueprintjs/core";
-import OpenCase from "../components/OpenCaseModal";
+import OpenCase from "../../components/OpenCaseModal";
 import LazyComponent from "react-component-lazy";
 
 class CaseOverview extends Component {
