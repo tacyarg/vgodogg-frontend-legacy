@@ -95,22 +95,10 @@ class CaseOverview extends Component {
                   className={ClassNames(Classes.CARD, "CaseOverview-details")}
                 >
                   <span className="CaseOverview-details-caseValue">
-                    <b>Best Item:</b> {this.state.box.bestItem.name} -{" "}
-                    <CountUp
-                      prefix="$"
-                      separator=","
-                      decimals={2}
-                      end={this.state.box.bestItem.suggested_price / 100}
-                    />
+                    <b>Best Item:</b> {this.state.box.bestItem.name}
                   </span>
                   <span className="CaseOverview-details-caseValue">
-                    <b>Worst Item:</b> {this.state.box.worstItem.name} -{" "}
-                    <CountUp
-                      prefix="$"
-                      separator=","
-                      decimals={2}
-                      end={this.state.box.worstItem.suggested_price / 100}
-                    />
+                    <b>Worst Item:</b> {this.state.box.worstItem.name}
                   </span>
                   <span className="CaseOverview-details-caseValue">
                     <b>Times Opened:</b>{" "}
