@@ -125,7 +125,7 @@ class CaseOverview extends Component {
                     />
                   </span>
                   <div className="CaseOverview-details-itemstats">
-                    <div>
+                    <div className="CaseOverview-details-itemstat">
                       <h4>Odds of Item Type</h4>
                       {map(this.state.stats.items.type, (stat, key) => {
                         return (
@@ -142,7 +142,7 @@ class CaseOverview extends Component {
                         );
                       })}
                     </div>
-                    <div>
+                    <div className="CaseOverview-details-itemstat">
                       <h4>Odds of Item Rarity</h4>
                       {map(this.state.stats.items.rarity, (stat, key) => {
                         return (

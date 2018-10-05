@@ -53,6 +53,10 @@
   justify-content: space-evenly;
 }
 
+.CaseOverview-details-itemstat {
+  padding: 10px;
+}
+
 .CaseOverview-details-caseValue {
   padding-top: 2.5px;
 }
