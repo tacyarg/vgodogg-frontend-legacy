@@ -20,7 +20,7 @@ function CardBackground(user) {
 
 class ItemCard extends Component {
   render() {
-    var { name, color, condition, image, suggested_price, user } = this.props;
+    var { name, color, category, condition, image, suggested_price, user } = this.props;
     return (
       <div className="ItemCard-wrapper">
         <Card
@@ -35,7 +35,7 @@ class ItemCard extends Component {
           <div className="ItemCard-top">
             <div className="ItemCard-itemName">{name}</div>
             <div className="ItemCard-itemCondition" style={{ color }}>
-              {condition}
+              {condition || category}
             </div>
           </div>
           <img

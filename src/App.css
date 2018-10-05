@@ -15,8 +15,7 @@
       rgba(255, 255, 255, 0),
       rgba(255, 255, 255, 0.5)
     ),
-    url("./tic-tac-toe.png");
-  /* url('./what-the-hex.png'); */
+    /* url("./tic-tac-toe.png"); */ url("./what-the-hex.png");
   /* url('./paper_fibers.png'); */
   overflow: hidden;
   overflow-y: auto;

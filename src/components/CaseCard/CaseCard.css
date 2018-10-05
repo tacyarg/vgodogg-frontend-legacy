@@ -10,6 +10,10 @@
   height: 300px;
 }
 
+.CaseCard-card:hover {
+  animation: float-card 2s ease-in-out infinite;
+}
+
 .CaseCard-content {
 }
 
@@ -38,4 +42,11 @@
   bottom: 20px;
   left: 0;
   right: 0;
+}
+
+@keyframes float-card {
+  50% {
+    /* filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%); */
+    transform: translatey(-5px);
+  }
 }
