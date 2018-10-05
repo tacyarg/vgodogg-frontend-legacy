@@ -70,8 +70,8 @@ class PendingCases extends Component {
             <Spinner className="Cases-loading" />
           ) : (
             <h1>
-              You have {keys(this.state.offerCases).length} pending case
-              openings!
+              You have {keys(this.state.offerCases).length} pending{" "}
+              {keys(this.state.offerCases).length > 1 ? 'openings' : 'opening'}!
             </h1>
           )}
         </div>
