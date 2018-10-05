@@ -7,8 +7,9 @@ import {
   AnchorButton,
   Navbar,
 } from "@blueprintjs/core";
-import Modal from "../Modal/Modal";
 
+import Modal from "../Modal/Modal";
+import Profile from '../Profile/Profile'
 
 class Header extends Component {
   constructor() {
@@ -59,13 +60,15 @@ class Header extends Component {
   };
 
   render() {
-    const { keys, loadingKeys } = this.state
-    const { user, auth } = this.props;
+    const { keys, loadingKeys, modalContent } = this.state
+    const { user, auth, serverState } = this.props;
     return (
       <div>
         <Modal
           onRef={ref => (this.modal = ref)}
-          // InnerComponent={modalContent}
+          InnerComponent={modalContent}
+          auth={auth}
+          serverState={serverState}
           onSubmit={this.openModal}
         />
         <Navbar>
