@@ -1,0 +1,17 @@
+.Modal-wrapper {
+  /* float: right; */
+}
+
+.Modal-overlay {
+  position: fixed;
+  top: 50% !important;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 800px;
+}
+
+.Overlay-content {
+}
