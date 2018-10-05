@@ -7,7 +7,6 @@ import CountUp from "react-countup";
 import { Button, Intent, Classes } from "@blueprintjs/core";
 import OpenCase from "../../components/OpenCaseModal";
 import LazyComponent from "react-component-lazy";
-import Stat from "./Stat";
 import ClassNames from "classnames";
 
 class CaseOverview extends Component {
