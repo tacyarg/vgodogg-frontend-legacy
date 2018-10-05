@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./CaseOverview.css";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import utils from "../../libs/utils";
-import { sortBy, sumBy, map, maxBy, uniqBy } from "lodash";
+import { sortBy, sumBy, map, maxBy, clone } from "lodash";
 import CountUp from "react-countup";
 import { Button, Intent, Classes } from "@blueprintjs/core";
 import OpenCase from "../../components/OpenCaseModal";
@@ -13,7 +13,7 @@ import ClassNames from "classnames";
 class CaseOverview extends Component {
   constructor(props) {
     super();
-    var box = props.boxes[parseInt(--props.match.params.boxid)];
+    var box = clone(props.boxes[parseInt(--props.match.params.boxid)]);
     box.items = sortBy(box.items, "suggested_price").reverse();
     var stats = props.stats.allTime.cases[box.id];
     stats.bestUnboxed = maxBy(stats.items.name, "totalValue");
