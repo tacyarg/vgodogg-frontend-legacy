@@ -10,7 +10,7 @@ import Auth from "./libs/auth";
 import AppToaster from "./components/AppToaster";
 
 import App from "./App";
-import Loading from "./pages/Loading";
+import Loading from "./pages/Loading/Loading";
 
 const API_URL = "https://api.vunbox.com";
 const SOCKET_URL = "https://socket.vunbox.com";

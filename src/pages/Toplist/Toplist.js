@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Toplist.css";
-import Leaderboard from "../../components/Leaderboard";
+import Leaderboard from "../../components/Leaderboard/Leaderboard";
 
 class Toplist extends Component {
   render() {
