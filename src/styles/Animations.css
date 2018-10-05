@@ -44,8 +44,8 @@
     transform: translatey(0px);
   }
   50% {
-    filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.5)) saturate(123%);
-    transform: translatey(-20px);
+    filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.5)) saturate(123%);
+    transform: translatey(-10px);
   }
   100% {
     filter: drop-shadow(0 20px 10px rgba(0, 0, 0, 0.5)) saturate(123%);

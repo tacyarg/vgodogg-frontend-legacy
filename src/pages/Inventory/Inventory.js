@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import "../styles/Inventory.css";
-import ItemCard from "../components/ItemCard";
+import "./Inventory.css";
+import ItemCard from "../../components/ItemCard/ItemCard";
 import {
-  LazyLoadComponent,
-  LazyLoadImage,
-  trackWindowScroll
+  LazyLoadComponent
 } from "react-lazy-load-image-component";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import utils from "../libs/utils";
+import utils from "../../libs/utils";
 import { Spinner } from "@blueprintjs/core";
 import CountUp from "react-countup";
 import { sumBy } from "lodash";

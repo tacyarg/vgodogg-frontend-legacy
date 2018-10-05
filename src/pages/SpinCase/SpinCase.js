@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import { CSSTransitionGroup } from "react-transition-group"; // ES6
 import CountUp from "react-countup";
 
-import "../styles/Spinner.css";
-import { random, shuffle, concat, sortBy, clone } from "lodash";
+import "./SpinCase.css";
+import { random, shuffle, concat, sortBy } from "lodash";
 import {
   Checkbox,
   Button,
@@ -13,15 +12,8 @@ import {
   Intent,
   ControlGroup
 } from "@blueprintjs/core";
-import uuid from "uuid/v4";
-import items from "../libs/caseItems";
-import ItemCard from "../components/ItemCard";
-import utils from "../libs/utils";
-import {
-  LazyLoadComponent,
-  LazyLoadImage,
-  trackWindowScroll
-} from "react-lazy-load-image-component";
+import ItemCard from "../../components/ItemCard/ItemCard";
+import utils from "../../libs/utils";
 
 const FILTER_OPTIONS = [
   "Unboxed: last",
@@ -161,8 +153,10 @@ class Spinner extends Component {
       // var wonSorted = this.sortItems(this.state.itemsWon, this.state.sortFilter)
       // this.setState({itemsWon: wonSorted})
 
-      this.state.totalWon += winner.suggested_price / 100;
-      this.setState({ winnerElevation: Elevation.FOUR });
+      this.setState({
+        totalWon: this.state.totalWon + winner.suggested_price / 100,
+        winnerElevation: Elevation.FOUR
+      });
       this.setCaseOpened.bind(this)();
 
       setTimeout(() => {
@@ -193,7 +187,6 @@ class Spinner extends Component {
   }
 
   render() {
-    var { items } = this.props;
     return (
       <div className="Spinner-wrapper">
         <div className="Spinner-title">

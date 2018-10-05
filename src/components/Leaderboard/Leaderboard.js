@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/Leaderboard.css";
+import "./Leaderboard.css";
 import { HTMLTable } from "@blueprintjs/core";
 import moment from "moment";
 import CountUp from "react-countup";
