@@ -24,7 +24,6 @@ class CaseCard extends Component {
             />
 
             <div className="CaseCard-animation">
-              {/* INSERT CASE ITEMS HERE */}
               <div className="CaseCard-animation-content">
                 {box.items.map(item => {
                   item = utils.processItem(item);
