@@ -64,11 +64,18 @@ class ItemCard extends Component {
               {condition || category}
             </div>
           </div>
-          <img
+          {
+            box
+            ? <img
             className="ItemCard-itemImage"
             src={this.state.hovered ? box.image['300px'] : image['300px']}
             alt={name}
-          />
+          /> : <img
+          className="ItemCard-itemImage"
+          src={image ? image['300px'] : null}
+          alt={name}
+        />
+          }
           <div className="ItemCard-itemPrice">
             ${(suggested_price / 100).toFixed(2)}
           </div>
