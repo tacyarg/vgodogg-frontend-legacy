@@ -1,7 +1,6 @@
 {
   "name": "react-test",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@blueprintjs/core": "^3.6.1",
     "axios": "^0.18.0",
