@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class OpeningFeed extends Component {
   render() {
-    const { recentOpenings } = this.props;
+    const { recentOpenings, boxes } = this.props;
     return (
       <ReactCSSTransitionGroup
         className="OpeningFeed-wrapper"
@@ -19,6 +19,7 @@ class OpeningFeed extends Component {
           return (
             <ItemCard
               {...item}
+              box={boxes.find(box => box.id === opening.case_id)}
               key={opening.id}
               elevation={item.selected ? this.state.winnerElevation : null}
               user={opening.user}

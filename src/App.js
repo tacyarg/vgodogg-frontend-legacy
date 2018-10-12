@@ -43,7 +43,7 @@ class App extends Component {
           callAction={callAction}
           stats={this.state.stats}
         />
-        <OpeningFeed recentOpenings={this.state.recentOpenings} />
+        <OpeningFeed recentOpenings={this.state.recentOpenings} boxes={this.state.cases}/>
         <div className="App-content">
           <Route
             exact
