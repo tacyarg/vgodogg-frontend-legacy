@@ -51,6 +51,10 @@ class Spinner extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState;
+  }
+
   componentDidMount() {
     this.props
       .callAction("getOfferCases", {
@@ -119,7 +123,8 @@ class Spinner extends Component {
       winner,
       winnerElevation: null,
       spinnerTransition: "",
-      spinnerTransform: `translateX(-180px) translateZ(0px)`
+      // spinnerTransform: `translateX(-180px) translateZ(0px)`
+      spinnerTransform: `translate3d(-180px, 0, 0)`
     });
 
     if (currentCase && this.props.user) {
@@ -144,15 +149,13 @@ class Spinner extends Component {
       this.setState({
         spinning: true,
         spinnerTransition: `all ${speed}s ease`,
-        spinnerTransform: `translateX(${(winningItemIndex * -itemWidth) + offset}px) translateZ(0px)`
+        spinnerTransform: `translate3d(${(winningItemIndex * -itemWidth) + offset}px, 0, 0)`
+        // spinnerTransform: `translateX(${(winningItemIndex * -itemWidth) + offset}px) translateZ(0px)`
       });
     }, 500);
 
     setTimeout(() => {
       this.state.itemsWon.unshift(winner);
-      // var wonSorted = this.sortItems(this.state.itemsWon, this.state.sortFilter)
-      // this.setState({itemsWon: wonSorted})
-
       this.setState({
         totalWon: this.state.totalWon + winner.suggested_price / 100,
         winnerElevation: Elevation.FOUR

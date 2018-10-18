@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import './CaseCard.css'
 import { Card, Elevation } from '@blueprintjs/core'
 import utils from "../../libs/utils";
 
-class CaseCard extends Component {
+class CaseCard extends PureComponent {
   render() {
     var { box } = this.props
     return (

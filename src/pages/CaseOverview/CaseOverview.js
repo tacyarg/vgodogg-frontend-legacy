@@ -55,6 +55,10 @@ class CaseOverview extends Component {
       });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState;
+  }
+
   render() {
     return (
       <div className="CaseOverview-wrapper">

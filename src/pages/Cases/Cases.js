@@ -18,6 +18,11 @@ const CaseList = ({ cases, stats, history }) => {
 };
 
 class Cases extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   render() {
     const { cases, stats, user, history } = this.props;
     return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Card, Elevation } from '@blueprintjs/core'
 import './ItemCard.css'
 
@@ -18,7 +18,7 @@ function CardBackground(image) {
   }
 }
 
-class ItemCard extends Component {
+class ItemCard extends PureComponent {
   constructor(props) {
     super(props);
 

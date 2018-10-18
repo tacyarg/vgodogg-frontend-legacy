@@ -4,7 +4,16 @@ import { HTMLTable } from "@blueprintjs/core";
 import moment from "moment";
 import CountUp from "react-countup";
 
+import {deepEquals} from 'lodash'
+
 class Leaderboard extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log(nextProps)
+    return true
+    // return deepEquals(nextProps.stats.cases, this.props.stats.cases);
+  }
+
   render() {
     var { stats } = this.props;
     var topCases = stats.top.cases;
@@ -25,16 +34,10 @@ class Leaderboard extends Component {
           </div>
           <div className="Leaderboard-table-header-right">
             <h4>
-              Opened: <CountUp end={stats.cases.opened} />
+              Opened: {stats.cases.opened.toLocaleString()}
             </h4>
             <h4>
-              Rewarded:{" "}
-              <CountUp
-                prefix="$"
-                separator=","
-                decimals={2}
-                end={stats.cases.totalValue}
-              />
+              Rewarded: {stats.cases.totalValue.toLocaleString()}
             </h4>
           </div>
         </div>

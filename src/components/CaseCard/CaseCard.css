@@ -119,6 +119,6 @@
 
 @keyframes spin-wheel {
   100% {
-    transform: translateX(-95%);
+    transform: translate3d(-95%, 0, 0);
   }
 }

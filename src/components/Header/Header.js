@@ -29,6 +29,10 @@ class Header extends Component {
     this.setState({ keys });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState;
+  }
+
   updateKeyCount() {
     if (!this.props.user) return;
     this.setState({

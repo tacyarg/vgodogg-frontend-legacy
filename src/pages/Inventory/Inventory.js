@@ -41,6 +41,10 @@ class Inventory extends Component {
     this.getMyInventory.bind(this)();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState;
+  }
+
   getMyInventory() {
     return this.props
       .callAction("getMyInventory", {

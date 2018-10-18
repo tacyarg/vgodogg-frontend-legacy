@@ -1,50 +1,113 @@
-import React, { Component } from "react";
-import "./Chat.css";
-import CountUp from "react-countup";
+import React, { Component } from 'react'
+import './Chat.css'
+import {
+  AnchorButton,
+  Classes,
+  ContextMenu,
+  ContextMenuTarget,
+  Menu,
+  MenuDivider,
+  MenuItem,
+} from '@blueprintjs/core'
+import { FaTwitter, FaDiscord } from 'react-icons/fa'
+import classNames from 'classnames'
 
-import { AnchorButton } from "@blueprintjs/core";
+const Message = ({ message, onContextMenu }) => {
+  var htmlMessage = { __html: message.message }
+  return (
+    <div
+      className="Chat-message"
+      key={message.id}
+      onContextMenu={onContextMenu}
+    >
+      <div className="Chat-user">
+        <img
+          className="Chat-avatar"
+          src={message.user.avatarurl}
+          alt={message.user.username}
+        />
+        <div className="Chat-username">{message.user.username}</div>
+      </div>
+      <div
+        className="Chat-message-message"
+        dangerouslySetInnerHTML={htmlMessage}
+      />
+    </div>
+  )
+}
 
-import { FaTwitter, FaDiscord } from "react-icons/fa";
+const AdminMenu = ({user, message, callAction}) => {
+  const minute = 60*1000
+  const hour = 60*minute
+  const muteUser = function(userid, muteTime){return callAction('setUserMuted', {userid, muteTime}) }
+  return (
+    <Menu>
+      {/* <MenuItem icon="cross" text="Ban" /> */}
+      <MenuItem icon="graph-remove" text="Mute (5 Min)" onClick={e=>muteUser(message.user.id, 5*minute)} />
+      <MenuItem icon="graph-remove" text="Mute (20 Min)" onClick={e=>muteUser(message.user.id, 20*minute)}/>
+      <MenuItem icon="graph-remove" text="Mute (1 Hr)" onClick={e=>muteUser(message.user.id, hour)}/>
+      <MenuItem icon="graph-remove" text="Mute (24 Hr)" onClick={e=>muteUser(message.user.id, 24*hour)}/>
+      <MenuItem icon="graph-remove" text="Fuck this guy" onClick={e=>muteUser(message.user.id, 9999999*hour)}/>
+      {/* <MenuItem icon="delete" text="Delete" /> */}
+      {/* <MenuItem icon="history" text="Clear" /> */}
+      <MenuDivider />
+      <MenuItem disabled={true} text={message.user.username} />
+    </Menu>
+  )
+}
 
 class Chat extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isContextMenuOpen: false
+    }
+  }
+
+  showContextMenu = (e, message) => {
+    console.log(message)
+    // must prevent default to cancel parent's context menu
+    e.preventDefault()
+    // invoke static API, getting coordinates from mouse event
+    ContextMenu.show(<AdminMenu user={this.props.user} message={message} callAction={this.props.callAction}/>,{ left: e.clientX, top: e.clientY }, () =>
+      this.setState({ isContextMenuOpen: false })
+    )
+    // indicate that context menu is open so we can add a CSS class to this element
+    this.setState({ isContextMenuOpen: true })
+  }
+
   scrollToBottom = () => {
-    this.el.scrollIntoView({ behavior: "smooth" });
-  };
+    this.el.scrollIntoView({ behavior: 'smooth' })
+  }
 
   componentDidMount() {
-    this.scrollToBottom();
+    this.scrollToBottom()
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
+    this.scrollToBottom()
   }
 
   sendMessage(e) {
-    if (e.key !== "Enter") return;
-    this.props.callAction("sendChatMessage", {
-      message: this.input.value
-    });
-    this.input.value = "";
+    if (e.key !== 'Enter') return
+    this.props.callAction('sendChatMessage', {
+      message: this.input.value,
+    })
+    this.input.value = ''
   }
 
   render() {
-    const { messages, stats, user } = this.props;
+    const { messages, stats, user, actions } = this.props
     return (
       <div className="Chat-wrapper">
         <div className="Chat-header">
           <div className="Chat-header-stats">
             <span>
-              <b>Opened:</b>{" "}
-              <CountUp separator="," end={stats.allTime.cases.opened} />{" "}
+              <b>Opened:</b> {stats.allTime.cases.opened.toLocaleString()}
             </span>
             <span>
-              <b>Rewarded:</b>{" "}
-              <CountUp
-                prefix="$"
-                separator=","
-                decimals={2}
-                end={stats.allTime.cases.totalValue}
-              />{" "}
+              <b>Rewarded:</b> {stats.allTime.cases.totalValue.toLocaleString()}
             </span>
           </div>
           <div className="Chat-header-social">
@@ -64,28 +127,17 @@ class Chat extends Component {
         </div>
         <div className="Chat-body">
           {messages.map((message, index) => {
-            var htmlMessage = { __html: message.message };
             return (
-              <div className="Chat-message" key={message.id}>
-                <div className="Chat-user">
-                  <img
-                    className="Chat-avatar"
-                    src={message.user.avatarurl}
-                    alt={message.user.username}
-                  />
-                  <div className="Chat-username">{message.user.username}</div>
-                </div>
-                <div
-                  className="Chat-message-message"
-                  dangerouslySetInnerHTML={htmlMessage}
-                />
-              </div>
-            );
+              <Message message={message} onContextMenu={e => {
+                if(!user.admin) return
+                this.showContextMenu(e, message)
+              }} />
+            )
           })}
           {/* fake div to allow scroll to bottom... */}
           <div
             ref={el => {
-              this.el = el;
+              this.el = el
             }}
           />
         </div>
@@ -100,8 +152,8 @@ class Chat extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Chat;
+export default Chat
