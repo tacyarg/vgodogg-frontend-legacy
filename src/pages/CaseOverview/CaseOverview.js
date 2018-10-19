@@ -82,6 +82,7 @@ class CaseOverview extends Component {
                     buyCases={this.sendKeyRequest.bind(this)}
                   />
                   <Button
+                    disabled={this.state.box.remaining_opens === 0}
                     className="CaseOverview-buyButton"
                     large={true}
                     intent={Intent.SUCCESS}
