@@ -40,7 +40,7 @@ class ItemCard extends PureComponent {
       image,
       suggested_price,
       user,
-      box,
+      box
     } = this.props
     return (
       <div className="ItemCard-wrapper">

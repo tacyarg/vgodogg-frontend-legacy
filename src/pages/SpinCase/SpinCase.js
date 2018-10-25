@@ -211,6 +211,7 @@ class Spinner extends Component {
                 return (
                   <ItemCard
                     key={item.id + index}
+                    style={{ color: 'white', background: '#182026', border: `${item.selected && this.state.winnerElevation > 1 ? '1px solid gold' : ''}` }}
                     elevation={
                       item.selected ? this.state.winnerElevation : null
                     }
