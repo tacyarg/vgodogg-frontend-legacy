@@ -30,7 +30,7 @@ class Profile extends Component {
       user: null,
       stats: {},
       // user: props.serverState(["me", "user"]),
-      // stats: props.serverState(["me", "stats"])
+      // stats: props.serverState(["me", "stats"]) || {}
     }
   }
 

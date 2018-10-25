@@ -35,6 +35,7 @@ class App extends Component {
           stats={this.state.stats}
           user={user}
           auth={auth}
+          serverState={this.props.serverState}
           callAction={callAction}
         />
         <Chat

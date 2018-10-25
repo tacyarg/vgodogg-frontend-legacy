@@ -17,7 +17,9 @@ const SOCKET_URL = "https://socket.vunbox.com";
 // const API_URL = 'http://localhost:3000'
 // const SOCKET_URL = 'http://localhost:3001'
 const serverState = State();
-const socket = openSocket(SOCKET_URL);
+const socket = openSocket(SOCKET_URL, {
+  transports: ['websocket', 'polling']
+});
 const auth = Auth(socket);
 
 function getServerState() {
