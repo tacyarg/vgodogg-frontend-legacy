@@ -33,7 +33,7 @@ class Cases extends Component {
             href="/#/pending"
             large={true}
             text="My Pending Cases"
-            intent={Intent.SUCCESS}
+            intent={Intent.PRIMARY}
             rightIcon="arrow-right"
           />
         </div>

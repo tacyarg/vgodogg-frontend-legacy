@@ -1,11 +1,11 @@
 .Chat-wrapper {
   position: fixed;
-  top: 51px;
+  top: 50px;
   right: 0;
   bottom: 0;
   width: 300px;
   background-color: white;
-  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  /* border-left: 1px solid rgba(0, 0, 0, 0.2); */
   /* box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2); */
   /* background-color: red; */
 }

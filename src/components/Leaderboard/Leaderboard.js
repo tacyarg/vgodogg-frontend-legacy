@@ -18,7 +18,7 @@ class Leaderboard extends Component {
     var { stats } = this.props;
     var topCases = stats.top.cases;
     return (
-      <div className="Leaderboard-table-wrapper">
+      <div className="Leaderboard-table-wrapper bp3-dark">
         <div className="Leaderboard-table-header">
           <div className="Leaderboard-table-header-left">
             <h1> {stats.name.toUpperCase()} Top Openings </h1>
@@ -44,6 +44,7 @@ class Leaderboard extends Component {
 
         <HTMLTable
           className="Leaderboard-table-body"
+          style={{ color: 'white', background: '#182026' }}
           bordered={true}
           striped={true}
           // small={true}

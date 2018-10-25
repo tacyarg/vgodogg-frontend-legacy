@@ -8,6 +8,7 @@ class CaseCard extends Component {
     return (
       <div className="CaseCard-wrapper">
         <Card
+          style={{ color: 'white', background: '#182026' }}
           key={box.id}
           interactive={true}
           elevation={Elevation.ONE}

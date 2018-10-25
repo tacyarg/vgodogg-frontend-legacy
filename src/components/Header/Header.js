@@ -75,7 +75,10 @@ class Header extends Component {
           serverState={serverState}
           onSubmit={this.openModal}
         />
-        <Navbar>
+        <Navbar
+          className="bp3-dark"
+          style={{ color: 'white', background: '#10161A' }}
+        >
           <Navbar.Group align={Alignment.LEFT}>
             <Navbar.Heading className="Header-logo">
               {/* <b> VGO Cases </b> */}

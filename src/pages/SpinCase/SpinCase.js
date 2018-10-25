@@ -243,7 +243,7 @@ class Spinner extends Component {
                 end={this.state.totalWon}
               />
             </div>
-            <ControlGroup className="Spinner-itemsWon-Title-right">
+            <ControlGroup className="Spinner-itemsWon-Title-right bp3-dark">
               <Checkbox
                 className="Spinner-autospin"
                 checked={this.state.autoSpin}

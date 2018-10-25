@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import './CaseCard.css'
 import { Card, Elevation } from '@blueprintjs/core'
-import utils from "../../libs/utils";
+import utils from '../../libs/utils'
 
 class CaseCard extends PureComponent {
   render() {
@@ -9,6 +9,7 @@ class CaseCard extends PureComponent {
     return (
       <div className="CaseCard-wrapper">
         <Card
+          style={{ color: 'white', background: '#182026' }}
           key={box.id}
           interactive={true}
           elevation={Elevation.ONE}
@@ -26,12 +27,12 @@ class CaseCard extends PureComponent {
             <div className="CaseCard-animation">
               <div className="CaseCard-animation-content">
                 {box.items.map(item => {
-                  item = utils.processItem(item);
-                  if (item.condition !== "Factory New") return;
+                  item = utils.processItem(item)
+                  if (item.condition !== 'Factory New') return
                   return (
                     <div className="CaseCard-animation-content-item">
                       <div className="CaseCard-animation-content-item-image">
-                        <img src={item.image['300px']}></img>
+                        <img src={item.image['300px']} />
                       </div>
                     </div>
                   )

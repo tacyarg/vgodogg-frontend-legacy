@@ -20,15 +20,15 @@ function CardBackground(image) {
 
 class ItemCard extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      hovered: false
+      hovered: false,
     }
   }
 
   toggleHover = e => {
-    this.setState({hovered: !this.state.hovered})
+    this.setState({ hovered: !this.state.hovered })
   }
 
   render() {
@@ -45,6 +45,7 @@ class ItemCard extends PureComponent {
     return (
       <div className="ItemCard-wrapper">
         <Card
+          style={{ color: 'white', background: '#182026' }}
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
           interactive={true}
@@ -64,18 +65,19 @@ class ItemCard extends PureComponent {
               {condition || category}
             </div>
           </div>
-          {
-            box
-            ? <img
-            className="ItemCard-itemImage"
-            src={this.state.hovered ? box.image['300px'] : image['300px']}
-            alt={name}
-          /> : <img
-          className="ItemCard-itemImage"
-          src={image ? image['300px'] : null}
-          alt={name}
-        />
-          }
+          {box ? (
+            <img
+              className="ItemCard-itemImage"
+              src={this.state.hovered ? box.image['300px'] : image['300px']}
+              alt={name}
+            />
+          ) : (
+            <img
+              className="ItemCard-itemImage"
+              src={image ? image['300px'] : null}
+              alt={name}
+            />
+          )}
           <div className="ItemCard-itemPrice">
             ${(suggested_price / 100).toFixed(2)}
           </div>

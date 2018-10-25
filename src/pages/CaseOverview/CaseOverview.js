@@ -85,7 +85,7 @@ class CaseOverview extends Component {
                     disabled={this.state.box.remaining_opens === 0}
                     className="CaseOverview-buyButton"
                     large={true}
-                    intent={Intent.SUCCESS}
+                    intent={Intent.PRIMARY}
                     text="PURCHASE THIS CASE"
                     icon="bank-account"
                     onClick={e => {
@@ -98,6 +98,7 @@ class CaseOverview extends Component {
               <div className="CaseOverview-details">
                 <div
                   className={ClassNames(Classes.CARD, 'CaseOverview-details')}
+                  style={{ color: 'white', background: '#182026' }}
                 >
                   <span className="CaseOverview-details-caseValue">
                     <b>Best Item:</b> {this.state.box.bestItem.name}

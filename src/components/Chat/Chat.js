@@ -16,7 +16,8 @@ const Message = ({ message, onContextMenu }) => {
   var htmlMessage = { __html: message.message }
   return (
     <div
-      className="Chat-message"
+      className="Chat-message bp3-dark"
+      style={{ color: 'white', background: '#182026' }}
       key={message.id}
       onContextMenu={onContextMenu}
     >
@@ -36,18 +37,43 @@ const Message = ({ message, onContextMenu }) => {
   )
 }
 
-const AdminMenu = ({user, message, callAction}) => {
-  const minute = 60*1000
-  const hour = 60*minute
-  const muteUser = function(userid, muteTime){return callAction('setUserMuted', {userid, muteTime}) }
+const AdminMenu = ({ user, message, callAction }) => {
+  const minute = 60 * 1000
+  const hour = 60 * minute
+  const muteUser = function(userid, muteTime) {
+    return callAction('setUserMuted', { userid, muteTime })
+  }
   return (
-    <Menu>
+    <Menu
+      className="bp3-dark"
+      style={{ color: 'white', background: '#10161A' }}
+    >
       {/* <MenuItem icon="cross" text="Ban" /> */}
-      <MenuItem icon="graph-remove" text="Mute (5 Min)" onClick={e=>muteUser(message.user.id, 5*minute)} />
-      <MenuItem icon="graph-remove" text="Mute (20 Min)" onClick={e=>muteUser(message.user.id, 20*minute)}/>
-      <MenuItem icon="graph-remove" text="Mute (1 Hr)" onClick={e=>muteUser(message.user.id, hour)}/>
-      <MenuItem icon="graph-remove" text="Mute (24 Hr)" onClick={e=>muteUser(message.user.id, 24*hour)}/>
-      <MenuItem icon="graph-remove" text="Fuck this guy" onClick={e=>muteUser(message.user.id, 9999999*hour)}/>
+      <MenuItem
+        icon="graph-remove"
+        text="Mute (5 Min)"
+        onClick={e => muteUser(message.user.id, 5 * minute)}
+      />
+      <MenuItem
+        icon="graph-remove"
+        text="Mute (20 Min)"
+        onClick={e => muteUser(message.user.id, 20 * minute)}
+      />
+      <MenuItem
+        icon="graph-remove"
+        text="Mute (1 Hr)"
+        onClick={e => muteUser(message.user.id, hour)}
+      />
+      <MenuItem
+        icon="graph-remove"
+        text="Mute (24 Hr)"
+        onClick={e => muteUser(message.user.id, 24 * hour)}
+      />
+      <MenuItem
+        icon="graph-remove"
+        text="Fuck this guy"
+        onClick={e => muteUser(message.user.id, 9999999 * hour)}
+      />
       {/* <MenuItem icon="delete" text="Delete" /> */}
       {/* <MenuItem icon="history" text="Clear" /> */}
       <MenuDivider />
@@ -61,7 +87,7 @@ class Chat extends Component {
     super(props)
 
     this.state = {
-      isContextMenuOpen: false
+      isContextMenuOpen: false,
     }
   }
 
@@ -70,8 +96,14 @@ class Chat extends Component {
     // must prevent default to cancel parent's context menu
     e.preventDefault()
     // invoke static API, getting coordinates from mouse event
-    ContextMenu.show(<AdminMenu user={this.props.user} message={message} callAction={this.props.callAction}/>,{ left: e.clientX, top: e.clientY }, () =>
-      this.setState({ isContextMenuOpen: false })
+    ContextMenu.show(
+      <AdminMenu
+        user={this.props.user}
+        message={message}
+        callAction={this.props.callAction}
+      />,
+      { left: e.clientX, top: e.clientY },
+      () => this.setState({ isContextMenuOpen: false })
     )
     // indicate that context menu is open so we can add a CSS class to this element
     this.setState({ isContextMenuOpen: true })
@@ -101,7 +133,10 @@ class Chat extends Component {
     const { messages, stats, user, actions } = this.props
     return (
       <div className="Chat-wrapper">
-        <div className="Chat-header">
+        <div
+          className="Chat-header bp3-dark"
+          style={{ color: 'white', background: '#10161A' }}
+        >
           <div className="Chat-header-stats">
             <span>
               <b>Opened:</b> {stats.allTime.cases.opened.toLocaleString()}
@@ -128,10 +163,13 @@ class Chat extends Component {
         <div className="Chat-body">
           {messages.map((message, index) => {
             return (
-              <Message message={message} onContextMenu={e => {
-                if(!user.admin) return
-                this.showContextMenu(e, message)
-              }} />
+              <Message
+                message={message}
+                onContextMenu={e => {
+                  if (!user.admin) return
+                  this.showContextMenu(e, message)
+                }}
+              />
             )
           })}
           {/* fake div to allow scroll to bottom... */}
@@ -141,8 +179,12 @@ class Chat extends Component {
             }}
           />
         </div>
-        <div className="Chat-input-wrapper">
+        <div
+          className="Chat-input-wrapper"
+          style={{ color: 'white', background: '#10161A' }}
+        >
           <input
+            style={{ color: 'white', background: '#182026' }}
             disabled={!user}
             className="Chat-input"
             type="text"
