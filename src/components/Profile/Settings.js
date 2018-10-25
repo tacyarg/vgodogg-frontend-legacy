@@ -39,9 +39,9 @@ class Settings extends Component {
   };
 
   saveSettings = e => {
-    var { actions, toggleOverlay } = this.props;
+    var { callAction, toggleOverlay } = this.props;
     this.setState({ saving: true });
-    return actions.updateMyProfileSettings(this.state).then(resp => {
+    return callAction('updateMyProfileSettings',this.state).then(resp => {
       this.setState({ saving: false });
       toggleOverlay();
     });
@@ -69,7 +69,8 @@ class Settings extends Component {
                   value={profileBackgroundURL}
                   onChange={this.onProfileBackgroundURLChange}
                   leftIcon="link"
-                  placeholder="https://media.giphy.com/media/l2SpW7nWd4QuBE5LW/giphy.gif"
+                  placeholder="https://media.giphy.com/media/OK5LK5zLFfdm/giphy.gif"
+                  // placeholder="https://media.giphy.com/media/l2SpW7nWd4QuBE5LW/giphy.gif"
                 />
               </FormGroup>
 

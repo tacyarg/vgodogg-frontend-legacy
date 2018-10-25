@@ -1,51 +1,69 @@
-import React, { Component } from "react";
-import "./Profile.css";
-import Settings from "./Settings";
-import Stats from "./Stats";
+import React, { Component } from 'react'
+import './Profile.css'
+import Settings from './Settings'
+import Stats from './Stats'
+
+import { Spinner } from '@blueprintjs/core'
 
 const headerBackground = function(profileBackgroundURL) {
   return {
     backgroundImage: `url('${profileBackgroundURL}')`,
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundColor: "aquamarine",
-    color: "white",
-    width: "100%",
-    minHeight: "200px",
-    borderRadius: "5px",
-    padding: "20px",
-    boxShadow: "inset 0 0 5px black",
-    display: "flex",
-    flexWrap: "wrap"
-  };
-};
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundColor: 'aquamarine',
+    color: 'white',
+    width: '100%',
+    minHeight: '200px',
+    borderRadius: '5px',
+    padding: '20px',
+    boxShadow: 'inset 0 0 5px black',
+    display: 'flex',
+    flexWrap: 'wrap',
+  }
+}
 
 class Profile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      user: props.serverState(["me", "user"]),
-      stats: props.serverState(["me", "stats"])
-    };
+      user: null,
+      stats: {},
+      // user: props.serverState(["me", "user"]),
+      // stats: props.serverState(["me", "stats"])
+    }
+  }
+
+  async componentDidMount() {
+    const {userid} = this.props
+    const user = !userid ? await this.props.callAction('me') : await this.props.callAction('getUserDetails', {userid})
+    this.setState({ user })
   }
 
   onBackgroundChange = url => {
-    var user = this.state.user;
-    user.profileBackgroundURL = url;
-    this.setState({ user });
-  };
+    var user = this.state.user
+    user.profileBackgroundURL = url
+    this.setState({ user })
+  }
 
   render() {
-    var { user, stats } = this.state;
-    var { actions } = this.props;
+    var { user, stats } = this.state
+    var { actions } = this.props
+
+    if (!user)
+      return (
+        <div style={{ padding: '20px' }}>
+          <Spinner />
+        </div>
+      )
 
     return (
       <div className="Profile-content">
         <div
           style={headerBackground(
             user.profileBackgroundURL ||
-              "https://media.giphy.com/media/BlcWQ9L2VfOFO/giphy.gif"
+            'https://media.giphy.com/media/OK5LK5zLFfdm/giphy.gif'  
+            // 'https://media.giphy.com/media/BlcWQ9L2VfOFO/giphy.gif'
           )}
         >
           <div className="Profile-content-header">
@@ -81,8 +99,8 @@ class Profile extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Profile;
+export default Profile

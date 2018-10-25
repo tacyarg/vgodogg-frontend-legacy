@@ -14,12 +14,15 @@ class CaseOverview extends Component {
     super()
     var box = clone(props.boxes[parseInt(--props.match.params.boxid)])
     box.items = sortBy(box.items, 'suggested_price').reverse()
-    var stats = props.stats.allTime.cases[box.id]
-    stats.bestUnboxed = maxBy(stats.items.name, 'totalValue')
+    var stats = props.stats.allTime.cases[box.id] || {
+      opened: 0,
+      totalValue: 0,
+    }
+    stats.bestUnboxed = stats.items ? maxBy(stats.items.name, 'totalValue') : 0
     this.state = {
       isOpen: false,
       selectedBox: {},
-      stats: stats || { opened: 0, totalValue: 0 },
+      stats: stats,
       box,
     }
   }
@@ -134,37 +137,43 @@ class CaseOverview extends Component {
                   <div className="CaseOverview-details-itemstats">
                     <div className="CaseOverview-details-itemstat">
                       <h4>Odds of Item Type</h4>
-                      {map(this.state.stats.items.type, (stat, key) => {
-                        return (
-                          <div>
-                            <b> {key}: </b>
-                            <CountUp
-                              decimals={2}
-                              end={
-                                (stat.opened / this.state.stats.opened) * 100
-                              }
-                            />
-                            %
-                          </div>
-                        )
-                      })}
+                      {this.state.stats.items
+                        ? map(this.state.stats.items.type, (stat, key) => {
+                            return (
+                              <div>
+                                <b> {key}: </b>
+                                <CountUp
+                                  decimals={2}
+                                  end={
+                                    (stat.opened / this.state.stats.opened) *
+                                    100
+                                  }
+                                />
+                                %
+                              </div>
+                            )
+                          })
+                        : null}
                     </div>
                     <div className="CaseOverview-details-itemstat">
                       <h4>Odds of Item Rarity</h4>
-                      {map(this.state.stats.items.rarity, (stat, key) => {
-                        return (
-                          <div>
-                            <b> {key}: </b>
-                            <CountUp
-                              decimals={2}
-                              end={
-                                (stat.opened / this.state.stats.opened) * 100
-                              }
-                            />
-                            %
-                          </div>
-                        )
-                      })}
+                      {this.state.stats.items
+                        ? map(this.state.stats.items.rarity, (stat, key) => {
+                            return (
+                              <div>
+                                <b> {key}: </b>
+                                <CountUp
+                                  decimals={2}
+                                  end={
+                                    (stat.opened / this.state.stats.opened) *
+                                    100
+                                  }
+                                />
+                                %
+                              </div>
+                            )
+                          })
+                        : null}
                     </div>
                   </div>
                 </div>

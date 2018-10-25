@@ -56,6 +56,7 @@ module.exports = function(socket) {
           localStorage.setItem("authToken", "");
           return reject(new Error("Failed to authenticate!"));
         }
+        result = JSON.parse(result)
         state.authenticated = true;
         state.user = result;
         resolve(result);

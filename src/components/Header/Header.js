@@ -60,18 +60,19 @@ class Header extends Component {
   };
 
   openProfile = () => {
-    // this.openModal(Profile);
+    this.openModal(Profile);
   };
 
   render() {
     const { keys, loadingKeys, modalContent } = this.state
-    const { user, auth, serverState } = this.props;
+    const { user, auth, serverState, callAction } = this.props;
     return (
       <div>
         <Modal
           onRef={ref => (this.modal = ref)}
           InnerComponent={modalContent}
           auth={auth}
+          callAction={callAction}
           serverState={serverState}
           onSubmit={this.openModal}
         />
