@@ -35,9 +35,18 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    const {userid} = this.props
-    const user = !userid ? await this.props.callAction('me') : await this.props.callAction('getUserDetails', {userid})
-    this.setState({ user })
+    const { userid } = this.props
+
+    if (!userid) {
+      const user = await this.props.callAction('me')
+      this.setState({ user })
+    } else {
+      const { user, stats } = await this.props.callAction(
+        'getPublicUserDetails',
+        { userid }
+      )
+      this.setState({ user, stats })
+    }
   }
 
   onBackgroundChange = url => {
@@ -48,7 +57,7 @@ class Profile extends Component {
 
   render() {
     var { user, stats } = this.state
-    var { actions } = this.props
+    var { actions, userid } = this.props
 
     if (!user)
       return (
@@ -62,7 +71,7 @@ class Profile extends Component {
         <div
           style={headerBackground(
             user.profileBackgroundURL ||
-            'https://media.giphy.com/media/OK5LK5zLFfdm/giphy.gif'  
+              'https://media.giphy.com/media/OK5LK5zLFfdm/giphy.gif'
             // 'https://media.giphy.com/media/BlcWQ9L2VfOFO/giphy.gif'
           )}
         >
@@ -86,17 +95,19 @@ class Profile extends Component {
           </div>
         </div>
         <div className="Profile-content-body">
-          <Stats
+          {/* <Stats
             deposited={stats.steamItemsDeposited}
             trades={stats.successCount}
             value={stats.steamValueDeposited}
-          />
-          <Settings
-            {...this.props}
-            actions={actions}
-            user={user}
-            onBackgroundChange={this.onBackgroundChange}
-          />
+          /> */}
+          {userid ? null : (
+            <Settings
+              {...this.props}
+              actions={actions}
+              user={user}
+              onBackgroundChange={this.onBackgroundChange}
+            />
+          )}
         </div>
       </div>
     )

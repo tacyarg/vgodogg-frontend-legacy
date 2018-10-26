@@ -12,10 +12,14 @@ import {
 import { FaTwitter, FaDiscord } from 'react-icons/fa'
 import classNames from 'classnames'
 
-const Message = ({ message, onContextMenu }) => {
+import Modal from '../Modal/Modal'
+import Profile from '../Profile/Profile'
+
+const Message = ({ onClick, message, onContextMenu }) => {
   var htmlMessage = { __html: message.message }
   return (
     <div
+    onClick={onClick}
       className="Chat-message bp3-dark"
       style={{ color: 'white', background: '#182026' }}
       key={message.id}
@@ -43,6 +47,7 @@ const AdminMenu = ({ user, message, callAction }) => {
   const muteUser = function(userid, muteTime) {
     return callAction('setUserMuted', { userid, muteTime })
   }
+
   return (
     <Menu
       className="bp3-dark"
@@ -88,7 +93,27 @@ class Chat extends Component {
 
     this.state = {
       isContextMenuOpen: false,
+      modalContent: null,
+      modalProps: null
     }
+  }
+
+  // MODAL FUNCTIONS
+
+  openModal = (component, props = {}) => {
+    // if not component is provided, just toggle.
+    if (component) {
+      this.setState({
+        modalContent: component,
+        modalProps: props
+      })
+    }
+
+    this.modal.toggleOverlay()
+  }
+
+  openProfile = (userid) => {
+    this.openModal(Profile, {userid})
   }
 
   showContextMenu = (e, message) => {
@@ -130,9 +155,27 @@ class Chat extends Component {
   }
 
   render() {
-    const { messages, stats, user, actions } = this.props
+    const { modalContent } = this.state
+    const {
+      messages,
+      stats,
+      user,
+      actions,
+      auth,
+      callAction,
+      serverState,
+    } = this.props
     return (
       <div className="Chat-wrapper">
+        <Modal
+          {...this.state.modalProps}
+          onRef={ref => (this.modal = ref)}
+          InnerComponent={modalContent}
+          auth={auth}
+          callAction={callAction}
+          serverState={serverState}
+          onSubmit={this.openModal}
+        />
         <div
           className="Chat-header bp3-dark"
           style={{ color: 'white', background: '#10161A' }}
@@ -164,6 +207,9 @@ class Chat extends Component {
           {messages.map((message, index) => {
             return (
               <Message
+                onClick={e => {
+                  this.openProfile(message.user.id)
+                }}
                 message={message}
                 onContextMenu={e => {
                   if (!user.admin) return
