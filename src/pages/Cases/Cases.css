@@ -2,6 +2,17 @@
   position: relative;
 }
 
+.Cases-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: #EBF1F5;
+  padding: 10px;
+  color: black;
+}
+
 .Cases-header {
   position: absolute;
   right: 0;
