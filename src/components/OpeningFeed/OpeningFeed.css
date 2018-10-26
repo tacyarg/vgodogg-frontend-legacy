@@ -10,6 +10,8 @@
   flex-wrap: nowrap;
   align-items: center;
   z-index: -1000;
+  width: 100%;
+  overflow-x: scroll;
 }
 
 .OpeningFeed-overlay-left {
