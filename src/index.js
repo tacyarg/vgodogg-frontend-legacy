@@ -12,10 +12,10 @@ import AppToaster from "./components/AppToaster";
 import App from "./App";
 import Loading from "./pages/Loading/Loading";
 
-const API_URL = "https://api.vunbox.com";
-const SOCKET_URL = "https://socket.vunbox.com";
-// const API_URL = 'http://localhost:3000'
-// const SOCKET_URL = 'http://localhost:3001'
+// const API_URL = "https://api.vunbox.com";
+// const SOCKET_URL = "https://socket.vunbox.com";
+const API_URL = 'http://localhost:3000'
+const SOCKET_URL = 'http://localhost:3001'
 const serverState = State();
 const socket = openSocket(SOCKET_URL, {
   transports: ['websocket', 'polling']
@@ -62,7 +62,9 @@ Promise.props({
   serverState: getServerState(),
   callAction: callAction,
   AppToaster: AppToaster
-}).then(props => {
+}).then((props) => {
+  // const {user} = auth.getState()
+  // props.user = user
   ReactDOM.render(
     <Router>
       <App {...props} />

@@ -21,12 +21,11 @@ class Header extends Component {
       modalContent: null
     };
 
-    setInterval(this.updateKeyCount.bind(this), 10000);
+    setInterval(this.updateKeyCount.bind(this), 5000);
   }
 
   componentDidMount() {
-    var keys = this.props.user ? this.props.user.keyCount : 0;
-    this.setState({ keys });
+    this.updateKeyCount.bind(this)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,7 +33,7 @@ class Header extends Component {
   }
 
   updateKeyCount() {
-    if (!this.props.user) return;
+    if (!this.props.user) return 0;
     this.setState({
       loadingKeys: true
     });
@@ -111,7 +110,7 @@ class Header extends Component {
               icon="key"
               onClick={this.updateKeyCount.bind(this)}
               text={keys}
-              loading={loadingKeys}
+              // loading={loadingKeys}
             />
             {!user ? (
               <Button

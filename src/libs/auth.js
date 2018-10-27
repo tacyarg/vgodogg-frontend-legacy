@@ -34,7 +34,8 @@ module.exports = function(socket) {
       .then(res => {
         state.authToken = res.id;
         localStorage.setItem("authToken", res.id);
-        return methods.setToken();
+        return res
+        // return methods.setToken();
       })
       .catch(err => localStorage.setItem("clientToken", ""));
   };
@@ -56,7 +57,7 @@ module.exports = function(socket) {
           localStorage.setItem("authToken", "");
           return reject(new Error("Failed to authenticate!"));
         }
-        result = JSON.parse(result)
+        // result = JSON.parse(result)
         state.authenticated = true;
         state.user = result;
         resolve(result);
@@ -67,7 +68,7 @@ module.exports = function(socket) {
   methods.init = function() {
     state.clientToken = localStorage.getItem("clientToken");
     if (state.authToken) {
-      methods.setToken();
+      // methods.setToken();
     } else if (state.clientToken) {
       // methods.verifySteam();
     }
