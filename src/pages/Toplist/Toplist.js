@@ -38,7 +38,7 @@ class Toplist extends Component {
           </Tabs>
         </Navbar>
         <div className="Toplist-content">
-          <Leaderboard stats={stats[selectedLeaderboard]} />
+          <Leaderboard {...this.props} stats={stats[selectedLeaderboard]} />
         </div>
 
         {/* <Leaderboard stats={stats.allTime} />
