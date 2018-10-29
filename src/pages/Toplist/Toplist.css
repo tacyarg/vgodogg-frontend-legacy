@@ -4,7 +4,15 @@
   height: calc(100vh - 250px);
 }
 
+.Toplist-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .Toplist-content {
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
