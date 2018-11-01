@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import CountUp from "react-countup";
+import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import CountUp from 'react-countup'
 
-import "./SpinCase.css";
-import { random, shuffle, concat, sortBy } from "lodash";
+import './SpinCase.css'
+import { random, shuffle, concat, sortBy } from 'lodash'
 import {
   Checkbox,
   Button,
   HTMLSelect,
   Elevation,
   Intent,
-  ControlGroup
-} from "@blueprintjs/core";
-import ItemCard from "../../components/ItemCard/ItemCard";
-import utils from "../../libs/utils";
+  ControlGroup,
+} from '@blueprintjs/core'
+import ItemCard from '../../components/ItemCard/ItemCard'
+import utils from '../../libs/utils'
 
 const FILTER_OPTIONS = [
-  "Unboxed: last",
-  "Unboxed: first",
-  "Price: ascending",
-  "Price: descending"
-];
+  'Unboxed: last',
+  'Unboxed: first',
+  'Price: ascending',
+  'Price: descending',
+]
 
 class Spinner extends Component {
   constructor(props) {
-    super();
+    super()
 
-    var boxid = --props.match.params.boxid;
+    var boxid = --props.match.params.boxid
 
     this.state = {
       box: props.cases[boxid],
@@ -39,81 +39,82 @@ class Spinner extends Component {
       disabled: false,
       totalBoxes: 0,
       autoSpin: false,
-      sortFilter: "Unboxed: last",
+      sortFilter: 'Unboxed: last',
+      quickSpin: false,
 
-      spinnerTransition: "",
-      spinnerTransform: "",
+      spinnerTransition: '',
+      spinnerTransform: '',
       spinnerContent: [],
       winnerElevation: Elevation.ONE,
       spinning: false,
       itemsWon: [],
-      totalWon: 0
-    };
+      totalWon: 0,
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state !== nextState;
+    return this.state !== nextState
   }
 
   componentDidMount() {
     this.props
-      .callAction("getOfferCases", {
-        offerid: this.props.match.params.offerid
+      .callAction('getOfferCases', {
+        offerid: this.props.match.params.offerid,
       })
       .then(boxes => {
-        boxes = sortBy(boxes, ["item", "id"]).reverse();
+        boxes = sortBy(boxes, ['item', 'id']).reverse()
 
         var itemsWon = boxes
           .filter(box => box.done)
-          .map(box => utils.processItem(box.item));
+          .map(box => utils.processItem(box.item))
 
-        var pendingBoxes = boxes.filter(box => !box.done);
+        var pendingBoxes = boxes.filter(box => !box.done)
 
-        this.setState({ itemsWon, pendingBoxes, totalBoxes: boxes.length });
-        this.setup.bind(this)();
-      });
+        this.setState({ itemsWon, pendingBoxes, totalBoxes: boxes.length })
+        this.setup.bind(this)()
+      })
   }
 
   setCaseOpened() {
-    this.props.callAction("openMyCase", {
-      caseid: this.state.currentCase.id
-    });
+    this.props.callAction('openMyCase', {
+      caseid: this.state.currentCase.id,
+    })
   }
 
   shuffleSpinnerItems(caseItems, times) {
-    times = times || 1;
-    var limit = caseItems.length * times;
-    var spinnerArray = [];
+    times = times || 1
+    var limit = caseItems.length * times
+    var spinnerArray = []
     while (spinnerArray.length < limit) {
-      spinnerArray = concat(spinnerArray, caseItems);
+      spinnerArray = concat(spinnerArray, caseItems)
     }
-    return shuffle(spinnerArray);
+    return shuffle(spinnerArray)
   }
 
   setup() {
-    var { winningItemIndex, itemWidth, pendingBoxes } = this.state;
+    var { winningItemIndex, itemWidth, pendingBoxes } = this.state
 
-    var spinnerContent = this.state.items.map(utils.processItem);
+    var spinnerContent = this.state.items.map(utils.processItem)
     spinnerContent = spinnerContent.filter(item => {
       return (
-        item.category.indexOf("Covert") === -1 &&
-        item.category.indexOf("Knife") === -1 &&
-        item.category.indexOf("Legendary") === -1
-      );
-    });
-    spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2);
+        item.category.indexOf('Covert') === -1 &&
+        item.category.indexOf('Knife') === -1 &&
+        item.category.indexOf('Legendary') === -1
+      )
+    })
+    spinnerContent = this.shuffleSpinnerItems(spinnerContent, 2)
 
-    var currentCase = pendingBoxes.pop();
-    var offset = (-itemWidth * 2.7) + random(-50, 50)
+    var currentCase = pendingBoxes.pop()
+    var offset = -itemWidth * 2.7 + random(-50, 50)
 
     if (!currentCase) {
       this.setState({
-        disabled: true
-      });
+        disabled: true,
+      })
     } else {
-      var winner = utils.processItem(currentCase.item);
-      winner.selected = true;
-      spinnerContent.splice(winningItemIndex, 1, winner);
+      var winner = utils.processItem(currentCase.item)
+      winner.selected = true
+      spinnerContent.splice(winningItemIndex, 1, winner)
     }
 
     this.setState({
@@ -122,70 +123,76 @@ class Spinner extends Component {
       offset,
       winner,
       winnerElevation: null,
-      spinnerTransition: "",
+      spinnerTransition: '',
       // spinnerTransform: `translateX(-180px) translateZ(0px)`
-      spinnerTransform: `translate3d(-180px, 0, 0)`
-    });
+      spinnerTransform: `translate3d(-180px, 0, 0)`,
+    })
 
     if (currentCase && this.props.user) {
-      if (currentCase.userid === this.props.user.id) return;
+      if (currentCase.userid === this.props.user.id) return
       this.setState({
         spinning: false,
-        disabled: true
-      });
+        disabled: true,
+      })
     } else {
       this.setState({
         spinning: false,
-        disabled: true
-      });
+        disabled: true,
+      })
     }
   }
 
-  spin() {
-    var { winner, winningItemIndex, speed, itemWidth, offset } = this.state;
-    if (!winner) return;
+  spin(quickSpin) {
+    var { winner, winningItemIndex, speed, itemWidth, offset } = this.state
+    if (!winner) return
+    var doneDelay = 1000
+
+    if (quickSpin) {
+      speed = speed / 3
+    }
 
     setTimeout(() => {
       this.setState({
         spinning: true,
         spinnerTransition: `all ${speed}s ease`,
-        spinnerTransform: `translate3d(${(winningItemIndex * -itemWidth) + offset}px, 0, 0)`
+        spinnerTransform: `translate3d(${winningItemIndex * -itemWidth +
+          offset}px, 0, 0)`,
         // spinnerTransform: `translateX(${(winningItemIndex * -itemWidth) + offset}px) translateZ(0px)`
-      });
-    }, 500);
+      })
+    }, 500)
 
     setTimeout(() => {
-      this.state.itemsWon.unshift(winner);
+      this.state.itemsWon.unshift(winner)
       this.setState({
         totalWon: this.state.totalWon + winner.suggested_price / 100,
-        winnerElevation: Elevation.FOUR
-      });
-      this.setCaseOpened.bind(this)();
+        winnerElevation: Elevation.FOUR,
+      })
+      this.setCaseOpened.bind(this)()
 
       setTimeout(() => {
-        this.setup.bind(this)();
+        this.setup.bind(this)()
 
         if (this.state.autoSpin) {
-          this.spin.bind(this)();
+          this.spin.bind(this)()
         } else {
-          this.setState({ spinning: false });
+          this.setState({ spinning: false })
         }
-      }, 1000);
-    }, (speed + 0.5) * 1000);
+      }, doneDelay)
+    }, (speed + 0.5) * doneDelay)
   }
 
   sortItems(items, filter) {
     switch (filter) {
-      case "Unboxed: first":
-        return sortBy(items, "id");
-      case "Unboxed: last":
-        return sortBy(items, "id").reverse();
-      case "Price: ascending":
-        return sortBy(items, "suggested_price");
-      case "Price: descending":
-        return sortBy(items, "suggested_price").reverse();
+      case 'Unboxed: first':
+        return sortBy(items, 'id')
+      case 'Unboxed: last':
+        return sortBy(items, 'id').reverse()
+      case 'Price: ascending':
+        return sortBy(items, 'suggested_price')
+      case 'Price: descending':
+        return sortBy(items, 'suggested_price').reverse()
       default:
-        return items;
+        return items
     }
   }
 
@@ -204,39 +211,60 @@ class Spinner extends Component {
               className="Spinner-content"
               style={{
                 transition: this.state.spinnerTransition,
-                transform: this.state.spinnerTransform
+                transform: this.state.spinnerTransform,
               }}
             >
               {this.state.spinnerContent.map((item, index) => {
                 return (
                   <ItemCard
                     key={item.id + index}
-                    style={{ color: 'white', background: '#182026', border: `${item.selected && this.state.winnerElevation > 1 ? '1px solid gold' : ''}` }}
+                    style={{
+                      color: 'white',
+                      background: '#182026',
+                      border: `${
+                        item.selected && this.state.winnerElevation > 1
+                          ? '1px solid gold'
+                          : ''
+                      }`,
+                    }}
                     elevation={
                       item.selected ? this.state.winnerElevation : null
                     }
                     {...item}
                   />
-                );
+                )
               })}
             </div>
           </div>
-          <Button
-            loading={this.state.spinning}
-            intent={Intent.SUCCESS}
-            disabled={this.state.disabled}
-            className="Spinner-btn"
-            onClick={e => {
-              this.spin.bind(this)();
-            }}
-            text="spin"
-          />
+          <div className="Spinner-btn-wrapper">
+            <Button
+              loading={this.state.spinning}
+              intent={Intent.PRIMARY}
+              disabled={this.state.disabled}
+              className="Spinner-btn"
+              onClick={e => {
+                this.spin.bind(this)()
+              }}
+              text="Spin"
+            />
+            <Button
+              // style={{backgroundColor:"goldenrod"}}
+              rightIcon="fast-forward"
+              loading={this.state.spinning}
+              disabled={this.state.disabled}
+              className="Spinner-btn-fast bp3-dark"
+              onClick={e => {
+                this.spin.bind(this)(true)
+              }}
+              text="Fast"
+            />
+          </div>
         </div>
         <div className="Spinner-itemsWon-content">
           <span className="Spinner-itemsWon-Title">
             <div className="Spinner-itemsWon-Title-left">
               {this.state.itemsWon.length} / {this.state.totalBoxes} Items
-              Unboxed:{" "}
+              Unboxed:{' '}
               <CountUp
                 prefix="$"
                 separator=","
@@ -252,7 +280,7 @@ class Spinner extends Component {
                 onChange={e => {
                   this.state.autoSpin
                     ? this.setState({ autoSpin: false })
-                    : this.setState({ autoSpin: true });
+                    : this.setState({ autoSpin: true })
                 }}
               />
               <HTMLSelect
@@ -262,11 +290,11 @@ class Spinner extends Component {
                   var items = this.sortItems(
                     this.state.itemsWon,
                     event.currentTarget.value
-                  );
+                  )
                   this.setState({
                     itemsWon: items,
-                    sortFilter: event.currentTarget.value
-                  });
+                    sortFilter: event.currentTarget.value,
+                  })
                 }}
                 value={this.state.sortFilter}
               />
@@ -279,13 +307,13 @@ class Spinner extends Component {
             transitionLeaveTimeout={300}
           >
             {this.state.itemsWon.map(item => {
-              return <ItemCard key={item.id} {...item} />;
+              return <ItemCard key={item.id} {...item} />
             })}
           </ReactCSSTransitionGroup>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Spinner;
+export default Spinner

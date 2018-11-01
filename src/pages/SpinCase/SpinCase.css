@@ -50,9 +50,27 @@
   z-index: 1000;
 }
 
+.Spinner-btn-wrapper {
+  display: flex;
+  /* width: %; */
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .Spinner-btn {
-  padding: 10px;
+  font-weight: bold;
+  padding: 14px;
   width: 220px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.Spinner-btn-fast {
+  font-weight: bold;
+  /* background-color: goldenrod; */
+  padding: 14px;
+  width: 120px;
   margin: 0 auto;
   margin-top: 20px;
 }
