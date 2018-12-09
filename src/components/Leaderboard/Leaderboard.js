@@ -88,6 +88,7 @@ class Leaderboard extends Component {
               {/* <th>Position</th> */}
               <th>Time</th>
               <th>User</th>
+              <th>CaseID</th>
               <th>Item</th>
               <th>Value</th>
             </tr>
@@ -104,6 +105,7 @@ class Leaderboard extends Component {
                   {/* <td>{++index}</td> */}
                   <td>{moment(row.created).calendar()}</td>
                   <td>{row.user.username}</td>
+                  <td>{row.case_id}</td>
                   <td>{row.item.name}</td>
                   <td>${(row.item.suggested_price / 100).toFixed(2)}</td>
                 </tr>
