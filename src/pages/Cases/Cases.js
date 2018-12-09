@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import './Cases.css'
 import CaseCard from '../../components/CaseCard/CaseCard'
 import { AnchorButton, Intent } from '@blueprintjs/core'
+import {orderBy} from 'lodash'
 
 const CaseList = ({ cases, stats, history }) => {
   cases = cases.filter(box => {
     return box.remaining_opens > 0
   })
+  cases = orderBy(cases, 'id').reverse()
   return cases.map(box => {
     var boxStats = stats.allTime.cases[box.id]
     box.openCount = boxStats ? boxStats.opened : 0
