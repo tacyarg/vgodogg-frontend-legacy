@@ -21,7 +21,7 @@ class Header extends Component {
       modalContent: null
     };
 
-    setInterval(this.updateKeyCount.bind(this), 2500);
+    setInterval(this.updateKeyCount.bind(this), 5000);
   }
 
   componentDidMount() {
