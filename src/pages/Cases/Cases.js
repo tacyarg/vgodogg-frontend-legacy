@@ -31,9 +31,9 @@ class Cases extends Component {
     const { cases, stats, user, history } = this.props
     return (
       <div className="Cases-wrapper">
-        <div className="Cases-banner">
+        {/* <div className="Cases-banner">
           <a target="_blank" href="https://flipaskin.com/">Have CSGO Keys? Need VGO keys?  Exchange them on Flipaskin.com!</a>
-        </div>
+        </div> */}
         <div className="Cases-header">
           <AnchorButton
             disabled={!user}
