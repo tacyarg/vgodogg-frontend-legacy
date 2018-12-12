@@ -28,7 +28,10 @@ class CaseCard extends PureComponent {
               <div className="CaseCard-animation-content">
                 {box.items.map(item => {
                   item = utils.processItem(item)
-                  if (item.condition !== 'Factory New') return
+                  if(item.condition) {
+                    if (item.condition !== 'Factory New') return
+                    delete item.condition
+                  }
                   return (
                     <div className="CaseCard-animation-content-item">
                       <div className="CaseCard-animation-content-item-image">
