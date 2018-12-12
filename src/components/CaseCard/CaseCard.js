@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import './CaseCard.css'
 import { Card, Elevation } from '@blueprintjs/core'
 import utils from '../../libs/utils'
+import { sampleSize } from 'lodash'
 
 class CaseCard extends PureComponent {
   render() {
@@ -26,12 +27,8 @@ class CaseCard extends PureComponent {
 
             <div className="CaseCard-animation">
               <div className="CaseCard-animation-content">
-                {box.items.map(item => {
+                {sampleSize(box.items, 50).map(item => {
                   item = utils.processItem(item)
-                  if(item.condition) {
-                    if (item.condition !== 'Factory New') return
-                    delete item.condition
-                  }
                   return (
                     <div className="CaseCard-animation-content-item">
                       <div className="CaseCard-animation-content-item-image">
