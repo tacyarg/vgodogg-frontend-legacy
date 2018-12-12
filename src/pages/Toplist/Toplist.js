@@ -33,7 +33,7 @@ class Toplist extends Component {
             selectedTabId={this.state.selectedLeaderboard}
           >
             {map(stats, (data, key) => {
-              return <Tab id={key} title={key.toUpperCase()} />
+              return <Tab key={key} id={key} title={key.toUpperCase()} />
             })}
           </Tabs>
         </Navbar>

@@ -41,10 +41,12 @@ class ItemCard extends PureComponent {
       suggested_price,
       user,
       box,
+      id
     } = this.props
     return (
       <div className="ItemCard-wrapper">
         <Card
+          key={id}
           style={{ color: 'white', background: '#182026' }}
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}

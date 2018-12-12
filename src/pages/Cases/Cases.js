@@ -9,7 +9,7 @@ const CaseList = ({ cases, stats, history }) => {
     return box.remaining_opens > 0
   })
   cases = orderBy(cases, 'id').reverse()
-  return cases.map(box => {
+  return cases.map((box, key) => {
     var boxStats = stats.allTime.cases[box.id]
     box.openCount = boxStats ? boxStats.opened : 0
     return (

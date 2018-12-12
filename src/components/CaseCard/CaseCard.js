@@ -11,7 +11,7 @@ class CaseCard extends PureComponent {
       <div className="CaseCard-wrapper">
         <Card
           style={{ color: 'white', background: '#182026' }}
-          key={box.id}
+          // key={box.id}
           interactive={true}
           elevation={Elevation.ONE}
           className="CaseCard-card"
@@ -30,7 +30,10 @@ class CaseCard extends PureComponent {
                 {sampleSize(box.items, 50).map(item => {
                   item = utils.processItem(item)
                   return (
-                    <div className="CaseCard-animation-content-item">
+                    <div
+                      key={item.id}
+                      className="CaseCard-animation-content-item"
+                    >
                       <div className="CaseCard-animation-content-item-image">
                         <img src={item.image['300px']} />
                       </div>

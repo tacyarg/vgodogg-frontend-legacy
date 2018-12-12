@@ -145,7 +145,7 @@ class CaseOverview extends Component {
                       {this.state.stats.items
                         ? map(this.state.stats.items.type, (stat, key) => {
                             return (
-                              <div>
+                              <div key={key}>
                                 <b> {key}: </b>
                                 <CountUp
                                   decimals={2}
@@ -165,7 +165,7 @@ class CaseOverview extends Component {
                       {this.state.stats.items
                         ? map(this.state.stats.items.rarity, (stat, key) => {
                             return (
-                              <div>
+                              <div key={key}>
                                 <b> {key}: </b>
                                 <CountUp
                                   decimals={2}
@@ -198,16 +198,16 @@ class CaseOverview extends Component {
             />
           </div>
           <div className="CaseOverview-body-caseItems">
-            {this.state.box.items.map(item => {
+            {this.state.box.items.map((item, key) => {
               item = utils.processItem(item)
-              if(item.condition) {
+              if (item.condition) {
                 if (item.condition !== 'Factory New') return
                 delete item.condition
               }
-              
+
               return (
-                <LazyComponent>
-                  <ItemCard {...item} key={item.id} />
+                <LazyComponent key={item.id}>
+                  <ItemCard {...item} />
                 </LazyComponent>
               )
             })}
