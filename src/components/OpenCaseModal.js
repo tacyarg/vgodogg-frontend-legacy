@@ -38,11 +38,11 @@ class OpenCaseModal extends Component {
         </div>
 
         <div className={Classes.DIALOG_FOOTER}>
-          <h5>How many cases would you like to buy?</h5>
-
+          <h4>How many cases would you like to buy?</h4>
+          <h5>{box.key_amount_per_case} keys per case.</h5>
           <NumericInput
             className="OpenCase-key-input"
-            leftIcon="key"
+            leftIcon="box"
             max={maxKeys || 100}
             min="1"
             large={true}
