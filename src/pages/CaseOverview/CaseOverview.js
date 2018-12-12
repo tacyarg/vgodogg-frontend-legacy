@@ -200,11 +200,11 @@ class CaseOverview extends Component {
           <div className="CaseOverview-body-caseItems">
             {this.state.box.items.map(item => {
               item = utils.processItem(item)
-              if (item.condition !== 'Factory New') return
-              delete item.condition
+              // if (item.condition !== 'Factory New') return
+              // delete item.condition
               return (
                 <LazyComponent>
-                  <ItemCard {...item} />
+                  <ItemCard {...item} key={item.id} />
                 </LazyComponent>
               )
             })}
