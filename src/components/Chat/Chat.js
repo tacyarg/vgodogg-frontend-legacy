@@ -207,6 +207,7 @@ class Chat extends Component {
           {messages.map((message, index) => {
             return (
               <Message
+                key={message.id}
                 onClick={e => {
                   this.openProfile(message.user.id)
                 }}

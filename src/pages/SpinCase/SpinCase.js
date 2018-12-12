@@ -26,11 +26,13 @@ class Spinner extends Component {
   constructor(props) {
     super()
 
-    var boxid = --props.match.params.boxid
+    const currentCase = props.cases.find(box => {
+      return box.id == parseInt(props.match.params.boxid)
+    })
 
     this.state = {
-      box: props.cases[boxid],
-      items: props.cases[boxid].items,
+      box: currentCase,
+      items: currentCase.items,
       pendingBoxes: [],
       speed: 4,
       itemWidth: 200,

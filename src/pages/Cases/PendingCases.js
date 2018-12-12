@@ -47,7 +47,10 @@ class PendingCases extends Component {
 
       offerCases = map(offerCases, (cases, key) => {
         var firstCase = cases[0];
-        var box = clone(this.props.cases[--firstCase.case_id]);
+        const currentCase = this.props.cases.find(box => {
+          return box.id == parseInt(firstCase.case_id)
+        })
+        var box = clone(currentCase)
         box.offerid = key;
         box.name = `Order #${key}`;
         box.cases = cases;
