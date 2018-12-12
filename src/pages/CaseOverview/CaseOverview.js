@@ -12,7 +12,12 @@ import ClassNames from 'classnames'
 class CaseOverview extends Component {
   constructor(props) {
     super()
-    var box = clone(props.boxes[parseInt(--props.match.params.boxid)])
+
+    const currentCase = props.boxes.find(box => {
+      return box.id == parseInt(props.match.params.boxid)
+    })
+
+    var box = clone(currentCase)
     box.items = sortBy(box.items, 'suggested_price').reverse()
     var stats = props.stats.allTime.cases[box.id] || {
       opened: 0,

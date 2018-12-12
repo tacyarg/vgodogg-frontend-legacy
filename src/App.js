@@ -23,6 +23,7 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = props.serverState();
+    console.log(this.state)
     props.serverState.on("change", obj => this.setState(obj));
   }
 
