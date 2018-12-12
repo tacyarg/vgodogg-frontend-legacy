@@ -42,8 +42,6 @@ class ItemCard extends PureComponent {
       user,
       box
     } = this.props
-
-    console.log(image)
     return (
       <div className="ItemCard-wrapper">
         <Card
