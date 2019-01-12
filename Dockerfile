@@ -1,7 +1,3 @@
-# START FROM NODE VERSION 8.x
-FROM node:carbon-alpine 
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
+FROM node:alpine
 COPY . .
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
