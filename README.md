@@ -3,6 +3,7 @@
 Case opening site built for unboxing VGO assets.
 
 ![example-fe](https://i.imgur.com/vJgyMin.jpg)
+![ex-spin](https://pbs.twimg.com/media/DlBG34JU4AAowyt?format=jpg&name=large)
 
 ## Deployment
 
